@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.IO.Ports;
 using UnityEngine.Serialization;
+using UnityScript.Steps;
 
 namespace Eurovision.Input
 {
@@ -11,19 +12,12 @@ namespace Eurovision.Input
     /// Reads data from the Arduino
     /// Passes data to actionmap when data is received
     /// </summary>
-    [RequireComponent(typeof(ActionMap))]
-    public class SerialInputReader : MonoBehaviour
+    public class SerialInputReader : InputReader
     { 
         [SerializeField] private string portName = "dev/cu.usbmodem141101";
         [SerializeField] private int baudRate = 9600;
         
         private SerialPort _serialPort;
-        private ActionMap _actionMap;
-
-        private void Awake()
-        {
-            _actionMap = GetComponent<ActionMap>();
-        }
 
         private void Start()
         {
@@ -36,7 +30,7 @@ namespace Eurovision.Input
             try
             {
                 var data = int.Parse(_serialPort.ReadLine());
-                _actionMap.HandleInputData(data);
+                ParseInput(data);
             }
             catch (System.Exception)
             {
