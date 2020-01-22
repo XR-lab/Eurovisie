@@ -14,7 +14,7 @@ namespace Eurovision.Input
         private InputHandler _inputHandler;
 
         private void Awake()
-        {
+        { 
             _inputHandler = GetComponent<InputHandler>();
         }
 

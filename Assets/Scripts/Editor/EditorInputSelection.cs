@@ -4,6 +4,8 @@ using Eurovision.Input;
 using UnityEditor;
 using UnityEngine;
 
+// ToDo: Use initialize on load attribute to make sure our settings match 
+// https://docs.unity3d.com/Manual/RunningEditorCodeOnLaunch.html
 public class EditorInputSelection
 {
     private const string _hardwareInputMenu = "Eurovision/Input/HardwareInput";

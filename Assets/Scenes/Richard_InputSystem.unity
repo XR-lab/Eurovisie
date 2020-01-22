@@ -127,16 +127,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1860059929592602049, guid: d6dd53b88b2f44cc9adafbd3c491174c,
-        type: 3}
-      propertyPath: portName
-      value: dev/cu.usbmodem141101
-      objectReference: {fileID: 0}
-    - target: {fileID: 1860059929592602049, guid: d6dd53b88b2f44cc9adafbd3c491174c,
-        type: 3}
-      propertyPath: baudRate
-      value: 9600
-      objectReference: {fileID: 0}
     - target: {fileID: 6450213832950968098, guid: d6dd53b88b2f44cc9adafbd3c491174c,
         type: 3}
       propertyPath: m_Name
@@ -198,7 +188,7 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents:
-    - {fileID: 1860059929592602049, guid: d6dd53b88b2f44cc9adafbd3c491174c, type: 3}
+    - {fileID: 1983581942, guid: d6dd53b88b2f44cc9adafbd3c491174c, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: d6dd53b88b2f44cc9adafbd3c491174c, type: 3}
 --- !u!1 &433233468
 GameObject:
@@ -389,31 +379,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1983581939}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2d33584502dad4ea4847dcfc4ca62226, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &1983581941
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1983581939}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6fb0e531b253e4bf49e2ef5a3e641623, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &1983581942
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1983581939}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 784a9a4fbae94477aa65d7c8779e9adc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!114 &1983581943

@@ -13,24 +13,24 @@ namespace Eurovision.Input
             Keyboard
         }
         private InputModeType _inputModeType;
-        private InputReader _inputReader;
-        
+
         public void SetInputMode(InputModeType inputModeType)
         {
             _inputModeType = inputModeType;
+
+            var activeReaders = GetComponents<InputReader>();
+            foreach (var reader in activeReaders)
+                DestroyImmediate(reader);
             
-            if (_inputReader != null)
-                DestroyImmediate(_inputReader);
             
-            // ToDo: add and remove components needed for the input mode
             switch (_inputModeType)
             {
                 case InputModeType.Hardware:
-                    _inputReader = gameObject.AddComponent<SerialInputReader>();
+                    gameObject.AddComponent<SerialInputReader>();
                     break;
                 
                 case InputModeType.Keyboard:
-                    _inputReader = gameObject.AddComponent<KeyboardInputReader>();
+                    gameObject.AddComponent<KeyboardInputReader>();
                     break;
             }
         }
