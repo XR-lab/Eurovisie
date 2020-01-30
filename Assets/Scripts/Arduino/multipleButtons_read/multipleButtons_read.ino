@@ -1,8 +1,8 @@
 // Richard Ram
 
 // make sure we keep the buttons in correct order
-const int buttonPins[] = {2,3};
-const int pinCount = 2;
+const int buttonPins[] = {2,3,4,5,6,7,8,9,10,11};
+const int pinCount = 10;
 int buttonStates[pinCount];
 
 void setup() 
@@ -17,7 +17,7 @@ void setup()
 }
 
 void loop() 
-{
+{ int parseValue = 0;
   for (int i = 0; i < pinCount; i++) 
   {
     buttonStates[i] =  digitalRead(buttonPins[i]);
@@ -26,12 +26,12 @@ void loop()
     int data = ((i+1) * 10);
 
     // calculate if button is on or off
-    data += buttonStates[i] ? 0 : 1;
-    
-    Serial.flush();
+    data += buttonStates[i] ? 1 : 0;
+ 
     Serial.println(data);
-  }
-  delay(100);
+    Serial.flush();
+    delay(20);
+  }   
 }
 
 /*

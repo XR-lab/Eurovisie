@@ -10,7 +10,7 @@ namespace Eurovision.Input
 {
     /// <summary>
     /// Reads data from the Arduino
-    /// Passes data to actionmap when data is received
+    /// Passes data to InputHandler when data is received
     /// </summary>
     public class SerialInputReader : InputReader
     { 

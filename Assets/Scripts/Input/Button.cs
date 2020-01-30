@@ -6,11 +6,12 @@ using UnityEngine.Events;
 
 namespace Eurovision.Input
 {
+    [System.Serializable]
     public class Button
     {
-        public event Action OnButtonDown;
-        public event Action OnButtonHold;
-        public event Action OnButtonUp;
+        [SerializeField]
+        private Eurovision.Effect _effect;
+        
         public enum InputState
         {
             Down,
@@ -18,8 +19,7 @@ namespace Eurovision.Input
             Up,
         }
         private InputState _currentInputState = InputState.Up;
-        private UnityEvent _event;
-        
+
         public void UpdateButtonState(int data)
         {
             switch (_currentInputState)
@@ -27,17 +27,13 @@ namespace Eurovision.Input
                 case InputState.Down:
                     if (data == 1)
                     {
-                        // new state is hold
                         _currentInputState = InputState.Hold;
-                        if (OnButtonHold != null)
-                            OnButtonHold();
+                        _effect.OnEffectUpdate();
                     }
                     else if (data == 0)
                     {
-                        // new state is up
                         _currentInputState = InputState.Up;
-                        if (OnButtonUp != null)
-                            OnButtonUp();
+                        _effect.OnEffectStop();
                     }
                     break;
                 
@@ -45,26 +41,21 @@ namespace Eurovision.Input
                     if (data == 1)
                     {
                         // state stays Hold
-                        // _currentInputState = InputState.Hold;
-                        if (OnButtonHold != null)
-                            OnButtonHold();
+                        _effect.OnEffectUpdate();
+
                     }
                     else if (data == 0)
                     {
-                        // new state is up
                         _currentInputState = InputState.Up;
-                        if (OnButtonUp != null)
-                            OnButtonUp();
+                        _effect.OnEffectStop();
                     }
                     break;
                 
                 case InputState.Up:
                     if (data == 1)
                     {
-                        // new state is down
                         _currentInputState = InputState.Down;
-                        if (OnButtonDown != null)
-                            OnButtonDown();
+                        _effect.OnEffectStart();
                     }
                     break;
             }
