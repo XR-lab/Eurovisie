@@ -16,7 +16,7 @@ namespace Eurovision.Viewports
             
             for (int i = 0; i < Display.displays.Length; i++)
             {
-                Display.displays[i].Activate(1024, 768, 60);
+                Display.displays[i].Activate();
             }
         }
     }
