@@ -4,5 +4,8 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Scenes/Richard_Viewports.unity
+    guid: ec62ada0ea13e444f98d00e921119083
   m_configObjects: {}
