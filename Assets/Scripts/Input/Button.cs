@@ -19,7 +19,8 @@ namespace Eurovision.Input
             Up,
         }
         private InputState _currentInputState = InputState.Up;
-
+        
+        // TODO: Refactor into dictionary?
         public void UpdateButtonState(int data)
         {
             switch (_currentInputState)
