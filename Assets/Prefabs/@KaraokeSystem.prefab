@@ -46,7 +46,7 @@ PlayableDirector:
   m_PlayableAsset: {fileID: 11400000, guid: fb290537203384d1095115d400bd1386, type: 2}
   m_InitialState: 0
   m_WrapMode: 2
-  m_DirectorUpdateMode: 1
+  m_DirectorUpdateMode: 0
   m_InitialTime: 0
   m_SceneBindings:
   - key: {fileID: -329222810742175971, guid: c6c76f57a44ae43d99d798cc2fb6893a, type: 2}
@@ -208,6 +208,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1b79b27acbaed413ea99a51aaf249f4f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _trackData: {fileID: 11400000, guid: 88144a1282a7f4759a7271fac0b37b47, type: 2}
+  _trackLibrary: {fileID: 11400000, guid: 767eb2e2b3bf04e36b3a199c80f59ea3, type: 2}
   _uiTextPlayerOne: {fileID: 0}
   _uiTextPlayerTwo: {fileID: 0}

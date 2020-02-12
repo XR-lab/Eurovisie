@@ -5,10 +5,7 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 0
-    path: Assets/Scenes/Richard_Viewports.unity
-    guid: ec62ada0ea13e444f98d00e921119083
   - enabled: 1
-    path: Assets/Scenes/Richard_KaraokeSystem.unity
-    guid: 3a1690af84f3a49e589ec929654953d2
+    path: Assets/Scenes/Richard_VRSetup.unity
+    guid: ec16cabb6febd704881e06ee8a32bb16
   m_configObjects: {}
