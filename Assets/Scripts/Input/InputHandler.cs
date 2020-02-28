@@ -15,7 +15,7 @@ namespace Eurovision.Input
             int buttonID = (inputData / 10) - 1;
             int dataState = inputData % 2; 
             
-            _buttons[buttonID].UpdateButtonState(dataState);
+           _buttons[buttonID].UpdateButtonState(dataState);
         }
     }    
 }
