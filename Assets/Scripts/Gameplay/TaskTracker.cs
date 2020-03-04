@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using System;
 
 namespace Eurovision.Gameplay
@@ -11,8 +12,9 @@ namespace Eurovision.Gameplay
         public Action<Task> OnTaskComplete;
         public Action<Task> OnTaskCancel;
 
-        // Serializedfiel for debugging purpose
-        [SerializeField] private Task _currentTask;
+        [SerializeField] private Image _progressImage;
+
+        private Task _currentTask;
 
         private float _timer = 0;
         private Eyetracker _eyetracker;
@@ -65,6 +67,8 @@ namespace Eurovision.Gameplay
         {
             _timer += Time.deltaTime;
 
+            UpdateProgressImage();
+
             if (_timer >= _currentTask.Duration)
                 TaskComplete();
 
@@ -99,7 +103,17 @@ namespace Eurovision.Gameplay
             _currentTask.Target.SetAsActiveObject();
 
             _timer = 0;
+
+            UpdateProgressImage();
+
             print("TaskComplete");
+        }
+
+        private void UpdateProgressImage()
+        {
+            float normalizedProgress = _timer /  _currentTask.Duration;
+            print(normalizedProgress);
+            _progressImage.fillAmount = normalizedProgress;
         }
     }
 }
