@@ -10,8 +10,8 @@ namespace Eurovision.Gameplay
     public class TaskTracker : MonoBehaviour
     {
         public Action<Task> OnTaskComplete;
-        public Action<Task> OnTaskCancel;
 
+        [SerializeField] private float _unFillSpeed = 2;
         [SerializeField] private Image _progressImage;
 
         private Task _currentTask;
@@ -30,6 +30,9 @@ namespace Eurovision.Gameplay
         {
             _currentTask = _taskGenerator.GenerateTask();
             _currentTask.Target.SetAsActiveObject();
+
+            _timer = 0;
+            UpdateProgressImage();
         }
 
         private void Update()
@@ -77,10 +80,12 @@ namespace Eurovision.Gameplay
 
         private void TaskCancel()
         {
-            if (OnTaskCancel != null)
-                OnTaskCancel.Invoke(_currentTask);
+            _timer -= Time.deltaTime / _unFillSpeed;
 
-            _timer = 0;
+            if (_timer <= 0)
+                _timer = 0;
+
+            UpdateProgressImage();
 
             print("TaskCancel");
         }
