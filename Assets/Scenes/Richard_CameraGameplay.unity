@@ -97,7 +97,7 @@ LightmapSettings:
     m_ExportTrainingData: 0
     m_TrainingDataDestination: TrainingData
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 1
+  m_UseShadowmask: 0
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -349,40 +349,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9edeb4ac0ee084a0a9236721d7eb3ce0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!21 &555699535
-Material:
-  serializedVersion: 6
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_Name: Sprites/Default
-  m_Shader: {fileID: 10753, guid: 0000000000000000f000000000000000, type: 0}
-  m_ShaderKeywords: 
-  m_LightmapFlags: 4
-  m_EnableInstancingVariants: 0
-  m_DoubleSidedGI: 0
-  m_CustomRenderQueue: -1
-  stringTagMap: {}
-  disabledShaderPasses: []
-  m_SavedProperties:
-    serializedVersion: 3
-    m_TexEnvs:
-    - _AlphaTex:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _MainTex:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    m_Floats:
-    - PixelSnap: 0
-    - _EnableExternalAlpha: 0
-    m_Colors:
-    - _Color: {r: 1, g: 1, b: 1, a: 1}
-    - _Flip: {r: 1, g: 1, b: 1, a: 1}
-    - _RendererColor: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1001 &684212350
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -399,7 +365,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Camera
       value: 
-      objectReference: {fileID: 922654087}
+      objectReference: {fileID: 0}
     - target: {fileID: 6058017094350752570, guid: b0f125433db784b249357c3f3a6ae88b,
         type: 3}
       propertyPath: m_SortingOrder
@@ -600,12 +566,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3854d475dca1740a0aaf609d87a14ea7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!20 &922654087 stripped
-Camera:
-  m_CorrespondingSourceObject: {fileID: 7518083507270101169, guid: 1430d9fdd72e9f74d8b585a329024d70,
-    type: 3}
-  m_PrefabInstance: {fileID: 7518083508106968374}
-  m_PrefabAsset: {fileID: 0}
 --- !u!114 &927544746 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 6058017094455916912, guid: b0f125433db784b249357c3f3a6ae88b,
@@ -630,6 +590,40 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!21 &1043036109
+Material:
+  serializedVersion: 6
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Sprites/Default
+  m_Shader: {fileID: 10753, guid: 0000000000000000f000000000000000, type: 0}
+  m_ShaderKeywords: 
+  m_LightmapFlags: 4
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
+  disabledShaderPasses: []
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs:
+    - _AlphaTex:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _MainTex:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Floats:
+    - PixelSnap: 0
+    - _EnableExternalAlpha: 0
+    m_Colors:
+    - _Color: {r: 1, g: 1, b: 1, a: 1}
+    - _Flip: {r: 1, g: 1, b: 1, a: 1}
+    - _RendererColor: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1001 &1064700067
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1081,6 +1075,55 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
+--- !u!1 &1341773839 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7518083507270101168, guid: 1430d9fdd72e9f74d8b585a329024d70,
+    type: 3}
+  m_PrefabInstance: {fileID: 7518083508106968374}
+  m_PrefabAsset: {fileID: 0}
+--- !u!20 &1341773841
+Camera:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1341773839}
+  m_Enabled: 1
+  serializedVersion: 2
+  m_ClearFlags: 2
+  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
+  m_projectionMatrixMode: 1
+  m_GateFitMode: 2
+  m_FOVAxisMode: 0
+  m_SensorSize: {x: 36, y: 24}
+  m_LensShift: {x: 0, y: 0}
+  m_FocalLength: 50
+  m_NormalizedViewPortRect:
+    serializedVersion: 2
+    x: 0
+    y: 0
+    width: 1
+    height: 1
+  near clip plane: 0.3
+  far clip plane: 1000
+  field of view: 60
+  orthographic: 0
+  orthographic size: 5
+  m_Depth: 0
+  m_CullingMask:
+    serializedVersion: 2
+    m_Bits: 791
+  m_RenderingPath: -1
+  m_TargetTexture: {fileID: 0}
+  m_TargetDisplay: 1
+  m_TargetEye: 0
+  m_HDR: 1
+  m_AllowMSAA: 1
+  m_AllowDynamicResolution: 0
+  m_ForceIntoRT: 0
+  m_OcclusionCulling: 1
+  m_StereoConvergence: 10
+  m_StereoSeparation: 0.022
 --- !u!114 &1415684720 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 8358147373347951997, guid: 1ec5fea73ce84994289fd685c9e155eb,
@@ -1275,7 +1318,7 @@ PrefabInstance:
     - target: {fileID: 2348914, guid: 4d293c8e162f3874b982baadd71153d2, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 555699535}
+      objectReference: {fileID: 1043036109}
     - target: {fileID: 2348914, guid: 4d293c8e162f3874b982baadd71153d2, type: 3}
       propertyPath: m_Enabled
       value: 1
@@ -1283,7 +1326,7 @@ PrefabInstance:
     - target: {fileID: 3380982, guid: 4d293c8e162f3874b982baadd71153d2, type: 3}
       propertyPath: m_Mesh
       value: 
-      objectReference: {fileID: 2106804339}
+      objectReference: {fileID: 1961447474}
     - target: {fileID: 1000014254142504, guid: 4d293c8e162f3874b982baadd71153d2, type: 3}
       propertyPath: m_TagString
       value: MainCamera
@@ -1505,19 +1548,7 @@ PrefabInstance:
     m_RemovedComponents:
     - {fileID: 698432430299519707, guid: d6dd53b88b2f44cc9adafbd3c491174c, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: d6dd53b88b2f44cc9adafbd3c491174c, type: 3}
---- !u!114 &2049551834 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 5078104829241129454, guid: 154c353b5924d904b85c14a4449b055c,
-    type: 3}
-  m_PrefabInstance: {fileID: 5078104827732775988}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3854d475dca1740a0aaf609d87a14ea7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!43 &2106804339
+--- !u!43 &1961447474
 Mesh:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1680,6 +1711,18 @@ Mesh:
     offset: 0
     size: 0
     path: 
+--- !u!114 &2049551834 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5078104829241129454, guid: 154c353b5924d904b85c14a4449b055c,
+    type: 3}
+  m_PrefabInstance: {fileID: 5078104827732775988}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3854d475dca1740a0aaf609d87a14ea7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &371212326535158730
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1919,6 +1962,21 @@ PrefabInstance:
       propertyPath: m_BackGroundColor.b
       value: 0.47450984
       objectReference: {fileID: 0}
+    - target: {fileID: 7518083507270101169, guid: 1430d9fdd72e9f74d8b585a329024d70,
+        type: 3}
+      propertyPath: m_TargetEye
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7518083507270101169, guid: 1430d9fdd72e9f74d8b585a329024d70,
+        type: 3}
+      propertyPath: m_StereoConvergence
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7518083507270101169, guid: 1430d9fdd72e9f74d8b585a329024d70,
+        type: 3}
+      propertyPath: m_StereoSeparation
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7518083507270101182, guid: 1430d9fdd72e9f74d8b585a329024d70,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1979,7 +2037,8 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 7518083507270101169, guid: 1430d9fdd72e9f74d8b585a329024d70, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 1430d9fdd72e9f74d8b585a329024d70, type: 3}
 --- !u!1001 &8733186759873438637
 PrefabInstance:
@@ -2051,7 +2110,7 @@ PrefabInstance:
     - target: {fileID: 8733186758576314293, guid: 97436fe7a630e4f4c85ad78eb963bbff,
         type: 3}
       propertyPath: _useMouse
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8733186758576314296, guid: 97436fe7a630e4f4c85ad78eb963bbff,
         type: 3}
