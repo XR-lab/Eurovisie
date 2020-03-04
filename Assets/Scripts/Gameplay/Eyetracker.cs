@@ -26,7 +26,6 @@ namespace Eurovision.Gameplay
             {
                 return hit.transform.GetComponent<LookObject>();
             }
-
             return null;
         }
     }

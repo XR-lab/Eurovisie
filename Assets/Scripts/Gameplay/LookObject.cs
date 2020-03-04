@@ -12,12 +12,8 @@ namespace Eurovision.Gameplay
         private void Awake()
         {
             _renderer = GetComponent<Renderer>();
-
-        }
-
-        private void Start()
-        {
             _defaultColor = _renderer.material.GetColor("_BaseColor");
+
         }
 
         public void SetAsActiveObject()
