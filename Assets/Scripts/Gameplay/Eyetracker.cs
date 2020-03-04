@@ -10,16 +10,6 @@ namespace Eurovision.Gameplay
         [SerializeField] private Camera _camera;
         [SerializeField] private LayerMask _layerMask;
 
-        private GameObject _visionCube;
-
-        private void Start()
-        {
-            _visionCube = GameObject.CreatePrimitive(PrimitiveType.Cube);
-            _visionCube.transform.SetParent(transform);
-            _visionCube.transform.localScale /= 4f;
-            _visionCube.SetActive(false);
-        }
-
         public LookObject GetLookTarget()
         {
             Ray ray;
@@ -34,13 +24,7 @@ namespace Eurovision.Gameplay
 
             if (Physics.Raycast(ray, out hit, Mathf.Infinity, _layerMask))
             {
-                _visionCube.SetActive(true);
-                _visionCube.transform.position = hit.point;
                 return hit.transform.GetComponent<LookObject>();
-            }
-            else
-            {
-                _visionCube.SetActive(false);
             }
 
             return null;

@@ -13,6 +13,9 @@ namespace Eurovision.Gameplay
         [SerializeField] private float _duration;
         public float Duration { get { return _duration; } }
 
+        [SerializeField] private int _performancePoints = 1;
+        public int PerformancePoints {  get { return _performancePoints; } }
+
         private bool _isComplete = false;
         public bool IsComplete { get; set; }
 

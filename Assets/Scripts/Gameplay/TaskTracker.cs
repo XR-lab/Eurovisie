@@ -19,11 +19,13 @@ namespace Eurovision.Gameplay
         private float _timer = 0;
         private Eyetracker _eyetracker;
         private TaskGenerator _taskGenerator;
+        private PerformanceTracker _performanceTracker;
 
         private void Awake()
         {
             _eyetracker = GetComponent<Eyetracker>();
             _taskGenerator = GetComponent<TaskGenerator>();
+            _performanceTracker = GetComponent<PerformanceTracker>();
         }
 
         private void Start()
@@ -93,12 +95,27 @@ namespace Eurovision.Gameplay
         private void TaskComplete()
         {
             // maybe we should call these functions by the event?
+            int score = _currentTask.PerformancePoints;
+
             _currentTask.IsComplete = true;
             _currentTask.Target.SetAsInActiveObject();
+
+
+            _performanceTracker.AddPoints(score);
 
             if (OnTaskComplete != null)
                 OnTaskComplete.Invoke(_currentTask);
 
+            GenerateNewTask();
+
+            _timer = 0;
+            UpdateProgressImage();
+
+            print("TaskComplete");
+        }
+
+        private void GenerateNewTask()
+        {
             Task newTask;
             do
                 newTask = _taskGenerator.GenerateTask();
@@ -106,18 +123,11 @@ namespace Eurovision.Gameplay
 
             _currentTask = newTask;
             _currentTask.Target.SetAsActiveObject();
-
-            _timer = 0;
-
-            UpdateProgressImage();
-
-            print("TaskComplete");
         }
 
         private void UpdateProgressImage()
         {
             float normalizedProgress = _timer /  _currentTask.Duration;
-            print(normalizedProgress);
             _progressImage.fillAmount = normalizedProgress;
         }
     }
