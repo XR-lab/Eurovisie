@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using System;
 
 namespace Eurovision.Gameplay
@@ -11,6 +12,8 @@ namespace Eurovision.Gameplay
 
         [SerializeField] private int _pointsNeeded = 5;
         public bool PerformanceFull { get { return _performancePoints >= _pointsNeeded; } }
+
+        [SerializeField] private Image _performanceBar; 
 
         private int _performancePoints;
 
@@ -43,10 +46,10 @@ namespace Eurovision.Gameplay
             _performancePoints = 0;
         }
 
-        // ToDo Implement UI
         private void UpdateUI()
         {
             float normalizedScore = (float)_performancePoints / (float)_pointsNeeded;
+            _performanceBar.fillAmount = normalizedScore;
         }
     }
 }
