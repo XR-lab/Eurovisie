@@ -30,6 +30,16 @@ namespace Eurovision.Gameplay
 
         private void Start()
         {
+            /*
+            _currentTask = _taskGenerator.GenerateTask();
+            _currentTask.Target.SetAsActiveObject();
+
+            _timer = 0;
+            UpdateProgressImage();*/
+        }
+
+        public void StartExperience()
+        {
             _currentTask = _taskGenerator.GenerateTask();
             _currentTask.Target.SetAsActiveObject();
 
@@ -39,25 +49,28 @@ namespace Eurovision.Gameplay
 
         private void Update()
         {
-            LookObject currentTarget = _eyetracker.GetLookTarget();
-
-            if (_currentTask.IsComplete)
-                return;
-
-            if (currentTarget == null && _timer > 0)
+            if (_currentTask != null)
             {
-                TaskCancel();
-                return;
-            }
-            else if (currentTarget == null)
-                return;
+                LookObject currentTarget = _eyetracker.GetLookTarget();
 
-            if (currentTarget == _currentTask.Target)
-            {
-                if (_timer <= 0)
-                    TaskStart();
+                if (_currentTask.IsComplete)
+                    return;
 
-                UpdateCurrentTask();
+                if (currentTarget == null && _timer > 0)
+                {
+                    TaskCancel();
+                    return;
+                }
+                else if (currentTarget == null)
+                    return;
+
+                if (currentTarget == _currentTask.Target)
+                {
+                    if (_timer <= 0)
+                        TaskStart();
+
+                    UpdateCurrentTask();
+                }
             }
         }
 
