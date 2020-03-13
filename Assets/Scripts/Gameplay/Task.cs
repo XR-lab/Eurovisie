@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace Eurovision.Gameplay
 {
@@ -15,8 +13,7 @@ namespace Eurovision.Gameplay
 
         [SerializeField] private int _performancePoints = 1;
         public int PerformancePoints {  get { return _performancePoints; } }
-
-        private bool _isComplete = false;
+        
         public bool IsComplete { get; set; }
 
         public Task(LookObject target, float duration)
@@ -24,7 +21,7 @@ namespace Eurovision.Gameplay
             _target = target;
             _duration = duration;
 
-            _isComplete = false;
+            IsComplete = false;
         }
     }
 }

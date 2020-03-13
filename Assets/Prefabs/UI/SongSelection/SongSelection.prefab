@@ -50,7 +50,7 @@ PrefabInstance:
     - target: {fileID: 1785370012866708692, guid: 73722aac46522c148b3ee37fed240ef9,
         type: 3}
       propertyPath: m_Name
-      value: Look_Button (1)
+      value: SongSelectOption
       objectReference: {fileID: 0}
     - target: {fileID: 1785370012866708694, guid: 73722aac46522c148b3ee37fed240ef9,
         type: 3}
@@ -130,7 +130,7 @@ PrefabInstance:
     - target: {fileID: 1785370012866708692, guid: 73722aac46522c148b3ee37fed240ef9,
         type: 3}
       propertyPath: m_Name
-      value: Look_Button (6)
+      value: SongSelectOption
       objectReference: {fileID: 0}
     - target: {fileID: 1785370012866708694, guid: 73722aac46522c148b3ee37fed240ef9,
         type: 3}
@@ -210,7 +210,7 @@ PrefabInstance:
     - target: {fileID: 1785370012866708692, guid: 73722aac46522c148b3ee37fed240ef9,
         type: 3}
       propertyPath: m_Name
-      value: Look_Button (9)
+      value: SongSelectOption
       objectReference: {fileID: 0}
     - target: {fileID: 1785370012866708694, guid: 73722aac46522c148b3ee37fed240ef9,
         type: 3}
@@ -290,7 +290,7 @@ PrefabInstance:
     - target: {fileID: 1785370012866708692, guid: 73722aac46522c148b3ee37fed240ef9,
         type: 3}
       propertyPath: m_Name
-      value: Look_Button (2)
+      value: SongSelectOption
       objectReference: {fileID: 0}
     - target: {fileID: 1785370012866708694, guid: 73722aac46522c148b3ee37fed240ef9,
         type: 3}
@@ -370,7 +370,7 @@ PrefabInstance:
     - target: {fileID: 1785370012866708692, guid: 73722aac46522c148b3ee37fed240ef9,
         type: 3}
       propertyPath: m_Name
-      value: Look_Button (5)
+      value: SongSelectOption
       objectReference: {fileID: 0}
     - target: {fileID: 1785370012866708694, guid: 73722aac46522c148b3ee37fed240ef9,
         type: 3}
@@ -450,7 +450,7 @@ PrefabInstance:
     - target: {fileID: 1785370012866708692, guid: 73722aac46522c148b3ee37fed240ef9,
         type: 3}
       propertyPath: m_Name
-      value: Look_Button
+      value: SongSelectOption
       objectReference: {fileID: 0}
     - target: {fileID: 1785370012866708695, guid: 73722aac46522c148b3ee37fed240ef9,
         type: 3}
@@ -525,7 +525,7 @@ PrefabInstance:
     - target: {fileID: 1785370012866708692, guid: 73722aac46522c148b3ee37fed240ef9,
         type: 3}
       propertyPath: m_Name
-      value: Look_Button (4)
+      value: SongSelectOption
       objectReference: {fileID: 0}
     - target: {fileID: 1785370012866708694, guid: 73722aac46522c148b3ee37fed240ef9,
         type: 3}
@@ -605,7 +605,7 @@ PrefabInstance:
     - target: {fileID: 1785370012866708692, guid: 73722aac46522c148b3ee37fed240ef9,
         type: 3}
       propertyPath: m_Name
-      value: Look_Button (7)
+      value: SongSelectOption
       objectReference: {fileID: 0}
     - target: {fileID: 1785370012866708694, guid: 73722aac46522c148b3ee37fed240ef9,
         type: 3}
@@ -685,7 +685,7 @@ PrefabInstance:
     - target: {fileID: 1785370012866708692, guid: 73722aac46522c148b3ee37fed240ef9,
         type: 3}
       propertyPath: m_Name
-      value: Look_Button (3)
+      value: SongSelectOption
       objectReference: {fileID: 0}
     - target: {fileID: 1785370012866708694, guid: 73722aac46522c148b3ee37fed240ef9,
         type: 3}
@@ -765,7 +765,7 @@ PrefabInstance:
     - target: {fileID: 1785370012866708692, guid: 73722aac46522c148b3ee37fed240ef9,
         type: 3}
       propertyPath: m_Name
-      value: Look_Button (8)
+      value: SongSelectOption
       objectReference: {fileID: 0}
     - target: {fileID: 1785370012866708694, guid: 73722aac46522c148b3ee37fed240ef9,
         type: 3}

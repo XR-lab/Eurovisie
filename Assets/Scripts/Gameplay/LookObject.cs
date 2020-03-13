@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace Eurovision.Gameplay
 {
@@ -8,22 +6,22 @@ namespace Eurovision.Gameplay
     {
         private Color _defaultColor;
         private Renderer _renderer;
+        private readonly int _baseColor = Shader.PropertyToID("_BaseColor");
 
         private void Awake()
         {
             _renderer = GetComponent<Renderer>();
-            _defaultColor = _renderer.material.GetColor("_BaseColor");
-
+            _defaultColor = _renderer.material.GetColor(_baseColor);
         }
 
         public void SetAsActiveObject()
         {
-            _renderer.material.SetColor("_BaseColor", Color.blue);
+            _renderer.material.SetColor(_baseColor, Color.blue);
         }
 
         public void SetAsInActiveObject()
         {
-            _renderer.material.SetColor("_BaseColor", _defaultColor);
+            _renderer.material.SetColor(_baseColor, _defaultColor);
         }
     }
 }

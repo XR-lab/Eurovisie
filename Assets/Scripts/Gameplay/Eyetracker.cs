@@ -7,7 +7,7 @@ namespace Eurovision.Gameplay
     public class Eyetracker : MonoBehaviour
     {
         [SerializeField] private bool _useMouse;
-        [SerializeField] private Camera _camera;
+        [SerializeField] private Camera _vrCamera;
         [SerializeField] private LayerMask _layerMask;
 
         public LookObject GetLookTarget()
@@ -17,8 +17,7 @@ namespace Eurovision.Gameplay
             if (_useMouse)
                 ray = Camera.main.ScreenPointToRay(UnityEngine.Input.mousePosition);
             else
-                // ray vanuit de camera naar voren
-                ray = new Ray(_camera.transform.position, _camera.transform.forward);
+                ray = new Ray(_vrCamera.transform.position, _vrCamera.transform.forward);
                 
             RaycastHit hit;
 
@@ -29,6 +28,7 @@ namespace Eurovision.Gameplay
             return null;
         }
         
+        // ToDo Refactor de LookButtons zodat deze ook werkt als LookObject
         public LookButton GetLookButton()
         {
             Ray ray;
@@ -37,7 +37,7 @@ namespace Eurovision.Gameplay
                 ray = Camera.main.ScreenPointToRay(UnityEngine.Input.mousePosition);
             else
                 // ray vanuit de camera naar voren
-                ray = new Ray(_camera.transform.position, _camera.transform.forward);
+                ray = new Ray(_vrCamera.transform.position, _vrCamera.transform.forward);
                 
             RaycastHit hit;
 

@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using Eurovision.Input;
+﻿using Eurovision.Input;
 using UnityEditor;
 using UnityEngine;
 
@@ -8,24 +6,24 @@ using UnityEngine;
 // https://docs.unity3d.com/Manual/RunningEditorCodeOnLaunch.html
 public class EditorInputSelection
 {
-    private const string _hardwareInputMenu = "Eurovision/Input/HardwareInput";
-    private const string _keyboardInputMenu = "Eurovision/Input/KeyboardInput";
+    private const string HardwareInputMenu = "Eurovision/Input/HardwareInput";
+    private const string KeyboardInputMenu = "Eurovision/Input/KeyboardInput";
     
-    [MenuItem(_hardwareInputMenu)]
+    [MenuItem(HardwareInputMenu)]
     public static void HardwareInput()
     {
-        Menu.SetChecked(_hardwareInputMenu, true);
-        Menu.SetChecked(_keyboardInputMenu, false);
+        Menu.SetChecked(HardwareInputMenu, true);
+        Menu.SetChecked(KeyboardInputMenu, false);
         
-        Object.FindObjectOfType<Eurovision.Input.InputMode>().SetInputMode(InputMode.InputModeType.Hardware);
+        Object.FindObjectOfType<InputMode>().SetInputMode(InputMode.InputModeType.Hardware);
     }
 
-    [MenuItem(_keyboardInputMenu)]
+    [MenuItem(KeyboardInputMenu)]
     public static void KeyboardInput()
     {
-        Menu.SetChecked(_hardwareInputMenu, false);
-        Menu.SetChecked(_keyboardInputMenu, true);
+        Menu.SetChecked(HardwareInputMenu, false);
+        Menu.SetChecked(KeyboardInputMenu, true);
         
-        Object.FindObjectOfType<Eurovision.Input.InputMode>().SetInputMode(InputMode.InputModeType.Keyboard);
+        Object.FindObjectOfType<InputMode>().SetInputMode(InputMode.InputModeType.Keyboard);
     }
 }

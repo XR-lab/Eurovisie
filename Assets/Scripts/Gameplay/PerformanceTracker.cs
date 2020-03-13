@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 using System;
 
@@ -8,11 +6,9 @@ namespace Eurovision.Gameplay
 {
     public class PerformanceTracker : MonoBehaviour
     {
-        public Action OnPerformanceFull;
+        public Action onPerformanceFull;
 
         [SerializeField] private int _pointsNeeded = 5;
-        public bool PerformanceFull { get { return _performancePoints >= _pointsNeeded; } }
-
         [SerializeField] private Image _performanceBar; 
 
         private int _performancePoints;
@@ -32,8 +28,7 @@ namespace Eurovision.Gameplay
 
                 UpdateUI();
 
-                if (OnPerformanceFull != null)
-                    OnPerformanceFull.Invoke();
+                onPerformanceFull?.Invoke();
 
                 ResetPerformancePoints();                 
             }
@@ -41,7 +36,7 @@ namespace Eurovision.Gameplay
             UpdateUI();
         }
 
-        void ResetPerformancePoints()
+        private void ResetPerformancePoints()
         {
             _performancePoints = 0;
         }
