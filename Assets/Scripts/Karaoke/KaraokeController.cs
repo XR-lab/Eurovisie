@@ -27,7 +27,14 @@ namespace Eurovision.Karaoke
 
                 private void Start()
                 {
-                        var newTrack = _trackLibrary.GetRandomTrack();
+                        /*var newTrack = _trackLibrary.GetRandomTrack();
+                        LoadTrack(newTrack);
+                        KaraokeStart();*/
+                }
+
+                public void LoadSong(int ID)
+                {
+                        var newTrack = _trackLibrary.GetTrack(ID);
                         LoadTrack(newTrack);
                         KaraokeStart();
                 }
