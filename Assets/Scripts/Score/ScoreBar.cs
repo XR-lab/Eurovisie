@@ -10,12 +10,13 @@ public class ScoreBar : MonoBehaviour
     [SerializeField] private Image progressbar;
     [SerializeField] private float maxScore;
     [SerializeField] private float speed;
-
-    private float _score;
+    [SerializeField] private float score;
+    
     private bool _ultimate;
     
     void Start()
     {
+        score = 0;
         _ultimate = false;
         StartCoroutine(ScoreSettler());
     }
@@ -23,7 +24,7 @@ public class ScoreBar : MonoBehaviour
     private void Update()
     {
         //Here for testing will be replacte with a input script in the future
-        if (Input.GetKeyDown(KeyCode.A) && _score >= maxScore)
+        if (Input.GetKeyDown(KeyCode.A) && score >= maxScore)
         {
             _ultimate = true;
             StartCoroutine(ScoreDialBack());
@@ -32,7 +33,7 @@ public class ScoreBar : MonoBehaviour
 
     public bool ActivateUltimate()
     {
-        if (_score >= maxScore)
+        if (score >= maxScore)
         {
             _ultimate = true;
             StartCoroutine(ScoreDialBack());
@@ -52,9 +53,9 @@ public class ScoreBar : MonoBehaviour
 
     IEnumerator ScoreDialBack()
     {
-        while (_ultimate && _score > 0.0f)
+        while (_ultimate && score > 0.0f)
         {
-            _score -= Time.deltaTime * speed;
+            score -= Time.deltaTime * speed;
             ScoreCalculation();
             yield return new WaitForEndOfFrame();
         }
@@ -63,7 +64,7 @@ public class ScoreBar : MonoBehaviour
 
     private void ScoreCalculation()
     {
-        float percentage = (_score - 0) / (maxScore - 0);
+        float percentage = (score - 0) / (maxScore - 0);
         progressbar.fillAmount = percentage;
         edgeRect.anchorMin = new Vector2(progressbar.fillAmount, edgeRect.anchorMin.y);
         edgeRect.anchorMax = new Vector2(progressbar.fillAmount, edgeRect.anchorMax.y);
