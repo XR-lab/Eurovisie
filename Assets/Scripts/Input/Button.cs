@@ -11,6 +11,10 @@ namespace Eurovision.Input
     {
         [SerializeField]
         private Eurovision.Effect _effect;
+        [SerializeField]
+        private Eurovision.Effect _superEffect;
+
+        [SerializeField] private bool _superOn;
         
         public enum InputState
         {
@@ -23,18 +27,30 @@ namespace Eurovision.Input
         // TODO: Refactor into dictionary?
         public void UpdateButtonState(int data)
         {
+            if (_superOn)
+            {
+                UpdateEffect(_superEffect, data);
+            }
+            else
+            {
+                UpdateEffect(_effect, data);
+            }
+        }
+
+        public void UpdateEffect(Eurovision.Effect effect, int data)
+        {
             switch (_currentInputState)
             {
                 case InputState.Down:
                     if (data == 1)
                     {
                         _currentInputState = InputState.Hold;
-                        _effect.OnEffectUpdate();
+                        effect.OnEffectUpdate();
                     }
                     else if (data == 0)
                     {
                         _currentInputState = InputState.Up;
-                        _effect.OnEffectStop();
+                        effect.OnEffectStop();
                     }
                     break;
                 
@@ -42,13 +58,13 @@ namespace Eurovision.Input
                     if (data == 1)
                     {
                         // state stays Hold
-                        _effect.OnEffectUpdate();
+                        effect.OnEffectUpdate();
 
                     }
                     else if (data == 0)
                     {
                         _currentInputState = InputState.Up;
-                        _effect.OnEffectStop();
+                        effect.OnEffectStop();
                     }
                     break;
                 
@@ -56,7 +72,7 @@ namespace Eurovision.Input
                     if (data == 1)
                     {
                         _currentInputState = InputState.Down;
-                        _effect.OnEffectStart();
+                        effect.OnEffectStart();
                     }
                     break;
             }
