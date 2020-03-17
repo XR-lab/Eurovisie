@@ -13,8 +13,6 @@ namespace Eurovision.Input
         private Eurovision.Effect _effect;
         [SerializeField]
         private Eurovision.Effect _superEffect;
-
-        [SerializeField] private bool _superOn;
         
         public enum InputState
         {
@@ -25,9 +23,9 @@ namespace Eurovision.Input
         private InputState _currentInputState = InputState.Up;
         
         // TODO: Refactor into dictionary?
-        public void UpdateButtonState(int data)
+        public void UpdateButtonState(bool superOn, int data)
         {
-            if (_superOn)
+            if (superOn)
             {
                 UpdateEffect(_superEffect, data);
             }
