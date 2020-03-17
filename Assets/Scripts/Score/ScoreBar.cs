@@ -8,20 +8,64 @@ public class ScoreBar : MonoBehaviour
 {
     [SerializeField] private RectTransform edgeRect;
     [SerializeField] private Image progressbar;
+    [SerializeField] private float maxScore;
+    [SerializeField] private float speed;
+
+    private float _score;
+    private bool _ultimate;
     
     void Start()
     {
-        StartCoroutine(LoadAsyncOperation(50,100));
+        _ultimate = false;
+        StartCoroutine(ScoreSettler());
     }
 
-    IEnumerator LoadAsyncOperation(int score, int maxScore)
+    private void Update()
     {
-        int percentage = (int)Math.Round((((double)score / (double)maxScore) * 100) / 100);
-        float barScore = score / maxScore;
-        Debug.Log(barScore);
-        progressbar.fillAmount = barScore;
-        edgeRect.anchorMin = new Vector2(progressbar.fillAmount,edgeRect.anchorMin.y );
+        //Here for testing will be replacte with a input script in the future
+        if (Input.GetKeyDown(KeyCode.A) && _score >= maxScore)
+        {
+            _ultimate = true;
+            StartCoroutine(ScoreDialBack());
+        }
+    }
+
+    public bool ActivateUltimate()
+    {
+        if (_score >= maxScore)
+        {
+            _ultimate = true;
+            StartCoroutine(ScoreDialBack());
+        }
+        return _ultimate;
+    }
+
+    IEnumerator ScoreSettler()
+    {
+        while (!_ultimate)
+        {
+            ScoreCalculation();
+            yield return new WaitForEndOfFrame();
+        }
+        StopCoroutine(ScoreSettler());
+    }
+
+    IEnumerator ScoreDialBack()
+    {
+        while (_ultimate && _score > 0.0f)
+        {
+            _score -= Time.deltaTime * speed;
+            ScoreCalculation();
+            yield return new WaitForEndOfFrame();
+        }
+        StopCoroutine(ScoreDialBack());
+    }
+
+    private void ScoreCalculation()
+    {
+        float percentage = (_score - 0) / (maxScore - 0);
+        progressbar.fillAmount = percentage;
+        edgeRect.anchorMin = new Vector2(progressbar.fillAmount, edgeRect.anchorMin.y);
         edgeRect.anchorMax = new Vector2(progressbar.fillAmount, edgeRect.anchorMax.y);
-        yield return new WaitForEndOfFrame();
     }
 }

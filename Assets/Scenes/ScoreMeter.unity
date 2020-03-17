@@ -270,6 +270,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   edgeRect: {fileID: 1430709555}
   progressbar: {fileID: 1998001479}
+  maxScore: 100
+  speed: 1
 --- !u!114 &795433680
 MonoBehaviour:
   m_ObjectHideFlags: 0
