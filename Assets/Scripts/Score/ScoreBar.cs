@@ -6,17 +6,17 @@ using System;
 
 public class ScoreBar : MonoBehaviour
 {
-    [SerializeField] private RectTransform edgeRect;
-    [SerializeField] private Image progressbar;
-    [SerializeField] private float maxScore;
-    [SerializeField] private float speed;
-    [SerializeField] private float score;
-    
+    [SerializeField] private RectTransform _edgeRect;
+    [SerializeField] private Image _progressbar;
+    [SerializeField] private float _maxScore;
+    [SerializeField] private float _speed;
+
     private bool _ultimate;
+    private float _score;
     
     void Start()
     {
-        score = 0;
+        _score = 0;
         _ultimate = false;
         StartCoroutine(ScoreSettler());
     }
@@ -24,16 +24,20 @@ public class ScoreBar : MonoBehaviour
     private void Update()
     {
         //Here for testing will be replacte with a input script in the future
-        if (Input.GetKeyDown(KeyCode.A) && score >= maxScore)
+        if (Input.GetKeyDown(KeyCode.A) && _score >= _maxScore)
         {
             _ultimate = true;
             StartCoroutine(ScoreDialBack());
         }
     }
 
+    public void AddScore(float add)
+    {
+        _score += add;
+    }
     public bool ActivateUltimate()
     {
-        if (score >= maxScore)
+        if (_score >= _maxScore)
         {
             _ultimate = true;
             StartCoroutine(ScoreDialBack());
@@ -53,9 +57,9 @@ public class ScoreBar : MonoBehaviour
 
     IEnumerator ScoreDialBack()
     {
-        while (_ultimate && score > 0.0f)
+        while (_ultimate && _score > 0.0f)
         {
-            score -= Time.deltaTime * speed;
+            _score -= Time.deltaTime * _speed;
             ScoreCalculation();
             yield return new WaitForEndOfFrame();
         }
@@ -64,9 +68,9 @@ public class ScoreBar : MonoBehaviour
 
     private void ScoreCalculation()
     {
-        float percentage = (score - 0) / (maxScore - 0);
-        progressbar.fillAmount = percentage;
-        edgeRect.anchorMin = new Vector2(progressbar.fillAmount, edgeRect.anchorMin.y);
-        edgeRect.anchorMax = new Vector2(progressbar.fillAmount, edgeRect.anchorMax.y);
+        float percentage = (_score - 0) / (_maxScore - 0);
+        _progressbar.fillAmount = percentage;
+        _edgeRect.anchorMin = new Vector2(_progressbar.fillAmount, _edgeRect.anchorMin.y);
+        _edgeRect.anchorMax = new Vector2(_progressbar.fillAmount, _edgeRect.anchorMax.y);
     }
 }
