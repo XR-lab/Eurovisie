@@ -3,13 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using System;
+using System.Linq;
 
 namespace Eurovision.Gameplay
 {
     [RequireComponent(typeof(Eyetracker))]
     public class TaskTracker : MonoBehaviour
     {
-        public Action<Task> OnTaskComplete;
+        public event Action<Task> OnTaskComplete;
 
         [SerializeField] private float _unFillSpeed = 2;
         [SerializeField] private Image _progressImage;
@@ -36,12 +37,13 @@ namespace Eurovision.Gameplay
 
             _timer = 0;
             UpdateProgressImage();*/
+            _currentTask = _taskGenerator.GenerateSongTask();
         }
 
         public void StartExperience()
         {
             _currentTask = _taskGenerator.GenerateTask();
-            _currentTask.Target.SetAsActiveObject();
+            _currentTask.Targets[0].SetAsActiveObject();
 
             _timer = 0;
             UpdateProgressImage();
@@ -64,7 +66,7 @@ namespace Eurovision.Gameplay
                 else if (currentTarget == null)
                     return;
 
-                if (currentTarget == _currentTask.Target)
+                if (_currentTask.Targets.Contains(currentTarget))
                 {
                     if (_timer <= 0)
                         TaskStart();
@@ -111,7 +113,7 @@ namespace Eurovision.Gameplay
             int score = _currentTask.PerformancePoints;
 
             _currentTask.IsComplete = true;
-            _currentTask.Target.SetAsInActiveObject();
+            _currentTask.Targets[0].SetAsInActiveObject();
 
 
             _performanceTracker.AddPoints(score);
@@ -132,10 +134,10 @@ namespace Eurovision.Gameplay
             Task newTask;
             do
                 newTask = _taskGenerator.GenerateTask();
-            while (newTask.Target == _currentTask.Target);
+            while (newTask.Targets == _currentTask.Targets);
 
             _currentTask = newTask;
-            _currentTask.Target.SetAsActiveObject();
+            _currentTask.Targets[0].SetAsActiveObject();
         }
 
         private void UpdateProgressImage()

@@ -11,7 +11,7 @@ namespace Eurovision.Gameplay
     public class SongSelector : MonoBehaviour
     {
 
-        [SerializeField] private float _unFillSpeed = 2;
+        /*[SerializeField] private float _unFillSpeed = 2;
         [SerializeField] private Image _progressImage;
         [SerializeField] private GameObject _songSelectionParent;
         [SerializeField] private float _progressTime;
@@ -106,6 +106,6 @@ namespace Eurovision.Gameplay
         {
             float normalizedProgress = _timer / _progressTime;
             _progressImage.fillAmount = normalizedProgress;
-        }
+        }*/
     }
 }
