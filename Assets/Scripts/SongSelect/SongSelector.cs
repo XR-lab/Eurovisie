@@ -10,7 +10,6 @@ namespace Eurovision.Gameplay
     [RequireComponent(typeof(Eyetracker))]
     public class SongSelector : MonoBehaviour
     {
-
         /*[SerializeField] private float _unFillSpeed = 2;
         [SerializeField] private Image _progressImage;
         [SerializeField] private GameObject _songSelectionParent;

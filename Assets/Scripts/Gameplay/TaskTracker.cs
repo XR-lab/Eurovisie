@@ -10,7 +10,7 @@ namespace Eurovision.Gameplay
     [RequireComponent(typeof(Eyetracker))]
     public class TaskTracker : MonoBehaviour
     {
-        public event Action<Task> OnTaskComplete;
+        public event Action OnTaskComplete;
 
         [SerializeField] private float _unFillSpeed = 2;
         [SerializeField] private Image _progressImage;
@@ -119,7 +119,7 @@ namespace Eurovision.Gameplay
             _performanceTracker.AddPoints(score);
 
             if (OnTaskComplete != null)
-                OnTaskComplete.Invoke(_currentTask);
+                OnTaskComplete();
 
             GenerateNewTask();
 
