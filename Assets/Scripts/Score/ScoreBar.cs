@@ -12,7 +12,7 @@ public class ScoreBar : MonoBehaviour
     [SerializeField] private float _speed;
 
     private bool _ultimate;
-    private float _score;
+    public float _score;
     
     void Start()
     {
@@ -33,7 +33,13 @@ public class ScoreBar : MonoBehaviour
 
     public void AddScore(float add)
     {
-        _score += add;
+        if (_score + add > _maxScore)
+        {
+            _score = _maxScore;
+        }else 
+        { 
+            _score += add;
+        }
     }
     public bool ActivateUltimate()
     {
