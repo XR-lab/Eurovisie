@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.Playables;
 using UnityEngine.Timeline;
@@ -20,16 +21,21 @@ namespace Eurovision.Karaoke
                 private PlayableDirector _playableDirector;
                 private LyricData _lyricsData;
                 private TrackData _trackData;
+                private List<String> _lyricsApart;
+                private int _wordIndex = 0;
+                private string _colorP = "<color=red>", _colorS = "</color>";
+                
                 private void Awake()
                 {
                         _playableDirector = GetComponent<PlayableDirector>();
                 }
-
-                private void Start()
+                
+                [ContextMenu("Do Something")]
+                private void StartTrack()
                 {
-                        /*var newTrack = _trackLibrary.GetRandomTrack();
+                        var newTrack = _trackLibrary.GetTrack(0);
                         LoadTrack(newTrack);
-                        KaraokeStart();*/
+                        KaraokeStart();
                 }
 
                 public void LoadSong(int ID)
@@ -52,7 +58,13 @@ namespace Eurovision.Karaoke
                 
                 public void LyricsUpdate()
                 {
-                        UpdateUIText(_lyricsData.Lyrics[_index]);
+                        string lyrics = _lyricsData.Lyrics[_index];
+                        _lyricsApart = lyrics.Split().ToList();
+                        _lyricsApart.Insert(0, _colorP);
+                        _wordIndex = 0;
+                        _lyricsApart.Insert(_wordIndex+1, _colorS);
+                        
+                        UpdateUIText(lyrics);
                         _index++;
 
                         if (_index >= _lyricsData.Lyrics.Length)
@@ -60,6 +72,21 @@ namespace Eurovision.Karaoke
                                 _index = _lyricsData.Lyrics.Length - 1;
                                 print("Lyrics end");
                         }
+                }
+                
+                public void LyricsWordsUpdate()
+                {
+                        _lyricsApart.RemoveAt(_wordIndex+1);
+                        _lyricsApart.Insert(_wordIndex+2, _colorS);
+                        string lyrics = "";
+                        for (int i = 0; i < _lyricsApart.Count; i++)
+                        {
+                                // if 0 (<color>) -- if the word before the closing </color> -- or when last one == no spacebar
+                                if (i==0 || i==_wordIndex+1 || i==_lyricsApart.Count-1) {lyrics += _lyricsApart[i];}
+                                else lyrics += _lyricsApart[i] + " "; 
+                        }
+                        UpdateUIText(lyrics);
+                        _wordIndex++;
                 }
 
                 public void LyricsEnd()
