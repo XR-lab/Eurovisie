@@ -10,8 +10,11 @@ public class ScoreBar : MonoBehaviour
     [SerializeField] private Image _progressbar;
     [SerializeField] private float _maxScore;
     [SerializeField] private float _speed;
+    [SerializeField] private Animator _amalgamation;
+    [SerializeField] private Animator _explosion;
 
-    private bool _ultimate;
+    private bool _ultimate = false;
+    private bool _used = false;
     public float _score;
     
     void Start()
@@ -28,6 +31,14 @@ public class ScoreBar : MonoBehaviour
         {
             _ultimate = true;
             StartCoroutine(ScoreDialBack());
+            _amalgamation.SetTrigger("Emptying");
+        }
+
+        if (_score >= _maxScore && !_used)
+        {
+            _used = true;
+            _amalgamation.SetTrigger("Activate");
+            _explosion.SetTrigger("Activate");
         }
     }
 
@@ -36,6 +47,12 @@ public class ScoreBar : MonoBehaviour
         if (_score + add > _maxScore)
         {
             _score = _maxScore;
+            if (!_used)
+            {
+                _used = true;
+                _amalgamation.SetTrigger("Activate");
+                _explosion.SetTrigger("Activate");
+            }
         }else 
         { 
             _score += add;
@@ -45,8 +62,10 @@ public class ScoreBar : MonoBehaviour
     {
         if (_score >= _maxScore)
         {
+            _used = false;
             _ultimate = true;
             StartCoroutine(ScoreDialBack());
+            _amalgamation.SetTrigger("Emptying");
         }
         return _ultimate;
     }
