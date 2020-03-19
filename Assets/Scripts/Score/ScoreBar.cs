@@ -26,7 +26,7 @@ public class ScoreBar : MonoBehaviour
 
     private void Update()
     {
-        //Here for testing will be replacte with a input script in the future
+        //Here for testing will be replaced with a input script in the future
         if (Input.GetKeyDown(KeyCode.A) && _score >= _maxScore)
         {
             _ultimate = true;
@@ -57,6 +57,7 @@ public class ScoreBar : MonoBehaviour
         { 
             _score += add;
         }
+        StartCoroutine(ScoreSettler());
     }
     public bool ActivateUltimate()
     {
