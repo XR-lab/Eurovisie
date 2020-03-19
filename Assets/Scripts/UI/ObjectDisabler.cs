@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using Eurovision.Gameplay;
+using Eurovision.Karaoke;
 using UnityEngine;
 
 public class ObjectDisabler : MonoBehaviour

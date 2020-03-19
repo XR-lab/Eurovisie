@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using System;
 using System.Linq;
+using Eurovision.Karaoke;
 
 namespace Eurovision.Gameplay
 {
@@ -21,22 +22,19 @@ namespace Eurovision.Gameplay
         private Eyetracker _eyetracker;
         private TaskGenerator _taskGenerator;
         private PerformanceTracker _performanceTracker;
+        private KaraokeController _karaokeController;
+        private LookObject _endTarget;
 
         private void Awake()
         {
             _eyetracker = GetComponent<Eyetracker>();
             _taskGenerator = GetComponent<TaskGenerator>();
             _performanceTracker = GetComponent<PerformanceTracker>();
+            _karaokeController = FindObjectOfType<KaraokeController>();
         }
 
         private void Start()
         {
-            /*
-            _currentTask = _taskGenerator.GenerateTask();
-            _currentTask.Target.SetAsActiveObject();
-
-            _timer = 0;
-            UpdateProgressImage();*/
             _currentTask = _taskGenerator.GenerateSongTask();
         }
 
@@ -70,7 +68,7 @@ namespace Eurovision.Gameplay
                 {
                     if (_timer <= 0)
                         TaskStart();
-
+                    _endTarget = currentTarget;
                     UpdateCurrentTask();
                 }
             }
@@ -118,8 +116,11 @@ namespace Eurovision.Gameplay
 
             _performanceTracker.AddPoints(score);
 
-            if (OnTaskComplete != null)
+            if (OnTaskComplete != null) // currently is only used for when song selection is done
+            {
                 OnTaskComplete();
+                GetTrackAndPlay(_endTarget); // may need to change to something that can link with the delegate
+            }
 
             GenerateNewTask();
 
@@ -144,6 +145,12 @@ namespace Eurovision.Gameplay
         {
             float normalizedProgress = _timer /  _currentTask.Duration;
             _progressImage.fillAmount = normalizedProgress;
+        }
+
+        private void GetTrackAndPlay(LookObject lookObject)
+        {
+            TrackData track = lookObject.transform.GetComponent<TrackSelection>().trackData;
+            _karaokeController.LoadSong(track);
         }
     }
 }

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using Eurovision.Gameplay;
 using UnityEngine;
 using UnityEngine.Playables;
 using UnityEngine.Timeline;
@@ -12,7 +13,7 @@ namespace Eurovision.Karaoke
         [RequireComponent(typeof(AudioSource))]
         public class KaraokeController : MonoBehaviour
         {
-                [SerializeField] private TrackLibrary _trackLibrary;
+                [SerializeField] private TrackLibrary _trackLibrary; //currently isn't getting used but we can use it to make the song selection buttons instead of making the buttons in the inspector
                 [SerializeField] private UnityEngine.UI.Text _uiTextPlayerOne;
                 [SerializeField] private UnityEngine.UI.Text _uiTextPlayerTwo;
                 
@@ -32,10 +33,9 @@ namespace Eurovision.Karaoke
                         KaraokeStart();*/
                 }
 
-                public void LoadSong(int ID)
+                public void LoadSong(TrackData trackData)
                 {
-                        var newTrack = _trackLibrary.GetTrack(ID);
-                        LoadTrack(newTrack);
+                        LoadTrack(trackData);
                         KaraokeStart();
                 }
                 
