@@ -11,9 +11,12 @@ public class ExpBar : MonoBehaviour
     
     // Components.
     [SerializeField] private Slider slider;
-    [SerializeField] private float experience;
+    [SerializeField] private float currentExperience;
     [SerializeField] private float maxExperience;
-    [SerializeField] bool isActivated = false;
+    [SerializeField] private float targetExperience;
+    [SerializeField] private float lerpSpeed = 1f;
+    [SerializeField] private bool isUpdatingValue;
+    [SerializeField] private bool isActivated;
     private float decayAmount = 5f;
     
     // Actions.
@@ -25,16 +28,20 @@ public class ExpBar : MonoBehaviour
         _minigame.SuperActivated += TurnActivationOn;
         
         // Start values.
-        experience = 50f;
+        currentExperience = 20f;
         maxExperience = 100f;
-        UpdateSlider(experience);
+        targetExperience = 0f;
+        UpdateSlider();
+        isUpdatingValue = true;
+        isActivated = false;
     }
     
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.C))
         {
-            AddExperience(20);    
+            AddExperience(20);
+            print("Added experience");
         }
         
         if (Input.GetKeyDown(KeyCode.X))
@@ -46,6 +53,11 @@ public class ExpBar : MonoBehaviour
         {
             ActivateExperience();
         }
+
+        if (isUpdatingValue && currentExperience < targetExperience)
+        {
+            UpdateSlider();
+        }
     }
 
     private void TurnActivationOn()
@@ -55,32 +67,32 @@ public class ExpBar : MonoBehaviour
 
     private void ActivateExperience()
     {
-        if (experience > 0)
+        if (currentExperience > 0)
         {
-            experience -= decayAmount * Time.deltaTime;
-            UpdateSlider(experience);
+            currentExperience -= decayAmount * Time.deltaTime;
+            UpdateSlider();
         }
         else
         {
-            experience = 0;
+            currentExperience = 0;
             isActivated = false;
         }
     }
 
-    private void UpdateSlider(float exp)
+    private void UpdateSlider()
     {
-        slider.value = exp;
+        currentExperience = Mathf.Lerp(currentExperience, targetExperience, lerpSpeed * Time.deltaTime);
+        slider.value = Mathf.Lerp(slider.value, currentExperience, lerpSpeed * Time.deltaTime);
+
+        if (currentExperience >= targetExperience)
+        {
+            isUpdatingValue = false;
+        }
     }
 
     private void AddExperience(int addAmount)
     {
-        experience += addAmount;
-        experience = Mathf.Clamp(experience, 0, 100);
-        UpdateSlider(experience);
-
-        if (experience >= maxExperience)
-        {
-            ExperienceBarFull.Invoke();
-        }
+        targetExperience += addAmount;
+        isUpdatingValue = true;
     }
 }

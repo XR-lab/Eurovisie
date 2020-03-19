@@ -14,6 +14,9 @@ public class ButtonSystem : MonoBehaviour
     [SerializeField] private GameObject[] buttons;
     [SerializeField] private Color[] colors;
     
+    // Objects.
+    [SerializeField] private GameObject particleEffect;
+    
     // Dictionaries.
     private Dictionary<GameObject, Color> buttonColorMap;
     private Dictionary<GameObject, bool> buttonCanComboMap;
@@ -88,6 +91,7 @@ public class ButtonSystem : MonoBehaviour
     {
         buttonCanComboMap[buttons[id]] = true;
         buttons[id].GetComponent<ButtonAnimation>().PlayAnimation("Combo");
+        Instantiate(particleEffect, buttons[id].transform);
     }
 
 
