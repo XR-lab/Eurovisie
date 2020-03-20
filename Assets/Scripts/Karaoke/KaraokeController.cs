@@ -41,7 +41,7 @@ namespace Eurovision.Karaoke
                                 Vector3 position = originPosition.position;
                                 position.x += Xoffset + Mathf.Abs((Xoffset / 2) * (i % (length / 2)));
                                 position.y += Yoffset + (-Yoffset * (i / (length / 2)));
-                                position.z = -0.5f * Mathf.Pow(-2 + i % (length / 2), 2) + Zoffset; 
+                                position.z = -0.4f * Mathf.Pow(-2 + i % (length / 2), 2) + Zoffset; 
                                 Quaternion rotation = new Quaternion();
                                 GameObject button = Instantiate(_buttonPrefab, position, rotation, _buttonParent);
                                 button.name = i.ToString();
