@@ -16,6 +16,12 @@ namespace Eurovision.Karaoke
                 [SerializeField] private TrackLibrary _trackLibrary; //currently isn't getting used but we can use it to make the song selection buttons instead of making the buttons in the inspector
                 [SerializeField] private UnityEngine.UI.Text _uiTextPlayerOne;
                 [SerializeField] private UnityEngine.UI.Text _uiTextPlayerTwo;
+                [SerializeField] private GameObject _buttonPrefab;
+                [SerializeField] private Transform _buttonParent;
+                [SerializeField] private Transform originPosition;
+                [SerializeField] private float Xoffset = -9f;
+                [SerializeField] private float Yoffset = 5f;
+                [SerializeField] private float Zoffset = 4.5f;
                 
                 private int _index = 0;
                 private PlayableDirector _playableDirector;
@@ -24,8 +30,27 @@ namespace Eurovision.Karaoke
                 private void Awake()
                 {
                         _playableDirector = GetComponent<PlayableDirector>();
+                        MakeSongButtons();
                 }
 
+                private void MakeSongButtons()
+                {
+                        int length = _trackLibrary.Length;
+                        for (int i = 0; i < length; i++)
+                        {
+                                Vector3 position = originPosition.position;
+                                position.x += Xoffset + Mathf.Abs((Xoffset / 2) * (i % (length / 2)));
+                                position.y += Yoffset + (-Yoffset * (i / (length / 2)));
+                                position.z = -0.5f * Mathf.Pow(-2 + i % (length / 2), 2) + Zoffset; 
+                                Quaternion rotation = new Quaternion();
+                                GameObject button = Instantiate(_buttonPrefab, position, rotation, _buttonParent);
+                                button.name = i.ToString();
+                                TrackSelection selection = button.GetComponent<TrackSelection>();
+                                selection.trackData = _trackLibrary.GetTrack(i);
+                                button.GetComponent<SpriteRenderer>().sprite = selection.trackData.image;
+                        }
+                }
+                
                 private void Start()
                 {
                         /*var newTrack = _trackLibrary.GetRandomTrack();
