@@ -33,7 +33,7 @@ namespace Eurovision.Karaoke
                 [ContextMenu("Do Something")]
                 private void StartTrack()
                 {
-                        var newTrack = _trackLibrary.GetTrack(2);
+                        var newTrack = _trackLibrary.GetTrack(0);
                         LoadTrack(newTrack);
                         KaraokeStart();
                 }
