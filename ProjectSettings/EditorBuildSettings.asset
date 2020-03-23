@@ -5,7 +5,10 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Richard_CameraGameplay.unity
     guid: 8ffe863df4c914bab96342d5cf1b41eb
+  - enabled: 1
+    path: Assets/Scenes/Colin_SongSelection.unity
+    guid: 40372f42714c4a645acd02fc39becaa2
   m_configObjects: {}
