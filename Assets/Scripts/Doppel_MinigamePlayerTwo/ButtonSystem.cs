@@ -55,13 +55,15 @@ public class ButtonSystem : MonoBehaviour
         }
 
         // Set random button able to combo.
-        randomButton = GetRandomActiveButton();
+        // randomButton = GetRandomActiveButton();
+        randomButton = buttons[0];
         buttonCanComboMap[randomButton] = true;
         
         // Start animation after 1 sec.
         Invoke("ActivateButtonAnimation", 1f);
     }
 
+    // Updates the button material to current state.
     private void UpdateButtonMaterial()
     {
         for (int i = 0; i < GetButtonLength(); i++)
@@ -69,8 +71,14 @@ public class ButtonSystem : MonoBehaviour
             if (buttonCanComboMap[buttons[i]])
             {
                 buttons[i].GetComponent<ButtonRenderer>().SetMaterial(materials[1]);
-                // buttons[i].GetComponentInChildren<ToggleAdditionalMaterial>().EnableGameObject();
             }
+            else
+            {
+                buttons[i].GetComponent<ButtonRenderer>().SetMaterial(materials[0]);
+            }
+            
+            // Enables additional material.
+            buttons[i].GetComponent<ToggleAdditionalMaterial>().ToggleGameObject(buttonCanComboMap[buttons[i]]);
         }
     }
 
