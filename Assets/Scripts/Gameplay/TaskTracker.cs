@@ -117,7 +117,7 @@ namespace Eurovision.Gameplay
 
 
             //_performanceTracker.AddPoints(score);
-            _scoreBar.AddScore(score);
+            if(!_scoreBar.Isactive()) _scoreBar.AddScore(score);
 
             if (OnTaskComplete != null)
                 OnTaskComplete.Invoke(_currentTask);

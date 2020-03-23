@@ -15,6 +15,7 @@ public class ScoreBar : MonoBehaviour
 
     private bool _ultimate = false;
     private bool _used = false;
+    
     public float _score;
     
     void Start()
@@ -40,6 +41,17 @@ public class ScoreBar : MonoBehaviour
             _amalgamation.SetTrigger("Activate");
             _explosion.SetTrigger("Activate");
         }
+
+        if (_score <= 0)
+        {
+            _ultimate = false;
+            _used = false;
+        }
+    }
+
+    public bool Isactive()
+    {
+        return _ultimate;
     }
 
     public void AddScore(float add)
