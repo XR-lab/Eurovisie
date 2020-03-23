@@ -1,18 +1,15 @@
-﻿using System;
-using UnityEngine;
-using Valve.VR.InteractionSystem.Sample;
+﻿using UnityEngine;
 
 public enum VizualizationMode
 {
+    None,
     Ring,
     Bar
 } 
 
 public class AudioVisualization : MonoBehaviour
 {
-    // <][L][O][N][E][>==============================================================================='public' variables
-    [SerializeField]private int bufferSampleSize;
-    [SerializeField]private float samplePercentage;
+    // ==============================================================================================='public' variables
     [SerializeField]private float emphasisMultiplier;
     [SerializeField]private float retractionSpeed;
     
@@ -22,15 +19,16 @@ public class AudioVisualization : MonoBehaviour
     [SerializeField]private float maxExtendLength;
 
     [SerializeField]private GameObject lineRendererPrefab;
-    [SerializeField]private Material lineRendererMaterial;
     [SerializeField]private VizualizationMode visualizationMode;
     
     [SerializeField]private Gradient gradientA = new Gradient();
-    [SerializeField]private Gradient gradientB = new Gradient();
     
     [SerializeField]private AudioSource audioSource;
     
-    // <][L][O][N][E][>=============================================================================== private variables 
+    // =============================================================================================== private variables 
+    private int _bufferSampleSize = 8192;
+    private float _samplePercentage = 0;
+    
     private Gradient _currentColor = new Gradient();
 
     private float _sampleRate;
@@ -40,13 +38,16 @@ public class AudioVisualization : MonoBehaviour
     private float[] _extendLengths;
 
     private LineRenderer[] _lineRenderers;
+    private MusicControlledEffect _effect;
     
-    // <][L][O][N][E][>=========================================================================================== Awake
+    // =========================================================================================================== Awake
     private void Awake()
     {
         _sampleRate = AudioSettings.outputSampleRate;
-        _samples = new float[bufferSampleSize];
-        _spectrum = new float[bufferSampleSize];
+        _samples = new float[_bufferSampleSize];
+        _spectrum = new float[_bufferSampleSize];
+
+        _effect = GetComponent<MusicControlledEffect>();
 
         switch (visualizationMode)
         {
@@ -59,7 +60,7 @@ public class AudioVisualization : MonoBehaviour
         }
     }
 
-    // <][L][O][N][E][>================================================================================ Instantiate Ring
+    // ================================================================================================ Instantiate Ring
     private void Ring()
     {
         _extendLengths = new float[amountOfSegments+1];
@@ -79,31 +80,47 @@ public class AudioVisualization : MonoBehaviour
         }
     }
 
-    // <][L][O][N][E][>================================================================================= Instantiate Bar
+    // ================================================================================================= Instantiate Bar
     private void Bar()
     {
         
     }
 
-    // <][L][O][N][E][>========================================================================================== Update
+    // ========================================================================================================== Update
     private void Update()
     {
         audioSource.GetSpectrumData(_spectrum, 0, FFTWindow.BlackmanHarris);
-        
-        UpdateExtend();
 
+        CalculateEffects();
+        
         if (visualizationMode == VizualizationMode.Ring)
         {
+            UpdateExtend();
             UpdateRing();
         }
     }
     
-    // <][L][O][N][E][>========================================================================================== Update
+    // ======================================================================================== check values for effects
+    private void CalculateEffects()
+    {
+        const int spectrumNumberListen = 17;
+        float spec = _spectrum[spectrumNumberListen];
+        if (spec > 0.01)
+        {
+            _effect.StartEffect(); print("start effect");
+        }
+        else
+        {
+             _effect.StopEffect();
+        }
+    }
+    
+    // ======================================================================================== Update length visualizer
     private void UpdateExtend()
     {
         int iteration = 0;
         int indexOnSpectrum = 0;
-        int averageValue = (int) (Mathf.Abs(_samples.Length * samplePercentage) / amountOfSegments);
+        int averageValue = (int) (Mathf.Abs(_samples.Length * _samplePercentage) / amountOfSegments);
 
         if (averageValue < 1) {averageValue = 1;}
 
@@ -136,7 +153,7 @@ public class AudioVisualization : MonoBehaviour
         }
     }
 
-    // <][L][O][N][E][>===================================================================================== Update Ring
+    // ===================================================================================================== Update Ring
     private void UpdateRing()
     {
         for (int i = 0; i < _lineRenderers.Length; i++)
@@ -160,10 +177,10 @@ public class AudioVisualization : MonoBehaviour
         }
     }
 
-    // <][L][O][N][E][>==================================================================================== Spacing Math
-    private float Spacing(float radius)
+    // ==================================================================================================== Spacing Math
+    private float Spacing(float rad)
     {
-        float c = 2f * Mathf.PI * radius;
+        float c = 2f * Mathf.PI * rad;
         float n = _lineRenderers.Length;
         return c / n;
     }
