@@ -6,22 +6,19 @@ using UnityEngine;
 public class ButtonRenderer : MonoBehaviour
 {
     // Components.
-    private MeshRenderer rend;
+    [SerializeField] private MeshRenderer buttonTopRenderer;
 
-    private void Start()
-    {
-        rend = GetComponent<MeshRenderer>();
-    }
 
     // Sets the color of the button.
-    public void SetColor(Color color)
+    public void SetMaterial(Material mat)
     {
-        rend.material.SetColor("_BaseColor", color);
+        buttonTopRenderer.material = mat;
     }
     
     // Returns this button mesh renderer.
     public MeshRenderer GetMeshRenderer()
     {
-        return rend;
+        return buttonTopRenderer;
     }
+    
 }

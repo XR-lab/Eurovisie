@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using Random = System.Random;
+using Random = UnityEngine.Random;
 
 public class ButtonSystem : MonoBehaviour
 {
@@ -12,62 +12,65 @@ public class ButtonSystem : MonoBehaviour
     
     // Arrays.
     [SerializeField] private GameObject[] buttons;
-    [SerializeField] private Color[] colors;
-    
+    [SerializeField] private Material[] materials;
+
     // Objects.
     [SerializeField] private GameObject particleEffect;
+    private GameObject randomButton;
     
     // Dictionaries.
-    private Dictionary<GameObject, Color> buttonColorMap;
+    private Dictionary<GameObject, Material> buttonMaterialMap;
     private Dictionary<GameObject, bool> buttonCanComboMap;
 
     
     // Action.
     public Action StartFadeOut;
+    public Action ActivateBoost;
     
 
     private void Start()
     {
         InitializeButtonMaps();
+        ActivateBoost += UpdateButtonMaterial;
     }
 
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.B))
         {
-            StartBoostAnimation(2);
+            ActivateBoost.Invoke();
         }
     }
 
-    // Fills the button color dictionary.
+    // Fills button dictionaries.
     private void InitializeButtonMaps()
     {
-        buttonColorMap = new Dictionary<GameObject, Color>();
+        buttonMaterialMap = new Dictionary<GameObject, Material>();
         buttonCanComboMap = new Dictionary<GameObject, bool>();
-        
-        for (int i = 0; i < GetButtonLength(); i++)
-        {
-            if (i < _minigame.GetActiveButtons())
-            {
-                buttonColorMap[buttons[i]] = colors[1];
-            }
-            else
-            {
-                buttonColorMap[buttons[i]] = colors[0];
-            }
 
-            // Sets all buttons' can combo on false;
+        for (int i = 0; i < buttons.Length; i++)
+        {
+            buttonMaterialMap[buttons[i]] = materials[0];
             buttonCanComboMap[buttons[i]] = false;
         }
-        // UpdateButtonColors();
+
+        // Set random button able to combo.
+        randomButton = GetRandomActiveButton();
+        buttonCanComboMap[randomButton] = true;
+        
+        // Start animation after 1 sec.
         Invoke("ActivateButtonAnimation", 1f);
     }
 
-    private void UpdateButtonColors()
+    private void UpdateButtonMaterial()
     {
         for (int i = 0; i < GetButtonLength(); i++)
         {
-            buttons[i].GetComponent<ButtonRenderer>().SetColor(buttonColorMap[buttons[i]]);
+            if (buttonCanComboMap[buttons[i]])
+            {
+                buttons[i].GetComponent<ButtonRenderer>().SetMaterial(materials[1]);
+                // buttons[i].GetComponentInChildren<ToggleAdditionalMaterial>().EnableGameObject();
+            }
         }
     }
 
@@ -87,14 +90,6 @@ public class ButtonSystem : MonoBehaviour
         }
     }
 
-    private void StartBoostAnimation(int id)
-    {
-        buttonCanComboMap[buttons[id]] = true;
-        buttons[id].GetComponent<ButtonAnimation>().PlayAnimation("Combo");
-        Instantiate(particleEffect, buttons[id].transform);
-    }
-
-
     public int GetButtonLength()
     {
         return buttons.Length;
@@ -108,5 +103,10 @@ public class ButtonSystem : MonoBehaviour
     public bool CanButtonCombo(int id)
     {
         return buttonCanComboMap[buttons[id]];
+    }
+
+    private GameObject GetRandomActiveButton()
+    {
+        return buttons[Random.Range(0, _minigame.GetActiveButtons())];
     }
 }
