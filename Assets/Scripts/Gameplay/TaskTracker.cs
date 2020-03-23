@@ -19,12 +19,14 @@ namespace Eurovision.Gameplay
         private float _timer = 0;
         private Eyetracker _eyetracker;
         private TaskGenerator _taskGenerator;
+        private ScoreBar _scoreBar;
         private PerformanceTracker _performanceTracker;
 
         private void Awake()
         {
             _eyetracker = GetComponent<Eyetracker>();
             _taskGenerator = GetComponent<TaskGenerator>();
+            _scoreBar = GameObject.FindWithTag("ScoreUI").GetComponent<ScoreBar>();
             _performanceTracker = GetComponent<PerformanceTracker>();
         }
 
@@ -114,7 +116,8 @@ namespace Eurovision.Gameplay
             _currentTask.Target.SetAsInActiveObject();
 
 
-            _performanceTracker.AddPoints(score);
+            //_performanceTracker.AddPoints(score);
+            if(!_scoreBar.Isactive()) _scoreBar.AddScore(score);
 
             if (OnTaskComplete != null)
                 OnTaskComplete.Invoke(_currentTask);

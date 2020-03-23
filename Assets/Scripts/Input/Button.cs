@@ -11,6 +11,8 @@ namespace Eurovision.Input
     {
         [SerializeField]
         private Eurovision.Effect _effect;
+        [SerializeField]
+        private Eurovision.Effect _superEffect;
         
         public enum InputState
         {
@@ -21,7 +23,19 @@ namespace Eurovision.Input
         private InputState _currentInputState = InputState.Up;
         
         // TODO: Refactor into dictionary?
-        public void UpdateButtonState(int data)
+        public void UpdateButtonState(bool superOn, int data)
+        {
+            if (superOn)
+            {
+                UpdateEffect(_superEffect, data);
+            }
+            else
+            {
+                UpdateEffect(_effect, data);
+            }
+        }
+
+        public void UpdateEffect(Eurovision.Effect effect, int data)
         {
             switch (_currentInputState)
             {
@@ -29,12 +43,12 @@ namespace Eurovision.Input
                     if (data == 1)
                     {
                         _currentInputState = InputState.Hold;
-                        _effect.OnEffectUpdate();
+                        effect.OnEffectUpdate();
                     }
                     else if (data == 0)
                     {
                         _currentInputState = InputState.Up;
-                        _effect.OnEffectStop();
+                        effect.OnEffectStop();
                     }
                     break;
                 
@@ -42,13 +56,13 @@ namespace Eurovision.Input
                     if (data == 1)
                     {
                         // state stays Hold
-                        _effect.OnEffectUpdate();
+                        effect.OnEffectUpdate();
 
                     }
                     else if (data == 0)
                     {
                         _currentInputState = InputState.Up;
-                        _effect.OnEffectStop();
+                        effect.OnEffectStop();
                     }
                     break;
                 
@@ -56,7 +70,7 @@ namespace Eurovision.Input
                     if (data == 1)
                     {
                         _currentInputState = InputState.Down;
-                        _effect.OnEffectStart();
+                        effect.OnEffectStart();
                     }
                     break;
             }
