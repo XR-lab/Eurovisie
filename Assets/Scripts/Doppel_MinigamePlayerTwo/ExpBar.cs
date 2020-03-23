@@ -25,8 +25,7 @@ public class ExpBar : MonoBehaviour
     void Start()
     {
         // Subscribe to event.
-        _minigame.SuperActivated += TurnActivationOn;
-        
+
         // Start values.
         currentExperience = 20f;
         maxExperience = 100f;

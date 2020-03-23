@@ -8,6 +8,7 @@ public class ButtonAnimation : MonoBehaviour
     private Animator anim;
     private Vector3 buttonPosFadeIn;
     private Vector3 buttonPosFadeOut;
+    [SerializeField] private float boxScale = 20f;
     private float yOffset = 0.3f;
     private float slerpSpeed = 1f;
     private bool isFadingOut;
@@ -23,7 +24,7 @@ public class ButtonAnimation : MonoBehaviour
         // Fade out position.
         buttonPosFadeOut = new Vector3(
             transform.position.x,
-            (transform.position.y - yOffset),
+            (transform.position.y - (yOffset * boxScale)),
             transform.position.z);
 
         anim = GetComponent<Animator>();

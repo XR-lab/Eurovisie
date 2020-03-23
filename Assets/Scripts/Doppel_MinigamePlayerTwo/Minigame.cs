@@ -10,7 +10,7 @@ public class Minigame : MonoBehaviour
     [SerializeField] private int activeButtons = 3;
 
     public Action GameStarted;
-    public Action SuperActivated;
+    public Action ActivateBoost;
     
     // Game.
     private bool isPlaying = false;
@@ -35,6 +35,12 @@ public class Minigame : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.A))
         {
             buttonSystem.GetButton(0).GetComponent<ButtonPress>().ButtonPressDown();
+
+            if (buttonSystem.GetButtonState(0))
+            {
+                buttonSystem.GetButton(0).GetComponent<ButtonPress>().ActivateSuper();
+                buttonSystem.SetButtonCombo(0,  false);
+            }
         }
         else if (Input.GetKeyUp(KeyCode.A))
         {
@@ -45,6 +51,12 @@ public class Minigame : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.S))
         {
             buttonSystem.GetButton(1).GetComponent<ButtonPress>().ButtonPressDown();
+            
+            if (buttonSystem.GetButtonState(1))
+            {
+                buttonSystem.GetButton(1).GetComponent<ButtonPress>().ActivateSuper();
+                buttonSystem.SetButtonCombo(1,  false);
+            }
         }
         else if (Input.GetKeyUp(KeyCode.S))
         {
@@ -55,15 +67,21 @@ public class Minigame : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.D))
         {
             buttonSystem.GetButton(2).GetComponent<ButtonPress>().ButtonPressDown();
-            if (buttonSystem.CanButtonCombo(2))
+            
+            if (buttonSystem.GetButtonState(2))
             {
-                buttonSystem.GetButton(2).GetComponent<ButtonAnimation>().PlayAnimation("Idle");
-                SuperActivated.Invoke();
+                buttonSystem.GetButton(2).GetComponent<ButtonPress>().ActivateSuper();
+                buttonSystem.SetButtonCombo(2,  false);
             }
         }
         else if (Input.GetKeyUp(KeyCode.D))
         {
             buttonSystem.GetButton(2).GetComponent<ButtonPress>().ButtonPressUp();
+        }
+        
+        if (Input.GetKeyDown(KeyCode.B))
+        {
+            ActivateBoost.Invoke();
         }
     }
 

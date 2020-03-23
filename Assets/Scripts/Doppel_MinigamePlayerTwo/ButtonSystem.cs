@@ -25,21 +25,19 @@ public class ButtonSystem : MonoBehaviour
     
     // Action.
     public Action StartFadeOut;
-    public Action ActivateBoost;
+
     
 
     private void Start()
     {
         InitializeButtonMaps();
-        ActivateBoost += UpdateButtonMaterial;
+        _minigame.ActivateBoost += UpdateButtonMaterial;
+        _minigame.ActivateBoost += UpdateButtonBoolMap;
     }
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.B))
-        {
-            ActivateBoost.Invoke();
-        }
+       
     }
 
     // Fills button dictionaries.
@@ -54,11 +52,6 @@ public class ButtonSystem : MonoBehaviour
             buttonCanComboMap[buttons[i]] = false;
         }
 
-        // Set random button able to combo.
-        // randomButton = GetRandomActiveButton();
-        randomButton = buttons[0];
-        buttonCanComboMap[randomButton] = true;
-        
         // Start animation after 1 sec.
         Invoke("ActivateButtonAnimation", 1f);
     }
@@ -78,8 +71,20 @@ public class ButtonSystem : MonoBehaviour
             }
             
             // Enables additional material.
-            buttons[i].GetComponent<ToggleAdditionalMaterial>().ToggleGameObject(buttonCanComboMap[buttons[i]]);
+            // buttons[i].GetComponent<ToggleAdditionalMaterial>().ToggleGameObject(buttonCanComboMap[buttons[i]]);
         }
+    }
+
+    private void UpdateButtonBoolMap()
+    {
+        randomButton = GetRandomActiveButton();
+        buttonCanComboMap[randomButton] = true;
+        UpdateButtonMaterial();
+    }
+
+    public bool GetButtonState(int id)
+    {
+        return buttonCanComboMap[buttons[id]];
     }
 
     private void ActivateButtonAnimation()
@@ -111,6 +116,13 @@ public class ButtonSystem : MonoBehaviour
     public bool CanButtonCombo(int id)
     {
         return buttonCanComboMap[buttons[id]];
+    }
+
+    public void SetButtonCombo(int id, bool x)
+    {
+        buttonCanComboMap[buttons[id]] = x;
+        buttonMaterialMap[buttons[id]] = materials[0];
+        UpdateButtonMaterial();
     }
 
     private GameObject GetRandomActiveButton()
