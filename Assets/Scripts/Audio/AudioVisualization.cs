@@ -107,7 +107,7 @@ public class AudioVisualization : MonoBehaviour
         float spec = _spectrum[spectrumNumberListen];
         if (spec > 0.01)
         {
-            _effect.StartEffect(); print("start effect");
+            _effect.StartEffect();
         }
         else
         {
