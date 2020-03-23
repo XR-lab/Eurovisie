@@ -40,12 +40,14 @@ public class ScoreBar : MonoBehaviour
             _used = true;
             _amalgamation.SetTrigger("Activate");
             _explosion.SetTrigger("Activate");
+            _progressbar.GetComponent<Image>().material.SetFloat("_Activated", true ? 1f : 0f);
         }
 
         if (_score <= 0)
         {
             _ultimate = false;
             _used = false;
+            _progressbar.GetComponent<Image>().material.SetFloat("_Activated", false ? 1f : 0f);
         }
     }
 
