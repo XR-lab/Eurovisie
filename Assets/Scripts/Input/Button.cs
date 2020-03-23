@@ -23,11 +23,15 @@ namespace Eurovision.Input
         private InputState _currentInputState = InputState.Up;
         
         // TODO: Refactor into dictionary?
-        public void UpdateButtonState(bool superOn, int data)
+        public void UpdateButtonState(bool superOn, int data, ScoreBar[] scoreBars)
         {
-            if (superOn)
+            if (superOn && _currentInputState == InputState.Down)
             {
                 UpdateEffect(_superEffect, data);
+                for (int i = 0; i < scoreBars.Length; i++)
+                {
+                    scoreBars[i].ActivateUltimate();
+                }
             }
             else
             {
