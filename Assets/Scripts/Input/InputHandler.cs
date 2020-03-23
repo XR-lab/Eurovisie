@@ -13,10 +13,11 @@ namespace Eurovision.Input
         public void UpdateInput(int inputData)
         {
             int buttonID = (inputData / 10) - 1;
-            int dataState = inputData % 2; 
-            
-           _buttons[buttonID].UpdateButtonState(dataState);
+            int dataState = inputData % 2;
+
+            _buttons[buttonID].UpdateButtonState(dataState);
         }
-    }    
+
+    }
 }
 
