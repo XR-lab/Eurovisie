@@ -1,5 +1,9 @@
 fileFormatVersion: 2
-guid: bd0e930f0c761ae42a4bd9a1ca26e88a
+<<<<<<< HEAD:Assets/Prefabs/Enviroments/Materials.meta
+guid: fb31db83ea0f28847a43e20429523730
+=======
+guid: c60f677603fa59a40912b8181e7783b3
+>>>>>>> 6d7f8bf0646974f79e3a436caf8519457dc129c5:Assets/Art_assets/VFX/BouncyBalls.meta
 folderAsset: yes
 DefaultImporter:
   externalObjects: {}
