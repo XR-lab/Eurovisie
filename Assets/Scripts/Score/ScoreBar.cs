@@ -111,6 +111,7 @@ public class ScoreBar : MonoBehaviour
             yield return new WaitForEndOfFrame();
         }
         StopCoroutine(ScoreDialBack());
+        _score = 0;
     }
 
     private void ScoreCalculation()
