@@ -11,10 +11,10 @@ GameObject:
   - component: {fileID: 1785370012866708695}
   - component: {fileID: 1785370012866708683}
   - component: {fileID: 1785370012866708680}
-  - component: {fileID: 1785370012866708681}
-  - component: {fileID: 1785370012866708694}
+  - component: {fileID: 2538063377400344473}
+  - component: {fileID: 7550599019478581329}
   m_Layer: 9
-  m_Name: Look_Button
+  m_Name: SongSelectOption
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -48,6 +48,7 @@ SpriteRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -72,7 +73,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 72a140703a2b03d47b89d5fadacda7f1, type: 3}
+  m_Sprite: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -80,7 +81,7 @@ SpriteRenderer:
   m_Size: {x: 2.56, y: 2.56}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!65 &1785370012866708680
@@ -96,7 +97,7 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 3.2, y: 4.5, z: 0.2}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &1785370012866708681
+--- !u!114 &2538063377400344473
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -105,10 +106,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1785370012866708692}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 08057691640d4d745b4de94fe824749d, type: 3}
+  m_Script: {fileID: 11500000, guid: 3854d475dca1740a0aaf609d87a14ea7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &1785370012866708694
+--- !u!114 &7550599019478581329
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -117,7 +118,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 1785370012866708692}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6da3abe3c9dfeb8408bfe6b849806d9e, type: 3}
+  m_Script: {fileID: 11500000, guid: 1db3a9e6b331a0747b1393a95a0bd46a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  id: 0
+  _trackData: {fileID: 0}
+  _songImage: {fileID: 0}

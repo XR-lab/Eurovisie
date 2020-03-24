@@ -36,10 +36,9 @@ namespace Eurovision.Input
             {
                 _superOn = false;
             }
-            
+
            _buttons[buttonID].UpdateButtonState(_superOn, dataState, _scoreBars);
         }
 
     }
 }
-

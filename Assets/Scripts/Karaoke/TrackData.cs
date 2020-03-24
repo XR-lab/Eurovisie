@@ -10,6 +10,7 @@ namespace Eurovision.Karaoke
     {
         public TimelineAsset timelineAsset;
         public TextAsset lyrics;
+        public Sprite image;
     }
 }
 
