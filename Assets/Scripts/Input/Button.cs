@@ -21,17 +21,21 @@ namespace Eurovision.Input
             Up,
         }
         private InputState _currentInputState = InputState.Up;
+        private bool _running = false;
         
         // TODO: Refactor into dictionary?
         public void UpdateButtonState(bool superOn, int data, ScoreBar[] scoreBars)
         {
-            if (superOn && _currentInputState == InputState.Down)
+            if (superOn && data == 1 && !_running)
             {
                 UpdateEffect(_superEffect, data);
                 for (int i = 0; i < scoreBars.Length; i++)
                 {
                     scoreBars[i].ActivateUltimate();
                 }
+            } else if (superOn && _running)
+            {
+                UpdateEffect(_superEffect, data);
             }
             else
             {
@@ -51,6 +55,7 @@ namespace Eurovision.Input
                     }
                     else if (data == 0)
                     {
+                        _running = false;
                         _currentInputState = InputState.Up;
                         effect.OnEffectStop();
                     }
@@ -65,6 +70,7 @@ namespace Eurovision.Input
                     }
                     else if (data == 0)
                     {
+                        _running = false;
                         _currentInputState = InputState.Up;
                         effect.OnEffectStop();
                     }
@@ -73,6 +79,7 @@ namespace Eurovision.Input
                 case InputState.Up:
                     if (data == 1)
                     {
+                        _running = true;
                         _currentInputState = InputState.Down;
                         effect.OnEffectStart();
                     }
