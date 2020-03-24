@@ -21,6 +21,7 @@ namespace Eurovision.Gameplay
         private float _timer = 0;
         private Eyetracker _eyetracker;
         private TaskGenerator _taskGenerator;
+        private ScoreBar[] _scoreBars;
         private PerformanceTracker _performanceTracker;
         private KaraokeController _karaokeController;
         private LookObject _endTarget;
@@ -29,6 +30,13 @@ namespace Eurovision.Gameplay
         {
             _eyetracker = GetComponent<Eyetracker>();
             _taskGenerator = GetComponent<TaskGenerator>();
+            GameObject[] objects = new GameObject[2];
+            _scoreBars = new ScoreBar[2];
+            objects = GameObject.FindGameObjectsWithTag("ScoreUI");
+            for (int i = 0; i < objects.Length; i++)
+            {
+                _scoreBars[i] = objects[i].GetComponent<ScoreBar>();
+            }
             _performanceTracker = GetComponent<PerformanceTracker>();
             _karaokeController = FindObjectOfType<KaraokeController>();
         }
@@ -114,7 +122,14 @@ namespace Eurovision.Gameplay
             _currentTask.Targets[0].SetAsInActiveObject();
 
 
-            _performanceTracker.AddPoints(score);
+            //_performanceTracker.AddPoints(score);
+            if (!_scoreBars[0].Isactive())
+            {
+                for (int i = 0; i < _scoreBars.Length; i++)
+                {
+                    _scoreBars[i].AddScore(score);
+                }
+            }
 
             if (OnTaskComplete != null) // currently is only used for when song selection is done
             {
