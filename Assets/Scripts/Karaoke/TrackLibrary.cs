@@ -19,14 +19,9 @@ namespace Eurovision.Karaoke
             return _tracks[Random.Range(0, _tracks.Length)];
         }
         
-        public TrackData GetTrack(int trackID)
+        public TrackData GetTrack(int trackPosition)
         {
-            if (trackID <= _tracks.Length -1 && trackID >= 0)
-            {
-                return _tracks[trackID];
-            }
-
-            return null;
+            return _tracks[trackPosition];
         }
     }
 }
