@@ -3,12 +3,12 @@
 public class FollowObject : MonoBehaviour
 {
     // ============================================================================================= "private" variables
-    [SerializeField] private Transform followObject;
+    [SerializeField] private Transform target;
     [SerializeField] private Vector3 offset;
 
     // ========================================================================================================== Update
     void Update()
     {
-        transform.position = followObject.position + offset;
+        transform.position = target.position + offset;
     }
 }
