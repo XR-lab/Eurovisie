@@ -30,8 +30,8 @@ namespace Eurovision.Gameplay
         {
             _eyetracker = GetComponent<Eyetracker>();
             _taskGenerator = GetComponent<TaskGenerator>();
-            GameObject[] objects = new GameObject[2];
-            _scoreBars = new ScoreBar[2];
+            GameObject[] objects = new GameObject[1];
+            _scoreBars = new ScoreBar[1];
             objects = GameObject.FindGameObjectsWithTag("ScoreUI");
             for (int i = 0; i < objects.Length; i++)
             {
@@ -57,15 +57,18 @@ namespace Eurovision.Gameplay
 
         private void Update()
         {
+            
             if (_currentTask != null)
             {
+                
                 LookObject currentTarget = _eyetracker.GetLookTarget();
-
+              
                 if (_currentTask.IsComplete)
                     return;
 
                 if (currentTarget == null && _timer > 0)
                 {
+                   
                     TaskCancel();
                     return;
                 }
@@ -74,6 +77,7 @@ namespace Eurovision.Gameplay
 
                 if (_currentTask.Targets.Contains(currentTarget))
                 {
+                   
                     if (_timer <= 0)
                         TaskStart();
                     _endTarget = currentTarget;
