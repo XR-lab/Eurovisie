@@ -6,6 +6,8 @@ namespace Eurovision.Gameplay
     {
         [SerializeField] private LookObject[] _targets;
         [SerializeField] private LookObject[] _songTargets;
+        public LookObject[] songTargets { get { return _songTargets;} set { _songTargets = value; } }
+
         [SerializeField] private float _minDuration;
         [SerializeField] private float _maxDuration;
         [SerializeField] private float _selectionDuration;

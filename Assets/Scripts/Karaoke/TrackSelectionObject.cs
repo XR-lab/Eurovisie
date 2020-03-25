@@ -7,7 +7,7 @@ using UnityEngine;
 public class TrackSelectionObject : LookObject
 {
     [SerializeField] private TrackData _trackData;
-    public TrackData trackData { get { return _trackData; } }
+    public TrackData trackData { get { return _trackData; } set { _trackData = value; } }
 
     public override void SetAsGettingLookedAt()
     {
