@@ -27,25 +27,5 @@ namespace Eurovision.Gameplay
             }
             return null;
         }
-        
-        // ToDo Refactor de LookButtons zodat deze ook werkt als LookObject
-        public LookButton GetLookButton()
-        {
-            Ray ray;
-
-            if (_useMouse)
-                ray = Camera.main.ScreenPointToRay(UnityEngine.Input.mousePosition);
-            else
-                // ray vanuit de camera naar voren
-                ray = new Ray(_vrCamera.transform.position, _vrCamera.transform.forward);
-                
-            RaycastHit hit;
-
-            if (Physics.Raycast(ray, out hit, Mathf.Infinity, _layerMask))
-            {
-                return hit.transform.GetComponent<LookButton>();
-            }
-            return null;
-        }
     }
 }
