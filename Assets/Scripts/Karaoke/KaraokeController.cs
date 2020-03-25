@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using Eurovision.Gameplay;
 using UnityEngine;
 using UnityEngine.Playables;
 using UnityEngine.Timeline;
@@ -13,10 +14,10 @@ namespace Eurovision.Karaoke
         [RequireComponent(typeof(AudioSource))]
         public class KaraokeController : MonoBehaviour
         {
-                [SerializeField] private TrackLibrary _trackLibrary;
+                [SerializeField] private TrackLibrary _trackLibrary; //currently isn't getting used but we can use it to make the song selection buttons instead of making the buttons in the inspector
                 [SerializeField] private UnityEngine.UI.Text _uiTextPlayerOne;
                 [SerializeField] private UnityEngine.UI.Text _uiTextPlayerTwo;
-                
+
                 private int _index = 0;
                 private PlayableDirector _playableDirector;
                 private LyricData _lyricsData;
@@ -24,7 +25,7 @@ namespace Eurovision.Karaoke
                 private List<String> _lyricsApart;
                 private int _wordIndex = 0;
                 private string _colorP = "<color=red>", _colorS = "</color>";
-                
+
                 private void Awake()
                 {
                         _playableDirector = GetComponent<PlayableDirector>();
@@ -38,13 +39,12 @@ namespace Eurovision.Karaoke
                         KaraokeStart();
                 }
 
-                public void LoadSong(int ID)
+                public void LoadSong(TrackData trackData)
                 {
-                        var newTrack = _trackLibrary.GetTrack(ID);
-                        LoadTrack(newTrack);
+                        LoadTrack(trackData);
                         KaraokeStart();
                 }
-                
+
                 public void KaraokeStart()
                 {
                         _index = 0;
@@ -53,9 +53,9 @@ namespace Eurovision.Karaoke
 
                 public void LyricsStart()
                 {
-                        UpdateUIText(_lyricsData.Artist + " - " + _lyricsData.Tracktitle); 
+                        UpdateUIText(_lyricsData.Artist + " - " + _lyricsData.Tracktitle);
                 }
-                
+
                 public void LyricsUpdate()
                 {
                         string lyrics = _lyricsData.Lyrics[_index];
@@ -63,7 +63,7 @@ namespace Eurovision.Karaoke
                         _lyricsApart.Insert(0, _colorP);
                         _wordIndex = 0;
                         _lyricsApart.Insert(_wordIndex+1, _colorS);
-                        
+
                         UpdateUIText(lyrics);
                         _index++;
 
@@ -73,7 +73,7 @@ namespace Eurovision.Karaoke
                                 print("Lyrics end");
                         }
                 }
-                
+
                 public void LyricsWordsUpdate()
                 {
                         _lyricsApart.RemoveAt(_wordIndex+1);
@@ -83,7 +83,7 @@ namespace Eurovision.Karaoke
                         {
                                 // if 0 (<color>) -- if the word before the closing </color> -- or when last one == no spacebar
                                 if (i==0 || i==_wordIndex+1 || i==_lyricsApart.Count-1) {lyrics += _lyricsApart[i];}
-                                else lyrics += _lyricsApart[i] + " "; 
+                                else lyrics += _lyricsApart[i] + " ";
                         }
                         UpdateUIText(lyrics);
                         _wordIndex++;
@@ -91,7 +91,7 @@ namespace Eurovision.Karaoke
 
                 public void LyricsEnd()
                 {
-                        UpdateUIText(_lyricsData.Artist + " - " + _lyricsData.Tracktitle);  
+                        UpdateUIText(_lyricsData.Artist + " - " + _lyricsData.Tracktitle);
                 }
 
                 public void LoadTrack(TrackData trackData)
