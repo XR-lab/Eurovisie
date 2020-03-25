@@ -58,11 +58,17 @@ namespace Eurovision.Gameplay
 
                 if (currentTarget == null && _timer > 0)
                 {
+                    _endTarget.SetAsNotGettingLookedAt();
                     TaskCancel();
                     return;
                 }
                 else if (currentTarget == null)
+                {
+                    _endTarget.SetAsNotGettingLookedAt();
                     return;
+                }
+                
+                currentTarget.SetAsGettingLookedAt();
 
                 if (_currentTask.Targets.Contains(currentTarget))
                 {
@@ -71,6 +77,8 @@ namespace Eurovision.Gameplay
                     _endTarget = currentTarget;
                     UpdateCurrentTask();
                 }
+
+                //_endTarget = currentTarget;
             }
         }
 
@@ -116,6 +124,7 @@ namespace Eurovision.Gameplay
 
             _performanceTracker.AddPoints(score);
 
+            //ToDo: refactor so that the action isn't linked to the specific task
             if (OnTaskComplete != null) // currently is only used for when song selection is done
             {
                 OnTaskComplete();
@@ -149,7 +158,7 @@ namespace Eurovision.Gameplay
 
         private void GetTrackAndPlay(LookObject lookObject)
         {
-            TrackData track = lookObject.transform.GetComponent<TrackSelection>().trackData;
+            TrackData track = lookObject.transform.GetComponent<TrackSelectionObject>().trackData;
             _karaokeController.LoadSong(track);
         }
     }
