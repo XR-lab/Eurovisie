@@ -35,7 +35,7 @@ namespace Eurovision.Gameplay
 
         private void Start()
         {
-            _currentTask = _taskGenerator.GenerateSongTask();
+            _currentTask = _taskGenerator.GenerateSongSelectionTask();
         }
 
         public void StartExperience()
