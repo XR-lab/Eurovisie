@@ -16,6 +16,9 @@ public class ScoreBar : MonoBehaviour
     [SerializeField] private CrowdCommander _commander;
 
     private bool _ultimate = false;
+
+    public bool ultimate { get { return _ultimate; } }
+
     private bool _used = false;
     
     public float _score;
@@ -42,14 +45,19 @@ public class ScoreBar : MonoBehaviour
             _used = true;
             _amalgamation.SetTrigger("Activate");
             _explosion.SetTrigger("Activate");
-            _progressbar.GetComponent<Image>().material.SetFloat("_Activated", true ? 1f : 0f);
+            //_progressbar.GetComponent<Image>().material.SetFloat("_Activated", true ? 1f : 0f);
+        }
+
+        if (_score >= _maxScore && !_ultimate)
+        {
+            _ultimate = true;
         }
 
         if (_score <= 0)
         {
             _ultimate = false;
             _used = false;
-            _progressbar.GetComponent<Image>().material.SetFloat("_Activated", false ? 1f : 0f);
+            //_progressbar.GetComponent<Image>().material.SetFloat("_Activated", false ? 1f : 0f);
             _score = 0;
         }
     }
@@ -78,17 +86,15 @@ public class ScoreBar : MonoBehaviour
         _commander.Apply(BehaviorIds.Crowd, crowdBehaviorDto);
         StartCoroutine(ScoreSettler());
     }
-    
-    public bool ActivateUltimate()
+    public void ActivateUltimate()
     {
         if (_score >= _maxScore)
         {
-            _used = false;
-            _ultimate = true;
+            //_used = false;
+            //_ultimate = true;
             StartCoroutine(ScoreDialBack());
             _amalgamation.SetTrigger("Emptying");
         }
-        return _ultimate;
     }
 
     IEnumerator ScoreSettler()
@@ -110,6 +116,7 @@ public class ScoreBar : MonoBehaviour
             yield return new WaitForEndOfFrame();
         }
         StopCoroutine(ScoreDialBack());
+        _score = 0;
     }
 
     private void ScoreCalculation()
