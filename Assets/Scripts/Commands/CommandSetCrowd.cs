@@ -7,15 +7,18 @@ using UnityEngine;
 public class CommandSetCrowd : Command<BehaviorIds, CrowdBehaviorDTO>
 {
     public override BehaviorIds Id => BehaviorIds.Crowd;
-    private Animator _animator;
-
+    private Animator[] _animators;
+    
     private void Start()
     {
-        _animator = this.GetComponent<Animator>();
+        _animators = this.GetComponentsInChildren<Animator>();
     }
 
     public override void Execute(CrowdBehaviorDTO commadData)
     {
-        _animator.SetTrigger(commadData.crowdHype);
+        for (int i = 0; i < _animators.Length; i++)
+        {
+            _animators[i].SetFloat("Hype", commadData.crowdHype);
+        }
     }
 }

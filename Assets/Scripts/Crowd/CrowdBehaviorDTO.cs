@@ -3,9 +3,9 @@ using UnityEngine;
 
 public struct CrowdBehaviorDTO
 {
-    public readonly string crowdHype;
+    public readonly float crowdHype;
     
-    public CrowdBehaviorDTO(string state)
+    public CrowdBehaviorDTO(float state)
     {
         this.crowdHype = state;
     }

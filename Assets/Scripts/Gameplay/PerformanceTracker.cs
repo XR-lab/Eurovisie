@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 using System;
+using Boo.Lang;
 
 namespace Eurovision.Gameplay
 {
@@ -9,7 +10,7 @@ namespace Eurovision.Gameplay
         public Action onPerformanceFull;
 
         [SerializeField] private int _pointsNeeded = 5;
-        [SerializeField] private Image _performanceBar; 
+        [SerializeField] private Image[] _performanceBars; 
 
         private int _performancePoints;
 
@@ -44,7 +45,10 @@ namespace Eurovision.Gameplay
         private void UpdateUI()
         {
             float normalizedScore = (float)_performancePoints / (float)_pointsNeeded;
-            _performanceBar.fillAmount = normalizedScore;
+            for (int i = 0; i < _performanceBars.Length; i++)
+            {
+                _performanceBars[i].fillAmount = normalizedScore;
+            }
         }
     }
 }
