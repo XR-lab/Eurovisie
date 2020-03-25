@@ -35,7 +35,10 @@ Material:
     - Intensity: 4
     - _Activate: 1
     - _Activated: 0
+<<<<<<< HEAD
+=======
     - _ColorMask: 15
+>>>>>>> b0af69051932d889d8b34b9e6d97e4c9bc1a8aa3
     - _Intensity: 1
     - _PulseSpeed: 2
     - _Stencil: 0

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using System;
+using System.ComponentModel.Design;
 
 public class ScoreBar : MonoBehaviour
 {
@@ -12,6 +13,7 @@ public class ScoreBar : MonoBehaviour
     [SerializeField] private float _speed;
     [SerializeField] private Animator _amalgamation;
     [SerializeField] private Animator _explosion;
+    [SerializeField] private CrowdCommander _commander;
 
     private bool _ultimate = false;
 
@@ -56,6 +58,7 @@ public class ScoreBar : MonoBehaviour
             _ultimate = false;
             _used = false;
             //_progressbar.GetComponent<Image>().material.SetFloat("_Activated", false ? 1f : 0f);
+            _score = 0;
         }
     }
 
@@ -79,6 +82,8 @@ public class ScoreBar : MonoBehaviour
         { 
             _score += add;
         }
+        var crowdBehaviorDto = new CrowdBehaviorDTO(_score);
+        _commander.Apply(BehaviorIds.Crowd, crowdBehaviorDto);
         StartCoroutine(ScoreSettler());
     }
     public void ActivateUltimate()
