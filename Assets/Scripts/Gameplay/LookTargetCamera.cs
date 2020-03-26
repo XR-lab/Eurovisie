@@ -6,14 +6,14 @@ using UnityEngine;
 public class LookTargetCamera : LookObject
 {
     private Color _defaultColor;
-        private Renderer _renderer;
-        private readonly int _baseColor = Shader.PropertyToID("_BaseColor");
+    private Renderer _renderer;
+    private readonly int _baseColor = Shader.PropertyToID("_BaseColor");
 
-        private void Awake()
-        {
-            _renderer = GetComponent<Renderer>();
-            _defaultColor = _renderer.material.GetColor(_baseColor);
-        }
+    private void Awake()
+    {
+        _renderer = GetComponent<Renderer>();
+        _defaultColor = _renderer.material.GetColor(_baseColor);
+    }
 
     public override void SetAsActiveObject()
     {

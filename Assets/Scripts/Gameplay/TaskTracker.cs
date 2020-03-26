@@ -15,10 +15,14 @@ namespace Eurovision.Gameplay
 
         [SerializeField] private float _unFillSpeed = 2;
         [SerializeField] private Image _progressImage;
+        [SerializeField] private float _minusScore;
+        [SerializeField] private float _cameraMaxTimer;
 
         private Task _currentTask;
 
+        private float _cameraTimer;
         private float _timer = 0;
+        private bool _les;
         private Eyetracker _eyetracker;
         private TaskGenerator _taskGenerator;
         private ScoreBar[] _scoreBars;
@@ -60,9 +64,24 @@ namespace Eurovision.Gameplay
 
             if (_currentTask != null)
             {
-
+                
                 LookObject currentTarget = _eyetracker.GetLookTarget();
-
+                if (!_currentTask._isSong && currentTarget == null)
+                {
+                    _cameraTimer += Time.deltaTime;
+                    Debug.Log(_cameraTimer);
+                }
+                else
+                {
+                    _cameraTimer = 0;
+                }
+                
+                if (_cameraTimer >= _cameraMaxTimer)
+                {
+                    _cameraTimer = 0;
+                    TaskFailed();
+                }
+                
                 if (_currentTask.IsComplete)
                     return;
 
@@ -71,18 +90,19 @@ namespace Eurovision.Gameplay
                     _endTarget.SetAsNotGettingLookedAt();
                     TaskCancel();
                     return;
-                }
-                else if (currentTarget == null)
+                } 
+                
+                if (currentTarget == null)
                 {
                     _endTarget.SetAsNotGettingLookedAt();
                     return;
                 }
 
                 currentTarget.SetAsGettingLookedAt();
+                _les = false;
 
                 if (_currentTask.Targets.Contains(currentTarget))
                 {
-
                     if (_timer <= 0)
                         TaskStart();
                     _endTarget = currentTarget;
@@ -115,15 +135,40 @@ namespace Eurovision.Gameplay
         private void TaskCancel()
         {
             _timer -= Time.deltaTime / _unFillSpeed;
-
+            
             if (_timer <= 0)
                 _timer = 0;
 
             UpdateProgressImage();
-
+            if (!_les)
+            {
+                for (int i = 0; i < _scoreBars.Length; i++)
+                {
+                    _scoreBars[i].AddScore(_minusScore);
+                }
+                _les = true;
+            }
             print("TaskCancel");
         }
 
+        private void TaskFailed()
+        {
+            _currentTask.IsComplete = true;
+            _currentTask.Targets[0].SetAsInActiveObject();
+            
+            if (OnTaskComplete != null) // currently is only used for when song selection is done
+            {
+                OnTaskComplete();
+                GetTrackAndPlay(_endTarget); // may need to change to something that can link with the delegate
+            }
+
+            GenerateNewTask();
+    
+            UpdateProgressImage();
+            
+            Debug.Log("Failed");
+        }
+        
         private void TaskComplete()
         {
             // maybe we should call these functions by the event?
@@ -133,7 +178,7 @@ namespace Eurovision.Gameplay
             _currentTask.Targets[0].SetAsInActiveObject();
 
 
-            //_performanceTracker.AddPoints(score);
+            //_operformanceTracker.AddPoints(scre);
             if (!_scoreBars[0].Isactive())
             {
                 for (int i = 0; i < _scoreBars.Length; i++)
