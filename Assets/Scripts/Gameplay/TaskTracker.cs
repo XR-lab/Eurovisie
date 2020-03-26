@@ -43,7 +43,7 @@ namespace Eurovision.Gameplay
 
         private void Start()
         {
-            _currentTask = _taskGenerator.GenerateSongTask();
+            _currentTask = _taskGenerator.GenerateSongSelectionTask();
         }
 
         public void StartExperience()
@@ -57,32 +57,39 @@ namespace Eurovision.Gameplay
 
         private void Update()
         {
-            
+
             if (_currentTask != null)
             {
-                
+
                 LookObject currentTarget = _eyetracker.GetLookTarget();
-              
+
                 if (_currentTask.IsComplete)
                     return;
 
                 if (currentTarget == null && _timer > 0)
                 {
-                   
+                    _endTarget.SetAsNotGettingLookedAt();
                     TaskCancel();
                     return;
                 }
                 else if (currentTarget == null)
+                {
+                    _endTarget.SetAsNotGettingLookedAt();
                     return;
+                }
+
+                currentTarget.SetAsGettingLookedAt();
 
                 if (_currentTask.Targets.Contains(currentTarget))
                 {
-                   
+
                     if (_timer <= 0)
                         TaskStart();
                     _endTarget = currentTarget;
                     UpdateCurrentTask();
                 }
+
+                //_endTarget = currentTarget;
             }
         }
 
@@ -135,6 +142,7 @@ namespace Eurovision.Gameplay
                 }
             }
 
+            //ToDo: refactor so that the action isn't linked to the specific task
             if (OnTaskComplete != null) // currently is only used for when song selection is done
             {
                 OnTaskComplete();
@@ -168,7 +176,7 @@ namespace Eurovision.Gameplay
 
         private void GetTrackAndPlay(LookObject lookObject)
         {
-            TrackData track = lookObject.transform.GetComponent<TrackSelection>().trackData;
+            TrackData track = lookObject.transform.GetComponent<TrackSelectionObject>().trackData;
             _karaokeController.LoadSong(track);
         }
     }
