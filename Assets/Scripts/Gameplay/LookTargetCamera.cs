@@ -6,8 +6,9 @@ using UnityEngine;
 public class LookTargetCamera : LookObject
 {
     private Color _defaultColor;
-    private Renderer _renderer;
-    private readonly int _baseColor = Shader.PropertyToID("_BaseColor");
+        private Renderer _renderer;
+        private readonly int _baseColor = Shader.PropertyToID("_BaseColor");
+        [SerializeField] private AudioSource _sound;
 
     private void Awake()
     {
@@ -23,5 +24,21 @@ public class LookTargetCamera : LookObject
     public override void SetAsInActiveObject()
     {
         _renderer.material.SetColor(_baseColor, _defaultColor);
+    }
+
+    public override void SetAsGettingLookedAt()
+    {
+        if (!_sound.isPlaying)
+        {
+            _sound.Play();
+        }
+    }
+
+    public override void SetAsNotGettingLookedAt()
+    {
+        if (_sound.isPlaying)
+        {
+            _sound.Stop();
+        }
     }
 }

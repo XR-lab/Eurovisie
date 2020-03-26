@@ -98,11 +98,11 @@ namespace Eurovision.Gameplay
                     return;
                 }
 
-                currentTarget.SetAsGettingLookedAt();
                 _les = false;
-
+                
                 if (_currentTask.Targets.Contains(currentTarget))
                 {
+                    currentTarget.SetAsGettingLookedAt();
                     if (_timer <= 0)
                         TaskStart();
                     _endTarget = currentTarget;
