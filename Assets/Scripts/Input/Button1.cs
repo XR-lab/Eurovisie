@@ -8,7 +8,6 @@ public class Button1 : MonoBehaviour
     public GameObject pS1;
     public GameObject pS2;
     public GameObject pS3;
-    public GameObject pS4;
 
     public void Update()
     {
@@ -46,13 +45,6 @@ public class Button1 : MonoBehaviour
         if (Input.GetKeyUp(KeyCode.R))
         {
             pS3.SetActive(false);
-        }        if (Input.GetKeyDown(KeyCode.T))
-        {
-            pS4.SetActive(true);
-        }
-        if (Input.GetKeyUp(KeyCode.T))
-        {
-            pS4.SetActive(false);
         }
     }
 
