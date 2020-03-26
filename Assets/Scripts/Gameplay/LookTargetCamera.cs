@@ -10,11 +10,11 @@ public class LookTargetCamera : LookObject
         private readonly int _baseColor = Shader.PropertyToID("_BaseColor");
         [SerializeField] private AudioSource _sound;
 
-        private void Awake()
-        {
-            _renderer = GetComponent<Renderer>();
-            _defaultColor = _renderer.material.GetColor(_baseColor);
-        }
+    private void Awake()
+    {
+        _renderer = GetComponent<Renderer>();
+        _defaultColor = _renderer.material.GetColor(_baseColor);
+    }
 
     public override void SetAsActiveObject()
     {
