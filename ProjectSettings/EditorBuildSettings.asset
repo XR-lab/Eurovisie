@@ -12,6 +12,6 @@ EditorBuildSettings:
     path: Assets/Scenes/Colin_SongSelection.unity
     guid: 40372f42714c4a645acd02fc39becaa2
   - enabled: 1
-    path: Assets/Scenes/MainScene.unity
+    path: Assets/Scenes/Main_Scene.unity
     guid: 65f4442a2447ea544bff3b2bab7c1904
   m_configObjects: {}
