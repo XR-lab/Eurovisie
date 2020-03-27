@@ -205,10 +205,12 @@ namespace Eurovision.Gameplay
         private void GenerateNewTask()
         {
             Task newTask;
-            do
-                newTask = _taskGenerator.GenerateTask();
-            while (newTask.Targets == _currentTask.Targets);
 
+            do
+            {
+                newTask = _taskGenerator.GenerateTask();
+            } while (newTask.Targets[0] == _currentTask.Targets[0]);
+            
             _currentTask = newTask;
             _currentTask.Targets[0].SetAsActiveObject();
         }
