@@ -14,3 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   timelineAsset: {fileID: 11400000, guid: c6bb7f746d48d6d4593d4bcb99b39966, type: 2}
   lyrics: {fileID: 4900000, guid: afff297e73d09e749b821eaad4500361, type: 3}
+  image: {fileID: 21300000, guid: 72a140703a2b03d47b89d5fadacda7f1, type: 3}

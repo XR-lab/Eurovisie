@@ -43,7 +43,7 @@ public class ScoreBar : MonoBehaviour
             _used = true;
             _amalgamation.SetTrigger("Activate");
             _explosion.SetTrigger("Activate");
-            _progressbar.GetComponent<Image>().material.SetFloat("_Activated", true ? 1f : 0f);
+            //_progressbar.GetComponent<Image>().material.SetFloat("_Activated", true ? 1f : 0f);
         }
 
         if (_score >= _maxScore && !_ultimate)
@@ -55,7 +55,7 @@ public class ScoreBar : MonoBehaviour
         {
             _ultimate = false;
             _used = false;
-            _progressbar.GetComponent<Image>().material.SetFloat("_Activated", false ? 1f : 0f);
+            //_progressbar.GetComponent<Image>().material.SetFloat("_Activated", false ? 1f : 0f);
         }
     }
 
@@ -75,8 +75,12 @@ public class ScoreBar : MonoBehaviour
                 _amalgamation.SetTrigger("Activate");
                 _explosion.SetTrigger("Activate");
             }
-        }else 
+        }else if(_score + add <= 0) 
         { 
+            _score = 0;
+        }
+        else
+        {
             _score += add;
         }
         StartCoroutine(ScoreSettler());

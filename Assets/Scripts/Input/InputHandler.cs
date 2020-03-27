@@ -28,7 +28,7 @@ namespace Eurovision.Input
             int buttonID = (inputData / 10) - 1;
             int dataState = inputData % 2;
 
-            if (_scoreBars[0].ultimate && _scoreBars[1].ultimate)
+            if (_scoreBars[0].ultimate)
             {
                 _superOn = true;
             }
@@ -36,10 +36,9 @@ namespace Eurovision.Input
             {
                 _superOn = false;
             }
-            
+
            _buttons[buttonID].UpdateButtonState(_superOn, dataState, _scoreBars);
         }
 
     }
 }
-
