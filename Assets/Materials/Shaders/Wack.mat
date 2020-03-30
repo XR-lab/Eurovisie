@@ -21,6 +21,8 @@ Material:
     serializedVersion: 3
     m_TexEnvs: []
     m_Floats:
-    - _Alpha: 0.2
+    - Strenght: 500
+    - _Alpha: 0.5
+    - multiplier: 1
     m_Colors:
     - _Color: {r: 1, g: 0, b: 0, a: 0}
