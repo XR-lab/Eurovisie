@@ -5,6 +5,7 @@ using UnityEngine.UI;
 using System;
 using System.Linq;
 using Eurovision.Karaoke;
+using Random = UnityEngine.Random;
 
 namespace Eurovision.Gameplay
 {
@@ -17,6 +18,7 @@ namespace Eurovision.Gameplay
         [SerializeField] private Image _progressImage;
         [SerializeField] private float _minusScore;
         [SerializeField] private float _cameraMaxTimer;
+        [SerializeField] private CommandSetCamera _setCamera;
 
         private Task _currentTask;
 
@@ -69,7 +71,6 @@ namespace Eurovision.Gameplay
                 if (!_currentTask._isSong && currentTarget == null)
                 {
                     _cameraTimer += Time.deltaTime;
-                    Debug.Log(_cameraTimer);
                 }
                 else
                 {
@@ -198,7 +199,8 @@ namespace Eurovision.Gameplay
 
             _timer = 0;
             UpdateProgressImage();
-
+            var cameraDTO = new CameraBaviorDTO(Random.Range(1,4), _currentTask.Targets[0].transform);
+            _setCamera.Execute(cameraDTO);
             print("TaskComplete");
         }
 

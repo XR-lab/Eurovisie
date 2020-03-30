@@ -6,46 +6,77 @@ public class CommandSetCamera : Command<BehaviorIds, CameraBaviorDTO>
 {
     public override BehaviorIds Id => BehaviorIds.Camera;
 
-    private bool _moving;
-    private Transform[] _transforms;
-
-    private void Start()
-    {
-        _transforms = GetComponentsInChildren<Transform>();
-    }
-
+    [SerializeField] private float _speed;
+    [SerializeField] private float _distance;
+    [SerializeField] private float _maxDistance;
+    //private Vector3 _tempVec;
     public override void Execute(CameraBaviorDTO commadData)
     {
         StartCoroutine(MoveStarter(commadData));
     }
-
     private IEnumerator MoveStarter(CameraBaviorDTO commandData)
     {
+        bool _moving = true;
+        Vector3 _tempVec = commandData.lookObject.position;
         while (_moving)
         {
             switch (commandData.cameraState)
             {
                 case 1:
-                    commandData.lookObject.gameObject.transform.position = Vector3.left;
+                    if (commandData.lookObject.position.x <= _tempVec.x - _maxDistance)
+                    {
+                        _moving = false;
+                    }
+                    else
+                    {
+                        mover(commandData, new Vector3(commandData.lookObject.position.x - _distance, _tempVec.y,_tempVec.z));
+                    }
                     break;
                 case 2:
-                    commandData.lookObject.gameObject.transform.position = Vector3.right;
+                    if (commandData.lookObject.position.x >= _tempVec.x + _maxDistance)
+                    {
+                        _moving = false;
+                    }
+                    else
+                    {
+                        mover(commandData,new Vector3(commandData.lookObject.position.x + _distance, _tempVec.y,_tempVec.z));
+                    }
                     break;
                 case 3:
-                    commandData.lookObject.gameObject.transform.position = Vector3.up;
+                    if (commandData.lookObject.position.y >= _tempVec.y + _maxDistance)
+                    {
+                        _moving = false;
+                    }
+                    else
+                    {
+                        mover(commandData, new Vector3(_tempVec.x, commandData.lookObject.position.y + _distance,_tempVec.z));
+                    }
                     break;
                 case 4:
-                    //commandData.lookObject.gameObject.transform.position = Vector3.down;
-                    mover(commandData, Vector3.down);
+                    if (commandData.lookObject.position.y <= _tempVec.y - _maxDistance)
+                    {
+                        _moving = false;
+                    }
+                    else
+                    {
+                        mover(commandData, new Vector3(_tempVec.x, commandData.lookObject.position.y - _distance,_tempVec.z));
+                    }
+                    break;
+                default:
+                    Debug.Log("Quit");
+                    _moving = false;
                     break;
             }
-            yield return new WaitForEndOfFrame();
+            yield return new WaitForSeconds(_speed);
         }
+        commandData.lookObject.position = _tempVec;
+       // _tempVec = new Vector3(0,0,0);
         StopCoroutine(MoveStarter(commandData));
     }
 
     private void mover(CameraBaviorDTO commandData, Vector3 direction)
     {
-        commandData.lookObject.gameObject.transform.position = direction;
+        Debug.Log("Start");
+        commandData.lookObject.position = direction;
     }
 }
