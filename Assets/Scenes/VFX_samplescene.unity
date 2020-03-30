@@ -6379,7 +6379,7 @@ PrefabInstance:
     - target: {fileID: 1913048748156541710, guid: aadd3c60e94e9bf49b4522c4b7f3dcd1,
         type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1913048748156541711, guid: aadd3c60e94e9bf49b4522c4b7f3dcd1,
         type: 3}
@@ -6389,7 +6389,7 @@ PrefabInstance:
     - target: {fileID: 1913048748156541711, guid: aadd3c60e94e9bf49b4522c4b7f3dcd1,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: aadd3c60e94e9bf49b4522c4b7f3dcd1, type: 3}
@@ -6403,7 +6403,32 @@ PrefabInstance:
     - target: {fileID: 2279626014131530226, guid: 37b269d57d510d34b8e0bed16cce9db4,
         type: 3}
       propertyPath: m_PropertySheet.m_Vector3f.m_Array.Array.data[0].m_Value.x
-      value: 23.62
+      value: 14.87316
+      objectReference: {fileID: 0}
+    - target: {fileID: 2279626014131530226, guid: 37b269d57d510d34b8e0bed16cce9db4,
+        type: 3}
+      propertyPath: m_PropertySheet.m_Vector3f.m_Array.Array.data[0].m_Value.y
+      value: 12.248298
+      objectReference: {fileID: 0}
+    - target: {fileID: 2279626014131530226, guid: 37b269d57d510d34b8e0bed16cce9db4,
+        type: 3}
+      propertyPath: m_PropertySheet.m_Vector3f.m_Array.Array.data[0].m_Value.z
+      value: -3.33468
+      objectReference: {fileID: 0}
+    - target: {fileID: 2279626014131530226, guid: 37b269d57d510d34b8e0bed16cce9db4,
+        type: 3}
+      propertyPath: m_PropertySheet.m_Vector3f.m_Array.Array.data[1].m_Value.x
+      value: 14.87316
+      objectReference: {fileID: 0}
+    - target: {fileID: 2279626014131530226, guid: 37b269d57d510d34b8e0bed16cce9db4,
+        type: 3}
+      propertyPath: m_PropertySheet.m_Vector3f.m_Array.Array.data[1].m_Value.y
+      value: 10.258298
+      objectReference: {fileID: 0}
+    - target: {fileID: 2279626014131530226, guid: 37b269d57d510d34b8e0bed16cce9db4,
+        type: 3}
+      propertyPath: m_PropertySheet.m_Vector3f.m_Array.Array.data[1].m_Value.z
+      value: -3.83468
       objectReference: {fileID: 0}
     - target: {fileID: 2279626014131530229, guid: 37b269d57d510d34b8e0bed16cce9db4,
         type: 3}
@@ -6413,7 +6438,7 @@ PrefabInstance:
     - target: {fileID: 2279626014131530229, guid: 37b269d57d510d34b8e0bed16cce9db4,
         type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2498538333393232716, guid: 37b269d57d510d34b8e0bed16cce9db4,
         type: 3}
@@ -6478,7 +6503,7 @@ PrefabInstance:
     - target: {fileID: 8899812853278479252, guid: 37b269d57d510d34b8e0bed16cce9db4,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 37b269d57d510d34b8e0bed16cce9db4, type: 3}
