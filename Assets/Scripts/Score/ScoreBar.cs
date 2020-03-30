@@ -75,8 +75,12 @@ public class ScoreBar : MonoBehaviour
                 _amalgamation.SetTrigger("Activate");
                 _explosion.SetTrigger("Activate");
             }
-        }else 
+        }else if(_score + add <= 0) 
         { 
+            _score = 0;
+        }
+        else
+        {
             _score += add;
         }
         StartCoroutine(ScoreSettler());
