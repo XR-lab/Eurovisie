@@ -39,7 +39,12 @@ public class Minigame : MonoBehaviour
             if (buttonSystem.GetButtonState(0))
             {
                 buttonSystem.GetButton(0).GetComponent<ButtonPress>().ActivateSuper();
+                buttonSystem.GetButton(0).GetComponent<ButtonParticle>().InstantiateParticleRainbow();
                 buttonSystem.SetButtonCombo(0,  false);
+            }
+            else
+            {
+               buttonSystem.GetButton(0).GetComponent<ButtonParticle>().InstantiateParticleNormal(); 
             }
         }
         else if (Input.GetKeyUp(KeyCode.A))
@@ -55,7 +60,12 @@ public class Minigame : MonoBehaviour
             if (buttonSystem.GetButtonState(1))
             {
                 buttonSystem.GetButton(1).GetComponent<ButtonPress>().ActivateSuper();
+                buttonSystem.GetButton(1).GetComponent<ButtonParticle>().InstantiateParticleRainbow();
                 buttonSystem.SetButtonCombo(1,  false);
+            }
+            else
+            {
+                buttonSystem.GetButton(1).GetComponent<ButtonParticle>().InstantiateParticleNormal(); 
             }
         }
         else if (Input.GetKeyUp(KeyCode.S))
@@ -71,7 +81,12 @@ public class Minigame : MonoBehaviour
             if (buttonSystem.GetButtonState(2))
             {
                 buttonSystem.GetButton(2).GetComponent<ButtonPress>().ActivateSuper();
+                buttonSystem.GetButton(2).GetComponent<ButtonParticle>().InstantiateParticleRainbow();
                 buttonSystem.SetButtonCombo(2,  false);
+            }
+            else
+            {
+                buttonSystem.GetButton(2).GetComponent<ButtonParticle>().InstantiateParticleNormal(); 
             }
         }
         else if (Input.GetKeyUp(KeyCode.D))

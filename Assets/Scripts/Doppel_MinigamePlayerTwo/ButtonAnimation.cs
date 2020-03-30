@@ -27,7 +27,14 @@ public class ButtonAnimation : MonoBehaviour
             (transform.position.y - (yOffset * boxScale)),
             transform.position.z);
 
-        anim = GetComponent<Animator>();
+        if (anim == null)
+        {
+            anim = gameObject.AddComponent<Animator>();
+        }
+        else
+        {
+            anim = GetComponent<Animator>();
+        }
         
         // Subscribe.
         _buttonSystem.StartFadeOut += UpdatePosition;

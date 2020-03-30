@@ -9,20 +9,19 @@ public class ButtonSystem : MonoBehaviour
 {
     // References.
     [SerializeField] private Minigame _minigame;
-    
+
     // Arrays.
     [SerializeField] private GameObject[] buttons;
     [SerializeField] private Material[] materials;
 
     // Objects.
-    [SerializeField] private GameObject particleEffect;
     private GameObject randomButton;
     
     // Dictionaries.
     private Dictionary<GameObject, Material> buttonMaterialMap;
     private Dictionary<GameObject, bool> buttonCanComboMap;
 
-    
+
     // Action.
     public Action StartFadeOut;
 
@@ -37,7 +36,7 @@ public class ButtonSystem : MonoBehaviour
 
     private void Update()
     {
-       
+
     }
 
     // Fills button dictionaries.
@@ -51,6 +50,7 @@ public class ButtonSystem : MonoBehaviour
             buttonMaterialMap[buttons[i]] = materials[0];
             buttonCanComboMap[buttons[i]] = false;
         }
+        
 
         // Start animation after 1 sec.
         Invoke("ActivateButtonAnimation", 1f);

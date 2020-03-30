@@ -33,6 +33,6 @@ public class ButtonPress : MonoBehaviour
 
     public void ActivateSuper()
     {
-        print("Activate shockwave");
+        
     }
 }
