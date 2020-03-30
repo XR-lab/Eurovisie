@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using Eurovision.Gameplay;
 using UnityEngine;
+using UnityEngine.VFX;
 
 public class LookTargetCamera : LookObject
 {
@@ -25,6 +26,7 @@ public class LookTargetCamera : LookObject
     public override void SetAsInActiveObject()
     {
         _renderer.material.SetColor(_baseColor, _defaultColor);
+        GetComponentInChildren<VisualEffect>().SendEvent("Start");
     }
 
     public override void SetAsGettingLookedAt()

@@ -5,18 +5,23 @@ using UnityEngine;
 public class AdjustColorToThis : MonoBehaviour
 {
 	// =================================================================================== variables
-	[Serialisablefield] private GameObject[] objects;
-	private Material[] mats;
+	[SerializeField] private GameObject[] objects;
+    private Material[] _mats;
 	
-    // Start is called before the first frame update
-    void Start()
+    private void Awake()
     {
-        
+        _mats = new Material[objects.Length];
+        for (int i = 0; i < objects.Length; i++)
+        {
+            _mats[i] = objects[i].GetComponent<Renderer>().material;
+        }
     }
 
-    // Update is called once per frame
-    void Update()
+    private void Update()
     {
-        
+        for (int i = 0; i < objects.Length; i++)
+        {
+            _mats[i].color = GetComponent<Light>().color;
+        }
     }
 }
