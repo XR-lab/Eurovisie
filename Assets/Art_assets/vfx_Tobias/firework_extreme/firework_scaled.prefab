@@ -12,12 +12,12 @@ GameObject:
   - component: {fileID: 5023057396987964249}
   - component: {fileID: 5023057396987964248}
   m_Layer: 0
-  m_Name: firework_superpower 1
+  m_Name: firework_scaled
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &5023057396987964250
 Transform:
   m_ObjectHideFlags: 0
