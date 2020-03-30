@@ -69,7 +69,7 @@ namespace Eurovision.Gameplay
                 if (!_currentTask._isSong && currentTarget == null)
                 {
                     _cameraTimer += Time.deltaTime;
-                    Debug.Log(_cameraTimer);
+                    //Debug.Log(_cameraTimer);
                 }
                 else
                 {
