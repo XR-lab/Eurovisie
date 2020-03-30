@@ -8,12 +8,21 @@ public class Minigame : MonoBehaviour
 {
     [SerializeField] private ButtonSystem buttonSystem;
     [SerializeField] private int activeButtons = 3;
+    private int maxButtons = 12;
 
     public Action GameStarted;
     public Action ActivateBoost;
     
     // Game.
     private bool isPlaying = false;
+    
+    // Button activations.
+    private bool isIncreasingButtons = false;
+    private float activeButtonCounter = 0f;
+    private float buttonDelay = 0.2f;
+    [SerializeField] private int buttonIncrease = 3;
+    private int currentActiveButtons = 0;
+    
 
     void Start()
     {
@@ -34,74 +43,94 @@ public class Minigame : MonoBehaviour
         // Button 0.
         if (Input.GetKeyDown(KeyCode.A))
         {
-            buttonSystem.GetButton(0).GetComponent<ButtonPress>().ButtonPressDown();
-
-            if (buttonSystem.GetButtonState(0))
-            {
-                buttonSystem.GetButton(0).GetComponent<ButtonPress>().ActivateSuper();
-                buttonSystem.GetButton(0).GetComponent<ButtonParticle>().InstantiateParticleRainbow();
-                buttonSystem.SetButtonCombo(0,  false);
-            }
-            else
-            {
-               buttonSystem.GetButton(0).GetComponent<ButtonParticle>().InstantiateParticleNormal(); 
-            }
-        }
-        else if (Input.GetKeyUp(KeyCode.A))
+            HandleKeyInput(0);
+        } else if (Input.GetKeyUp(KeyCode.A))
         {
-            buttonSystem.GetButton(0).GetComponent<ButtonPress>().ButtonPressUp();
+            HandleKeyUp(0);
         }
-        
+
         // Button 1.
         if (Input.GetKeyDown(KeyCode.S))
         {
-            buttonSystem.GetButton(1).GetComponent<ButtonPress>().ButtonPressDown();
-            
-            if (buttonSystem.GetButtonState(1))
-            {
-                buttonSystem.GetButton(1).GetComponent<ButtonPress>().ActivateSuper();
-                buttonSystem.GetButton(1).GetComponent<ButtonParticle>().InstantiateParticleRainbow();
-                buttonSystem.SetButtonCombo(1,  false);
-            }
-            else
-            {
-                buttonSystem.GetButton(1).GetComponent<ButtonParticle>().InstantiateParticleNormal(); 
-            }
-        }
-        else if (Input.GetKeyUp(KeyCode.S))
+            HandleKeyInput(1);
+        } else if (Input.GetKeyUp(KeyCode.S))
         {
-            buttonSystem.GetButton(1).GetComponent<ButtonPress>().ButtonPressUp();
+            HandleKeyUp(1);
         }
         
         // Button 2.
         if (Input.GetKeyDown(KeyCode.D))
         {
-            buttonSystem.GetButton(2).GetComponent<ButtonPress>().ButtonPressDown();
-            
-            if (buttonSystem.GetButtonState(2))
-            {
-                buttonSystem.GetButton(2).GetComponent<ButtonPress>().ActivateSuper();
-                buttonSystem.GetButton(2).GetComponent<ButtonParticle>().InstantiateParticleRainbow();
-                buttonSystem.SetButtonCombo(2,  false);
-            }
-            else
-            {
-                buttonSystem.GetButton(2).GetComponent<ButtonParticle>().InstantiateParticleNormal(); 
-            }
-        }
-        else if (Input.GetKeyUp(KeyCode.D))
+           HandleKeyInput(2);
+        } else if (Input.GetKeyUp(KeyCode.D))
         {
-            buttonSystem.GetButton(2).GetComponent<ButtonPress>().ButtonPressUp();
+            HandleKeyUp(2);
         }
         
+        // Activate boost.
         if (Input.GetKeyDown(KeyCode.B))
         {
             ActivateBoost.Invoke();
+        }
+
+        if (Input.GetKeyDown(KeyCode.F) && activeButtons < maxButtons)
+        {
+            currentActiveButtons = activeButtons;
+            activeButtons += buttonIncrease;
+            activeButtonCounter = 0.95f;
+            isIncreasingButtons = true;
+        }
+
+        if (isIncreasingButtons)
+        {
+            if (activeButtons > currentActiveButtons)
+            {
+                activeButtonCounter += Time.deltaTime;
+                if (activeButtonCounter >= buttonDelay)
+                {
+                    IncreaseActiveButtons(currentActiveButtons);
+                    activeButtonCounter = 0f;
+                }
+            }
+        }
+    }
+
+    private void IncreaseActiveButtons(int id)
+    {
+        currentActiveButtons++;
+        buttonSystem.GetButton(id).GetComponent<ButtonAnimation>().SetFadingIn(true);
+        buttonSystem.GetButton(id).GetComponent<ButtonAnimation>().PlayAnimation("FadeIn");
+        
+        if (currentActiveButtons == activeButtons)
+        {
+            isIncreasingButtons = false;
         }
     }
 
     public int GetActiveButtons()
     {
         return activeButtons;
+    }
+
+    private void HandleKeyInput(int id)
+    {
+        buttonSystem.GetButton(id).GetComponent<ButtonPress>().ButtonPressDown();
+
+        if (buttonSystem.GetButtonState(id))
+        {
+            buttonSystem.GetButton(id).GetComponent<ButtonPress>().ActivateSuper();
+            buttonSystem.GetButton(id).GetComponent<ButtonParticle>().InstantiateParticleRainbow();
+            buttonSystem.SetButtonCombo(0,  false);
+        }
+        else
+        {
+            buttonSystem.GetButton(id).GetComponent<ButtonParticle>().InstantiateParticleNormal(); 
+        }
+    }
+
+    private void HandleKeyUp(int id)
+    {
+        buttonSystem.GetButton(id).GetComponent<ButtonPress>().ButtonPressUp();
+        buttonSystem.SetButtonCombo(id, false);
     }
 }

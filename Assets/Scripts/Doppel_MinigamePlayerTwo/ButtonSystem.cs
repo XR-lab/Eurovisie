@@ -93,7 +93,7 @@ public class ButtonSystem : MonoBehaviour
         {
             if (i < _minigame.GetActiveButtons())
             {
-                buttons[i].GetComponent<ButtonAnimation>().PlayAnimation("Activate");
+                
             }
             else
             {
