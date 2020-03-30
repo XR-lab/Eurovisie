@@ -30,6 +30,14 @@ namespace Eurovision.Karaoke
                 {
                         _playableDirector = GetComponent<PlayableDirector>();
                 }
+                
+                [ContextMenu("Do Something")]
+                private void StartTrack()
+                {
+                        var newTrack = _trackLibrary.GetTrack(2);
+                        LoadTrack(newTrack);
+                        KaraokeStart();
+                }
 
                 public void LoadSong(TrackData trackData)
                 {
