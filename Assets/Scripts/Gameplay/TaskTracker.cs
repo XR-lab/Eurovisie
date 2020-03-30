@@ -213,6 +213,7 @@ namespace Eurovision.Gameplay
             
             _currentTask = newTask;
             _currentTask.Targets[0].SetAsActiveObject();
+            
         }
 
         private void UpdateProgressImage()
