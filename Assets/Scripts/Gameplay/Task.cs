@@ -13,14 +13,16 @@ namespace Eurovision.Gameplay
 
         [SerializeField] private int _performancePoints = 1;
         public int PerformancePoints {  get { return _performancePoints; } }
+
+        public bool _isSong;
         
         public bool IsComplete { get; set; }
 
-        public Task(LookObject[] targets, float duration)
+        public Task(LookObject[] targets, float duration, bool song)
         {
             _targets = targets;
             _duration = duration;
-
+            _isSong = song;
             IsComplete = false;
         }
     }

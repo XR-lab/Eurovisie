@@ -5,37 +5,14 @@ namespace Eurovision.Gameplay
 {
     public class LookObject : MonoBehaviour
     {
-        public bool lookObject = false;
-        private Color _defaultColor;
-        private Renderer _renderer;
-        private readonly int _baseColor = Shader.PropertyToID("_BaseColor");
 
-        private void Awake()
-        {
-            
-            _renderer = GetComponent<Renderer>();
-            if (lookObject == true)
-            {
-                _defaultColor = _renderer.material.GetColor(_baseColor);
-            }
-        }
+        public virtual void SetAsActiveObject(){ }
 
-        public void SetAsActiveObject()
-        {
-            if (lookObject == true)
-            {
-                _renderer.material.SetColor(_baseColor, Color.blue);
-            }
-        }
+        public virtual void SetAsInActiveObject() { }
 
-        public void SetAsInActiveObject()
-        {
-            if (lookObject == true)
-            {
-                _renderer.material.SetColor(_baseColor, _defaultColor);
-                  GetComponentInChildren<VisualEffect>().SendEvent("Start");
-            }
-           
-        }
+        public virtual void SetAsGettingLookedAt() { }
+
+        public virtual void SetAsNotGettingLookedAt() { }
+
     }
 }
