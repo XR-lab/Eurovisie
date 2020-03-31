@@ -6,6 +6,8 @@ TagManager:
   tags:
   - projectile
   - FxTemporaire
+  - ScoreUI
+  - Lighting
   layers:
   - Default
   - TransparentFX
@@ -17,8 +19,8 @@ TagManager:
   - 
   - UI_Director
   - LookTarget
-  - 
-  - 
+  - FirstPlayerUI
+  - SecondPlayerUI
   - 
   - 
   - 
