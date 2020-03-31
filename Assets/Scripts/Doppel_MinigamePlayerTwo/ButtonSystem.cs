@@ -26,17 +26,11 @@ public class ButtonSystem : MonoBehaviour
     public Action StartFadeOut;
 
     
-
     private void Start()
     {
         InitializeButtonMaps();
         _minigame.ActivateBoost += UpdateButtonMaterial;
         _minigame.ActivateBoost += UpdateButtonBoolMap;
-    }
-
-    private void Update()
-    {
-
     }
 
     // Fills button dictionaries.
@@ -69,9 +63,6 @@ public class ButtonSystem : MonoBehaviour
             {
                 buttons[i].GetComponent<ButtonRenderer>().SetMaterial(materials[0]);
             }
-            
-            // Enables additional material.
-            // buttons[i].GetComponent<ToggleAdditionalMaterial>().ToggleGameObject(buttonCanComboMap[buttons[i]]);
         }
     }
 

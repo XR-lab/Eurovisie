@@ -4,9 +4,6 @@ using UnityEngine;
 
 public class ButtonPress : MonoBehaviour
 {
-    private bool isPressed = false;
-    private bool isPressedDone = false;
-
     [SerializeField] private GameObject buttonTop;
     
     private Vector3 pos;
@@ -31,8 +28,4 @@ public class ButtonPress : MonoBehaviour
         buttonTop.transform.position = pos;
     }
 
-    public void ActivateSuper()
-    {
-        
-    }
 }

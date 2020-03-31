@@ -118,7 +118,6 @@ public class Minigame : MonoBehaviour
 
         if (buttonSystem.GetButtonState(id))
         {
-            buttonSystem.GetButton(id).GetComponent<ButtonPress>().ActivateSuper();
             buttonSystem.GetButton(id).GetComponent<ButtonParticle>().InstantiateParticleRainbow();
             buttonSystem.SetButtonCombo(0,  false);
         }
