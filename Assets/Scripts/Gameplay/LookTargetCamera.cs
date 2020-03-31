@@ -20,7 +20,7 @@ public class LookTargetCamera : LookObject
 
     public override void SetAsActiveObject()
     {
-        _renderer.material.SetColor(_baseColor, Color.blue);
+        _renderer.material.SetColor(_baseColor, Color.white);
     }
 
     public override void SetAsInActiveObject()

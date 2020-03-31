@@ -7,6 +7,7 @@ TagManager:
   - projectile
   - FxTemporaire
   - ScoreUI
+  - Lighting
   layers:
   - Default
   - TransparentFX
