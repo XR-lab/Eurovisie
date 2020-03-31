@@ -1,27 +1,20 @@
 ﻿using UnityEngine;
+using UnityEngine.VFX;
 
 namespace Eurovision.Gameplay
 {
     public class LookObject : MonoBehaviour
     {
-        private Color _defaultColor;
-        private Renderer _renderer;
-        private readonly int _baseColor = Shader.PropertyToID("_BaseColor");
 
-        private void Awake()
-        {
-            _renderer = GetComponent<Renderer>();
-            _defaultColor = _renderer.material.GetColor(_baseColor);
-        }
+        public virtual void SetAsActiveObject() { }
 
-        public void SetAsActiveObject()
-        {
-            _renderer.material.SetColor(_baseColor, Color.blue);
-        }
+        public virtual void SetAsInActiveObject() { }
 
-        public void SetAsInActiveObject()
-        {
-            _renderer.material.SetColor(_baseColor, _defaultColor);
-        }
+        public virtual void SetAsGettingLookedAt() { }
+
+        public virtual void SetAsNotGettingLookedAt() { }
+
+        public virtual void PlayEffect() { }
+
     }
 }
