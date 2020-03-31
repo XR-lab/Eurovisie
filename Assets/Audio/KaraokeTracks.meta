@@ -1,7 +1,12 @@
 fileFormatVersion: 2
+<<<<<<< HEAD:Assets/Art_assets/vfx_Tobias/waterspray/waterspray.prefab.meta
+guid: c18cc0c12758e9044ac8fceda979299c
+PrefabImporter:
+=======
 guid: 6f8c716a5be778c4a94fcbba824de11c
 folderAsset: yes
 DefaultImporter:
+>>>>>>> development:Assets/Audio/KaraokeTracks.meta
   externalObjects: {}
   userData: 
   assetBundleName: 
