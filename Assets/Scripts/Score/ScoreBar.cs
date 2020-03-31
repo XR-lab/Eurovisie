@@ -12,6 +12,7 @@ public class ScoreBar : MonoBehaviour
     [SerializeField] private float _speed;
     [SerializeField] private Animator _amalgamation;
     [SerializeField] private Animator _explosion;
+    [SerializeField] private CommandSetCrowd[] _crowd;
 
     private bool _ultimate = false;
 
@@ -82,6 +83,11 @@ public class ScoreBar : MonoBehaviour
         else
         {
             _score += add;
+        }
+        var crowdDTO = new CrowdBehaviorDTO(_score);
+        for (int i = 0; i < _crowd.Length; i++)
+        {
+            _crowd[i].Execute(crowdDTO);
         }
         StartCoroutine(ScoreSettler());
     }

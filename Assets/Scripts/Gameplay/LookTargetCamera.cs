@@ -1,25 +1,26 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using Eurovision.Gameplay;
+﻿using Eurovision.Gameplay;
 using UnityEngine;
+using UnityEngine.VFX;
 
 public class LookTargetCamera : LookObject
 {
     private Color _defaultColor;
-        private Renderer _renderer;
-        private readonly int _baseColor = Shader.PropertyToID("_BaseColor");
-        private AudioSource _sound;
+    private Renderer _renderer;
+    private readonly int _baseColor = Shader.PropertyToID("_BaseColor");
+    private AudioSource _sound;
+    private VisualEffect vs;
 
     private void Awake()
     {
         _renderer = GetComponent<Renderer>();
         _defaultColor = _renderer.material.GetColor(_baseColor);
-        _sound = this.GetComponent<AudioSource>();
+        _sound = GetComponent<AudioSource>();
+        vs = GetComponentInChildren<VisualEffect>();
     }
 
     public override void SetAsActiveObject()
     {
-        _renderer.material.SetColor(_baseColor, Color.blue);
+        _renderer.material.SetColor(_baseColor, Color.white);
     }
 
     public override void SetAsInActiveObject()
@@ -41,5 +42,10 @@ public class LookTargetCamera : LookObject
         {
             _sound.Stop();
         }
+    }
+
+    public override void PlayEffect()
+    {
+        vs.SendEvent("Start");
     }
 }
