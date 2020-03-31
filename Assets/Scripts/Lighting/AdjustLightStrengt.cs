@@ -25,7 +25,7 @@ public class AdjustLightStrengt : MonoBehaviour
     //===================================================================================================== Change Value
     public void ChangeLightValue(float strenght)
     {
-        print(strenght);
+        
         float _strenght;
         for (int i = 0; i < lights.Length; i++)
         {

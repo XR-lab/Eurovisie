@@ -92,7 +92,7 @@ namespace Eurovision.Gameplay
                     return;
                 } 
                 
-                if (currentTarget == null)
+                if (currentTarget == null && _endTarget != null)
                 {
                     _endTarget.SetAsNotGettingLookedAt();
                     return;
@@ -176,7 +176,7 @@ namespace Eurovision.Gameplay
 
             _currentTask.IsComplete = true;
             _currentTask.Targets[0].SetAsInActiveObject();
-            if (_currentTask.Targets[0].gameObject.name == "LookTarget")
+            if (_currentTask.Targets[0].gameObject.name == "Camera")
             {
                 _currentTask.Targets[0].PlayEffect();
             }
