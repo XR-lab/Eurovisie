@@ -35,11 +35,14 @@ public class AdjustLightStrengt : MonoBehaviour
     {
         
         float _strenght;
+        _strenght = (strenght / middleGround) + 1;
         for (int i = 0; i < lights.Length; i++)
         {
-            _strenght = (strenght / middleGround) + 1;
             lights[i].intensity = _strenght * _lightBaseStrenght[i];
-            
+        }
+
+        for (int i = 0; i < _baseConeScale.Length; i++)
+        {
             Vector3 _scale = ((_strenght/4) * _baseConeScale[i]) + _baseConeScale[i];
             _scale.y = _baseConeScale[i].y;
             cones[i].localScale = _scale;
