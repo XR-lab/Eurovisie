@@ -199,7 +199,7 @@ namespace Eurovision.Gameplay
 
             _timer = 0;
             UpdateProgressImage();
-            var cameraDTO = new CameraBaviorDTO(Random.Range(1,4), _currentTask.Targets[0].transform);
+            var cameraDTO = new CameraBaviorDTO(Random.Range(1,4), _currentTask.Targets[0].transform, _currentTask.Targets[0].GetComponent<Renderer>().material.GetColor("_BaseColor"));
             _setCamera.Execute(cameraDTO);
             print("TaskComplete");
         }

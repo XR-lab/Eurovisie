@@ -1,82 +1,52 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class CommandSetCamera : Command<BehaviorIds, CameraBaviorDTO>
-{
+{ 
     public override BehaviorIds Id => BehaviorIds.Camera;
+    public Color color;
 
+   /* private class StateAction
+    {
+        public Func<bool, float, float, float> MayMove;
+        zzzz
+    }
+
+    Dictionary<int, StateAction> stateActions = new Dictionary<int, StateAction>();*/
+   
     [SerializeField] private float _speed;
     [SerializeField] private float _distance;
     [SerializeField] private float _maxDistance;
-    //private Vector3 _tempVec;
-    public override void Execute(CameraBaviorDTO commadData)
+    private Dictionary<int, Mover> _movements = new Dictionary<int, Mover>();
+
+    private void Start()
     {
-        StartCoroutine(MoveStarter(commadData));
+        var tempList = gameObject.GetComponents<Mover>();
+        for (int i = 0; i < tempList.Length; i++)
+        {
+            _movements.Add(i+1,tempList[i]);
+        }
     }
+
+    public override void Execute(CameraBaviorDTO commandData)
+    {
+        if (!_movements.ContainsKey(commandData.cameraState))
+            return;
+
+        StartCoroutine(MoveStarter(commandData));
+    }
+    
     private IEnumerator MoveStarter(CameraBaviorDTO commandData)
     {
-        bool _moving = true;
         Vector3 _tempVec = commandData.lookObject.position;
-        while (_moving)
+        
+        while (commandData.lookObject.GetComponent<Renderer>().material.GetColor("_BaseColor") == color)
         {
-            switch (commandData.cameraState)
-            {
-                case 1:
-                    if (commandData.lookObject.position.x <= _tempVec.x - _maxDistance)
-                    {
-                        _moving = false;
-                    }
-                    else
-                    {
-                        mover(commandData, new Vector3(commandData.lookObject.position.x - _distance, _tempVec.y,_tempVec.z));
-                    }
-                    break;
-                case 2:
-                    if (commandData.lookObject.position.x >= _tempVec.x + _maxDistance)
-                    {
-                        _moving = false;
-                    }
-                    else
-                    {
-                        mover(commandData,new Vector3(commandData.lookObject.position.x + _distance, _tempVec.y,_tempVec.z));
-                    }
-                    break;
-                case 3:
-                    if (commandData.lookObject.position.y >= _tempVec.y + _maxDistance)
-                    {
-                        _moving = false;
-                    }
-                    else
-                    {
-                        mover(commandData, new Vector3(_tempVec.x, commandData.lookObject.position.y + _distance,_tempVec.z));
-                    }
-                    break;
-                case 4:
-                    if (commandData.lookObject.position.y <= _tempVec.y - _maxDistance)
-                    {
-                        _moving = false;
-                    }
-                    else
-                    {
-                        mover(commandData, new Vector3(_tempVec.x, commandData.lookObject.position.y - _distance,_tempVec.z));
-                    }
-                    break;
-                default:
-                    Debug.Log("Quit");
-                    _moving = false;
-                    break;
-            }
+            _movements[commandData.cameraState].ObjectMover(commandData.lookObject, _distance, _maxDistance, _tempVec);
             yield return new WaitForSeconds(_speed);
         }
         commandData.lookObject.position = _tempVec;
-       // _tempVec = new Vector3(0,0,0);
-        StopCoroutine(MoveStarter(commandData));
-    }
-
-    private void mover(CameraBaviorDTO commandData, Vector3 direction)
-    {
-        Debug.Log("Start");
-        commandData.lookObject.position = direction;
     }
 }
