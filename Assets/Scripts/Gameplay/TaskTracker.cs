@@ -176,6 +176,10 @@ namespace Eurovision.Gameplay
 
             _currentTask.IsComplete = true;
             _currentTask.Targets[0].SetAsInActiveObject();
+            if (_currentTask.Targets[0].gameObject.name == "LookTarget")
+            {
+                _currentTask.Targets[0].PlayEffect();
+            }
 
 
             //_operformanceTracker.AddPoints(scre);
