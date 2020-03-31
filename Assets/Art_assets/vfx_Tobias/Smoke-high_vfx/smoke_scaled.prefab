@@ -12,12 +12,12 @@ GameObject:
   - component: {fileID: 2178008660818961343}
   - component: {fileID: 2178008660818961342}
   m_Layer: 0
-  m_Name: smoke
+  m_Name: smoke_scaled
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &2178008660818961312
 Transform:
   m_ObjectHideFlags: 0

@@ -4822,12 +4822,12 @@ GameObject:
   m_Component:
   - component: {fileID: 7977188914044724080}
   m_Layer: 0
-  m_Name: confetti 1
+  m_Name: confetti_scaled
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &7977188914044724080
 Transform:
   m_ObjectHideFlags: 0
