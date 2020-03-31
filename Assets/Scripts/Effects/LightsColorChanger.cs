@@ -27,13 +27,14 @@ public class LightsColorChanger : MonoBehaviour
         if (_lights.Count == 0 || _colors.Count == 0)
             return;
         
-        _colorPointer++;
+        /*_colorPointer++;
         if (_colorPointer >= _colors.Count)
         {
             _colorPointer = 0;
-        }
+        }*/
 
-        Color32 newColor = _colors[_colorPointer];
+        //Color32 newColor = _colors[_colorPointer];
+        Color32 newColor = _colors[Random.Range(0, _colors.Count)];
         
         for (int i = 0; i < _lights.Count; i++)
         {
