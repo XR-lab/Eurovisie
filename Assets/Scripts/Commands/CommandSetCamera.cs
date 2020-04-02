@@ -7,16 +7,9 @@ public class CommandSetCamera : Command<BehaviorIds, CameraBaviorDTO>
 { 
     public override BehaviorIds Id => BehaviorIds.Camera;
     public Color color;
-
-   /* private class StateAction
-    {
-        public Func<bool, float, float, float> MayMove;
-        zzzz
-    }
-
-    Dictionary<int, StateAction> stateActions = new Dictionary<int, StateAction>();*/
    
     [SerializeField] private float _speed;
+    [SerializeField] private float _returnSpeed;
     [SerializeField] private float _distance;
     [SerializeField] private float _maxDistance;
     private Dictionary<int, Mover> _movements = new Dictionary<int, Mover>();
@@ -36,17 +29,30 @@ public class CommandSetCamera : Command<BehaviorIds, CameraBaviorDTO>
             return;
 
         StartCoroutine(MoveStarter(commandData));
+        Debug.Log("Call");
     }
     
     private IEnumerator MoveStarter(CameraBaviorDTO commandData)
     {
+        Debug.Log("start");
         Vector3 _tempVec = commandData.lookObject.position;
+        Quaternion _quaternion = commandData.lookObject.rotation;
         
         while (commandData.lookObject.GetComponent<Renderer>().material.GetColor("_BaseColor") == color)
         {
+            Debug.Log("Here");
             _movements[commandData.cameraState].ObjectMover(commandData.lookObject, _distance, _maxDistance, _tempVec);
-            yield return new WaitForSeconds(_speed);
+            //yield return new WaitForSeconds(_speed);
+            yield return new WaitForSecondsRealtime(Time.deltaTime * _speed);
+        }
+        Debug.Log(Vector3.Distance(commandData.lookObject.position, _tempVec));
+        while (Vector3.Distance(commandData.lookObject.position, _tempVec) > 0.2f)
+        {
+            commandData.lookObject.LookAt(_tempVec);
+            commandData.lookObject.Translate(transform.forward * Time.deltaTime);
+            yield return new WaitForSecondsRealtime(Time.deltaTime * _returnSpeed);
         }
         commandData.lookObject.position = _tempVec;
+        commandData.lookObject.rotation = _quaternion;
     }
 }

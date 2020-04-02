@@ -4,14 +4,22 @@ using UnityEngine;
 
 public class Down : Mover
 {
+    private bool _returning = false;
     public override void ObjectMover(Transform target, float distance, float maxDistance, Vector3 startPos)
     {
-        if (target.position.y <= startPos.y - maxDistance)
+        if (target.position.y >= startPos.y - maxDistance && !_returning)
         {
-            target.position = startPos;
-            return;
+            _returning = false;
+            Moving(new Vector3(startPos.x ,startPos.y- maxDistance,startPos.z),target);
         }
-        
-        target.position = new Vector3(target.position.x, target.position.y - distance, target.position.z);
+        else if(target.position.y < startPos.y - maxDistance||_returning)
+        {
+            _returning = true;
+            Moving(startPos, target);
+            if (target.position.y >= startPos.y)
+            {
+                _returning = false;
+            }
+        }
     }
 }

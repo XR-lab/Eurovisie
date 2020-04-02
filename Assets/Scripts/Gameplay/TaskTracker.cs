@@ -83,6 +83,15 @@ namespace Eurovision.Gameplay
                     TaskFailed();
                 }
                 
+                if (_currentTask.Targets.Contains(currentTarget))
+                {
+                    currentTarget.SetAsGettingLookedAt();
+                    if (_timer <= 0)
+                        TaskStart();
+                    _endTarget = currentTarget;
+                    UpdateCurrentTask();
+                }
+                
                 if (_currentTask.IsComplete)
                     return;
 
@@ -100,15 +109,6 @@ namespace Eurovision.Gameplay
                 }
 
                 _les = false;
-                
-                if (_currentTask.Targets.Contains(currentTarget))
-                {
-                    currentTarget.SetAsGettingLookedAt();
-                    if (_timer <= 0)
-                        TaskStart();
-                    _endTarget = currentTarget;
-                    UpdateCurrentTask();
-                }
 
                 //_endTarget = currentTarget;
             }
