@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using Eurovision.Gameplay;
 using UnityEngine;
 
 public class CommandSetCamera : Command<BehaviorIds, CameraBaviorDTO>
@@ -25,34 +26,28 @@ public class CommandSetCamera : Command<BehaviorIds, CameraBaviorDTO>
 
     public override void Execute(CameraBaviorDTO commandData)
     {
-        if (!_movements.ContainsKey(commandData.cameraState))
+        if (!_movements.ContainsKey(commandData.cameraState)|| commandData.lookObject.gameObject.GetComponent<LookTargetCamera>().staticCam)
             return;
 
         StartCoroutine(MoveStarter(commandData));
-        Debug.Log("Call");
     }
     
     private IEnumerator MoveStarter(CameraBaviorDTO commandData)
     {
-        Debug.Log("start");
         Vector3 _tempVec = commandData.lookObject.position;
-        Quaternion _quaternion = commandData.lookObject.rotation;
         
-        while (commandData.lookObject.GetComponent<Renderer>().material.GetColor("_BaseColor") == color)
+        while (commandData.lookObject.gameObject.GetComponent<LookTargetCamera>()._coneMat.color == color)
         {
-            Debug.Log("Here");
-            _movements[commandData.cameraState].ObjectMover(commandData.lookObject, _distance, _maxDistance, _tempVec);
-            //yield return new WaitForSeconds(_speed);
+            _movements[commandData.cameraState].ObjectMover(commandData.lookObject, _distance, _maxDistance, _speed, _tempVec);
+            //NEVER REMOVE YIELDS!!!!!!!
             yield return new WaitForSecondsRealtime(Time.deltaTime * _speed);
         }
-        Debug.Log(Vector3.Distance(commandData.lookObject.position, _tempVec));
+        
         while (Vector3.Distance(commandData.lookObject.position, _tempVec) > 0.2f)
         {
-            commandData.lookObject.LookAt(_tempVec);
-            commandData.lookObject.Translate(transform.forward * Time.deltaTime);
+            commandData.lookObject.position = Vector3.MoveTowards(commandData.lookObject.position, _tempVec, _returnSpeed * Time.deltaTime);
             yield return new WaitForSecondsRealtime(Time.deltaTime * _returnSpeed);
         }
         commandData.lookObject.position = _tempVec;
-        commandData.lookObject.rotation = _quaternion;
     }
 }
