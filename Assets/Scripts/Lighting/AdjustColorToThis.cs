@@ -1,11 +1,11 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class AdjustColorToThis : MonoBehaviour
 {
 	// =================================================================================== variables
 	[SerializeField] private GameObject[] objects;
+    [SerializeField] private bool changeNeonStrips = false;
+    [SerializeField] private Material neonMat;
     private Material[] _mats;
     private Light light;
 	
@@ -16,6 +16,7 @@ public class AdjustColorToThis : MonoBehaviour
         {
             _mats[i] = objects[i].GetComponent<Renderer>().material;
         }
+
         light = GetComponent<Light>();
     }
 
@@ -23,8 +24,13 @@ public class AdjustColorToThis : MonoBehaviour
     {
         for (int i = 0; i < objects.Length; i++)
         {
-            _mats[i].color = GetComponent<Light>().color;
+            _mats[i].color = light.color;
         }
         _mats[1].SetFloat("Strength", light.intensity);
+        if (changeNeonStrips)
+        {
+            neonMat.SetColor("_EmissionColor", light.color);
+            neonMat.color = light.color;
+        }
     }
 }
