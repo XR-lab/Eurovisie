@@ -8,7 +8,9 @@ public class LookTargetCamera : LookObject
     private Renderer _renderer;
     private AudioSource _sound;
     private VisualEffect vs;
-    private Material _coneMat;
+    
+    public Material _coneMat;
+    public bool staticCam;
 
     private void Awake()
     {

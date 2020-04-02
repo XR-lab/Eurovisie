@@ -1,5 +1,6 @@
 ﻿public enum BehaviorIds
 {
     Default,
-    Crowd
+    Crowd,
+    Camera
 }
