@@ -71,6 +71,7 @@ namespace Eurovision.Gameplay
                 if (!_currentTask._isSong && currentTarget == null)
                 {
                     _cameraTimer += Time.deltaTime;
+                    //Debug.Log(_cameraTimer);
                 }
                 else
                 {
@@ -102,7 +103,7 @@ namespace Eurovision.Gameplay
                     return;
                 } 
                 
-                if (currentTarget == null)
+                if (currentTarget == null && _endTarget != null)
                 {
                     _endTarget.SetAsNotGettingLookedAt();
                     return;
@@ -177,6 +178,10 @@ namespace Eurovision.Gameplay
 
             _currentTask.IsComplete = true;
             _currentTask.Targets[0].SetAsInActiveObject();
+            if (_currentTask.Targets[0].gameObject.name == "Camera")
+            {
+                _currentTask.Targets[0].PlayEffect();
+            }
 
 
             //_operformanceTracker.AddPoints(scre);
