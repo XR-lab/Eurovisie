@@ -6,6 +6,8 @@ public class AdjustColorToThis : MonoBehaviour
 	[SerializeField] private GameObject[] objects;
     [SerializeField] private bool changeNeonStrips = false;
     [SerializeField] private Material neonMat;
+    [SerializeField] private bool changeStageStrips = false;
+    [SerializeField] private Material neonStageMat;
     private Material[] _mats;
     private Light light;
 	
@@ -31,6 +33,11 @@ public class AdjustColorToThis : MonoBehaviour
         {
             neonMat.SetColor("_EmissionColor", light.color);
             neonMat.color = light.color;
+        }
+
+        if (changeStageStrips)
+        {
+            neonStageMat.SetColor("_OutlineColor", light.color);
         }
     }
 }
