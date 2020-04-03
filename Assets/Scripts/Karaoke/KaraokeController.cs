@@ -17,6 +17,8 @@ namespace Eurovision.Karaoke
                 [SerializeField] private TrackLibrary _trackLibrary; //currently isn't getting used but we can use it to make the song selection buttons instead of making the buttons in the inspector
                 [SerializeField] private UnityEngine.UI.Text _uiTextPlayerOne;
                 [SerializeField] private UnityEngine.UI.Text _uiTextPlayerTwo;
+                [SerializeField] private ScreenActivator _screenActivator;
+                [SerializeField] private GameObject _endscreen;
 
                 private int _index = 0;
                 private PlayableDirector _playableDirector;
@@ -30,7 +32,15 @@ namespace Eurovision.Karaoke
                 {
                         _playableDirector = GetComponent<PlayableDirector>();
                 }
-                
+
+                private void Update()
+                {
+                        if (_playableDirector.time + 0.1f >= _trackData.timelineAsset.duration)
+                        {
+                                OnSongEnd(_endscreen);
+                        }
+                }
+
                 [ContextMenu("Do Something")]
                 private void StartTrack()
                 {
@@ -106,6 +116,11 @@ namespace Eurovision.Karaoke
                 {
                         _uiTextPlayerOne.text = newText;
                         _uiTextPlayerTwo.text = newText;
+                }
+
+                void OnSongEnd(GameObject obj)
+                {
+                        _screenActivator.screenInactive(_endscreen);
                 }
         }
 }
