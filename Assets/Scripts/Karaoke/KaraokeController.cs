@@ -19,6 +19,7 @@ namespace Eurovision.Karaoke
                 [SerializeField] private UnityEngine.UI.Text _uiTextPlayerTwo;
                 [SerializeField] private ScreenActivator _screenActivator;
                 [SerializeField] private GameObject _endscreen;
+                [SerializeField] private CommandSetCrowd _crowdCommander;
 
                 private int _index = 0;
                 private PlayableDirector _playableDirector;
@@ -120,6 +121,7 @@ namespace Eurovision.Karaoke
 
                 void OnSongEnd(GameObject obj)
                 {
+                        _crowdCommander.Victory();
                         _screenActivator.screenInactive(_endscreen);
                 }
         }
