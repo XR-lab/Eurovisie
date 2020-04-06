@@ -21,10 +21,11 @@ namespace Eurovision.Karaoke
                 private int _index = 0;
                 private PlayableDirector _playableDirector;
                 private LyricData _lyricsData;
-                private TrackData _trackData;
                 private List<String> _lyricsApart;
                 private int _wordIndex = 0;
                 private string _colorP = "<color=red>", _colorS = "</color>";
+                
+                public TrackData _trackData;
 
                 private void Awake()
                 {
