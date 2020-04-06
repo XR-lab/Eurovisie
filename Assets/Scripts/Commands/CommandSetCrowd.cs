@@ -2,7 +2,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel.Design;
-using UnityEditor.Animations;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -26,6 +25,14 @@ public class CommandSetCrowd : Command<BehaviorIds, CrowdBehaviorDTO>
             _animators[i].Play(_animators[i].GetCurrentAnimatorStateInfo(0).shortNameHash, 0, Random.Range(0f,offset));
         }
         //Debug.Log(_setAnimators.Length + "Hello");
+    }
+    
+    public void Victory()
+    {
+        for (int i = 0; i < _animators.Length; i++)
+        {
+            _animators[i].SetTrigger("Victory");
+        }
     }
 
     public override void Execute(CrowdBehaviorDTO commadData)

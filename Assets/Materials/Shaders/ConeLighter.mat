@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Wack
+  m_Name: ConeLighter
   m_Shader: {fileID: -6465566751694194690, guid: b2f2008ae24ecfc458e4ad6dd91f998e,
     type: 3}
   m_ShaderKeywords: 
@@ -22,7 +22,8 @@ Material:
     m_TexEnvs: []
     m_Floats:
     - Strenght: 500
-    - _Alpha: 0.5
+    - Strength: 500
+    - _Alpha: 0.2
     - multiplier: 1
     m_Colors:
-    - _Color: {r: 1, g: 0, b: 0, a: 0}
+    - _Color: {r: 1, g: 1, b: 1, a: 0}

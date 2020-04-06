@@ -5,6 +5,7 @@ using UnityEngine.UI;
 using System;
 using System.Linq;
 using Eurovision.Karaoke;
+using Random = UnityEngine.Random;
 
 namespace Eurovision.Gameplay
 {
@@ -17,6 +18,7 @@ namespace Eurovision.Gameplay
         [SerializeField] private Image _progressImage;
         [SerializeField] private float _minusScore;
         [SerializeField] private float _cameraMaxTimer;
+        [SerializeField] private CommandSetCamera _setCamera;
 
         private Task _currentTask;
 
@@ -82,6 +84,15 @@ namespace Eurovision.Gameplay
                     TaskFailed();
                 }
                 
+                if (_currentTask.Targets.Contains(currentTarget))
+                {
+                    currentTarget.SetAsGettingLookedAt();
+                    if (_timer <= 0)
+                        TaskStart();
+                    _endTarget = currentTarget;
+                    UpdateCurrentTask();
+                }
+                
                 if (_currentTask.IsComplete)
                     return;
 
@@ -92,22 +103,13 @@ namespace Eurovision.Gameplay
                     return;
                 } 
                 
-                if (currentTarget == null)
+                if (currentTarget == null && _endTarget != null)
                 {
                     _endTarget.SetAsNotGettingLookedAt();
                     return;
                 }
 
                 _les = false;
-                
-                if (_currentTask.Targets.Contains(currentTarget))
-                {
-                    currentTarget.SetAsGettingLookedAt();
-                    if (_timer <= 0)
-                        TaskStart();
-                    _endTarget = currentTarget;
-                    UpdateCurrentTask();
-                }
 
                 //_endTarget = currentTarget;
             }
@@ -176,7 +178,7 @@ namespace Eurovision.Gameplay
 
             _currentTask.IsComplete = true;
             _currentTask.Targets[0].SetAsInActiveObject();
-            if (_currentTask.Targets[0].gameObject.name == "LookTarget")
+            if (_currentTask.Targets[0].gameObject.name == "Camera")
             {
                 _currentTask.Targets[0].PlayEffect();
             }
@@ -202,7 +204,8 @@ namespace Eurovision.Gameplay
 
             _timer = 0;
             UpdateProgressImage();
-
+            var cameraDTO = new CameraBaviorDTO(Random.Range(1,4), _currentTask.Targets[0].transform, _currentTask.Targets[0].GetComponent<Renderer>().material.GetColor("_BaseColor"));
+            _setCamera.Execute(cameraDTO);
             print("TaskComplete");
         }
 
@@ -217,6 +220,7 @@ namespace Eurovision.Gameplay
             
             _currentTask = newTask;
             _currentTask.Targets[0].SetAsActiveObject();
+            
         }
 
         private void UpdateProgressImage()

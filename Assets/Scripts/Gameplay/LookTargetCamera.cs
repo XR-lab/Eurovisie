@@ -6,26 +6,36 @@ public class LookTargetCamera : LookObject
 {
     private Color _defaultColor;
     private Renderer _renderer;
-    private readonly int _baseColor = Shader.PropertyToID("_BaseColor");
     private AudioSource _sound;
     private VisualEffect vs;
+    
+    public Material _coneMat;
+    public bool staticCam;
 
     private void Awake()
     {
         _renderer = GetComponent<Renderer>();
-        _defaultColor = _renderer.material.GetColor(_baseColor);
         _sound = GetComponent<AudioSource>();
         vs = GetComponentInChildren<VisualEffect>();
+        Transform[] loop = GetComponentsInChildren<Transform>();
+        foreach (var item in loop)
+        {
+            if (item.name.Equals("Cone"))
+            {
+                _coneMat = item.gameObject.GetComponent<Renderer>().material;
+                _coneMat.color = Color.red;
+            }
+        }
     }
 
     public override void SetAsActiveObject()
     {
-        _renderer.material.SetColor(_baseColor, Color.white);
+        _coneMat.color = Color.green;
     }
 
     public override void SetAsInActiveObject()
     {
-        _renderer.material.SetColor(_baseColor, _defaultColor);
+        _coneMat.color = Color.red;
     }
 
     public override void SetAsGettingLookedAt()
