@@ -95,7 +95,7 @@ namespace Eurovision.Karaoke
                         UpdateUIText(_lyricsData.Artist + " - " + _lyricsData.Tracktitle);
                 }
 
-                public void LoadTrack(TrackData trackData)
+                private void LoadTrack(TrackData trackData)
                 {
                         _trackData = trackData;
 
