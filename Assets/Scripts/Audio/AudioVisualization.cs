@@ -39,6 +39,7 @@ public class AudioVisualization : MonoBehaviour
 
     private LineRenderer[] _lineRenderers;
     private MusicControlledEffect _effect;
+    private AdjustLightStrengt _lstrength;
     
     // =========================================================================================================== Awake
     private void Awake()
@@ -48,6 +49,7 @@ public class AudioVisualization : MonoBehaviour
         _spectrum = new float[_bufferSampleSize];
 
         _effect = GetComponent<MusicControlledEffect>();
+        _lstrength = GetComponent<AdjustLightStrengt>();
 
         switch (visualizationMode)
         {
@@ -105,14 +107,15 @@ public class AudioVisualization : MonoBehaviour
     {
         const int spectrumNumberListen = 17;
         float spec = _spectrum[spectrumNumberListen];
-        if (spec > 0.01)
-        {
-            _effect.StartEffect();
-        }
-        else
-        {
-             _effect.StopEffect();
-        }
+        _lstrength.ChangeLightValue(spec);
+        //if (spec > 0.01)
+        //{
+        //    _effect.StartEffect();
+        //}
+        //else
+        //{
+        //     _effect.StopEffect();
+        //}
     }
     
     // ======================================================================================== Update length visualizer

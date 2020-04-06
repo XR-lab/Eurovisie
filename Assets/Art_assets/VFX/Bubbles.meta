@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<< HEAD:Assets/Animations.meta
+guid: dd504d4aa7ccace458d7fbedfbe7d62e
+=======
 guid: e2dc2c1d0606d954d94b629bb2a8fecb
+>>>>>>> da47565a3b129d2b236565dafa642a65391ce56b:Assets/Art_assets/VFX/Bubbles.meta
 folderAsset: yes
 DefaultImporter:
   externalObjects: {}
