@@ -26,6 +26,14 @@ public class CommandSetCrowd : Command<BehaviorIds, CrowdBehaviorDTO>
         }
         //Debug.Log(_setAnimators.Length + "Hello");
     }
+    
+    public void Victory()
+    {
+        for (int i = 0; i < _animators.Length; i++)
+        {
+            _animators[i].SetTrigger("Victory");
+        }
+    }
 
     public override void Execute(CrowdBehaviorDTO commadData)
     {
