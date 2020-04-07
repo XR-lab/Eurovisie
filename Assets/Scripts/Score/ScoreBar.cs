@@ -26,7 +26,7 @@ public class ScoreBar : MonoBehaviour
     {
         _score = 0;
         _ultimate = false;
-        StartCoroutine(ScoreSettler());
+        SetParamaters(0f);
     }
 
     private void Update()
@@ -106,7 +106,7 @@ public class ScoreBar : MonoBehaviour
     {
         while (!_ultimate)
         {
-            ScoreCalculation();
+            ScoreCalculation(true);
             yield return new WaitForEndOfFrame();
         }
         StopCoroutine(ScoreSettler());
@@ -117,17 +117,41 @@ public class ScoreBar : MonoBehaviour
         while (_ultimate && _score > 0.0f)
         {
             _score -= Time.deltaTime * _speed;
-            ScoreCalculation();
+            ScoreCalculation(false);
             yield return new WaitForEndOfFrame();
         }
         StopCoroutine(ScoreDialBack());
         _score = 0;
     }
 
-    private void ScoreCalculation()
+    private float percentage;
+    private void ScoreCalculation(bool lerp)
     {
-        float percentage = (_score - 0) / (_maxScore - 0);
-        _progressbar.fillAmount = percentage;
+        percentage = (_score) / (_maxScore);
+        if (lerp)
+        {
+            StopCoroutine(Lerp());
+            StartCoroutine(Lerp());
+        }
+        else
+        {
+            SetParamaters(percentage);
+        }
+    }
+
+    IEnumerator Lerp()
+    {
+        while (_progressbar.fillAmount < percentage-0.01f)
+        {
+            SetParamaters(Mathf.Lerp(_progressbar.fillAmount, percentage, 0.05f));
+            yield return new WaitForEndOfFrame();
+        }
+        yield return new WaitForEndOfFrame();
+    }
+
+    private void SetParamaters(float percent)
+    {
+        _progressbar.fillAmount = percent;
         _edgeRect.anchorMin = new Vector2(_progressbar.fillAmount, _edgeRect.anchorMin.y);
         _edgeRect.anchorMax = new Vector2(_progressbar.fillAmount, _edgeRect.anchorMax.y);
     }
