@@ -2584,7 +2584,7 @@ MonoBehaviour:
   - {fileID: 8660864149286932020}
   - {fileID: 1989859496}
   - {fileID: 1543196763}
-  middleGround: 0.01
+  middleGround: 0.013
   multiplier: 500
   cones:
   - {fileID: 2501584379075888952}
