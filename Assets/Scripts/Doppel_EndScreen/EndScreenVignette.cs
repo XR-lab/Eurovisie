@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using Eurovision.Karaoke;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.Rendering;
@@ -18,8 +19,12 @@ public class EndScreenVignette : MonoBehaviour
     private float fadeSpeed;
     [SerializeField] private bool isFading = false;
     
+    // References.
+    [SerializeField] private KaraokeController _karaokeController;
+    
 
     private void Start() {
+        _karaokeController.SongEnded += SetFading;
         fadeSpeed = desiredIntensity / fadeDuration;
         
         m_Volume = gameObject.GetComponent<Volume>();
@@ -29,9 +34,9 @@ public class EndScreenVignette : MonoBehaviour
             m_Vignette = tmp;
         }
         
-        if (m_Vignette.intensity.value <= 0f) {
-            isFading = true;
-        }
+        // if (m_Vignette.intensity.value <= 0f) {
+        //     isFading = true;
+        // }
     }
 
     private void Update() {
@@ -40,8 +45,8 @@ public class EndScreenVignette : MonoBehaviour
         }
     }
 
-    public void SetFading(bool t) {
-        isFading = t;
+    public void SetFading() {
+        isFading = true;
     }
 
     private void FadeVignette() {
@@ -51,5 +56,9 @@ public class EndScreenVignette : MonoBehaviour
         }
         
         m_Vignette.intensity.value += fadeSpeed * Time.deltaTime;
+    }
+    
+    private void OnDestroy() {
+        _karaokeController.SongEnded -= SetFading;
     }
 }

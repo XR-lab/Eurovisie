@@ -17,20 +17,39 @@ namespace Eurovision.Karaoke
                 [SerializeField] private TrackLibrary _trackLibrary; //currently isn't getting used but we can use it to make the song selection buttons instead of making the buttons in the inspector
                 [SerializeField] private UnityEngine.UI.Text _uiTextPlayerOne;
                 [SerializeField] private UnityEngine.UI.Text _uiTextPlayerTwo;
+                [SerializeField] private CommandSetCrowd _crowdCommander;
 
                 private int _index = 0;
                 private PlayableDirector _playableDirector;
                 private LyricData _lyricsData;
-                private TrackData _trackData;
                 private List<String> _lyricsApart;
                 private int _wordIndex = 0;
                 private string _colorP = "<color=red>", _colorS = "</color>";
+                
+                public TrackData _trackData;
+
+                public Action SongEnded;
 
                 private void Awake()
                 {
                         _playableDirector = GetComponent<PlayableDirector>();
                 }
-                
+
+                private void Update()
+                {
+                        if (_playableDirector.time + 0.1f >= _trackData.timelineAsset.duration)
+                        {
+                                OnSongEnd();
+                        }
+
+                        // Testing purposes. If song is playing, press "Z" to end song.
+                        if (UnityEngine.Input.GetKeyDown(KeyCode.Z)) {
+                                if (SongEnded != null) {
+                                        SongEnded();
+                                }
+                        }
+                }
+
                 [ContextMenu("Do Something")]
                 private void StartTrack()
                 {
@@ -94,7 +113,7 @@ namespace Eurovision.Karaoke
                         UpdateUIText(_lyricsData.Artist + " - " + _lyricsData.Tracktitle);
                 }
 
-                public void LoadTrack(TrackData trackData)
+                private void LoadTrack(TrackData trackData)
                 {
                         _trackData = trackData;
 
@@ -106,6 +125,15 @@ namespace Eurovision.Karaoke
                 {
                         _uiTextPlayerOne.text = newText;
                         _uiTextPlayerTwo.text = newText;
+                }
+
+                void OnSongEnd()
+                {
+                        if (SongEnded != null) {
+                                SongEnded();
+                        }
+                        // _crowdCommander.Victory();
+                        // _screenActivator.screenInactive(_endscreen);
                 }
         }
 }

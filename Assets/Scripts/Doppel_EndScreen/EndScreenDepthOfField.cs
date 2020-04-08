@@ -23,6 +23,7 @@ public class EndScreenDepthOfField : MonoBehaviour {
     
 
     private void Start() {
+        _karaokeController.SongEnded += SetFading;
         fadeSpeed = desiredLength / fadeDuration;
         
         m_Volume = gameObject.GetComponent<Volume>();
@@ -32,9 +33,9 @@ public class EndScreenDepthOfField : MonoBehaviour {
             m_DepthOfField = tmp;
         }
 
-        if (m_DepthOfField.focalLength.value <= 1f) {
-            isFading = true;
-        }
+        // if (m_DepthOfField.focalLength.value <= 1f) {
+        //     isFading = true;
+        // }
     }
 
     private void Update() {
@@ -43,8 +44,8 @@ public class EndScreenDepthOfField : MonoBehaviour {
         }
     }
     
-    public void SetFading(bool t) {
-        isFading = t;
+    public void SetFading() {
+        isFading = true;
     }
 
     private void FadeDepthOfField() {
@@ -54,5 +55,9 @@ public class EndScreenDepthOfField : MonoBehaviour {
         }
         
         m_DepthOfField.focalLength.value += fadeSpeed * Time.deltaTime;
+    }
+    
+    private void OnDestroy() {
+        _karaokeController.SongEnded -= SetFading;
     }
 }
