@@ -4,7 +4,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.IO.Ports;
 using UnityEngine.Serialization;
-using UnityScript.Steps;
 
 namespace Eurovision.Input
 {

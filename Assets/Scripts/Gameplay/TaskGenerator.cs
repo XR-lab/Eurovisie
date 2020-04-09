@@ -28,7 +28,7 @@ namespace Eurovision.Gameplay
         
         public Task GenerateSongSelectionTask()
         {
-            return new Task(_songTargets, _selectionDuration,true);
+            return new Task(_songTargets, _selectionDuration,true, 0);
         }
     }
 }
