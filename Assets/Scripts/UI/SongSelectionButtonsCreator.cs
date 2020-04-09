@@ -19,7 +19,7 @@ public class SongSelectionButtonsCreator : MonoBehaviour
     
     void Awake()
     {
-        MakeSongButtons();
+       // MakeSongButtons();
     }
 
     private void MakeSongButtons() // currently only looks good with exactly 10 buttons
@@ -28,6 +28,8 @@ public class SongSelectionButtonsCreator : MonoBehaviour
         LookObject[] buttons = new LookObject[length];
         for (int i = 0; i < length; i++)
         {
+ 
+     
             Vector3 position = _originPosition.position;
             position.x += _Xoffset + Mathf.Abs((_Xoffset / 2) * (i % (length / 2))); //Offset makes it start more on the left with the first item and then just adding a half of it each button to the right. reset it when we reach the halfway mark
             position.y += _Yoffset + (-_Yoffset * (i / (length / 2))); //Start with offset and once it reaches halfway mark remove the offset
@@ -41,6 +43,7 @@ public class SongSelectionButtonsCreator : MonoBehaviour
             selection.trackData = _trackLibrary.GetTrack(i);
             button.GetComponent<SpriteRenderer>().sprite = selection.trackData.image;
             buttons[i] = button.GetComponent<LookObject>();
+            
         }
 
         _taskGenerator.songTargets = buttons;

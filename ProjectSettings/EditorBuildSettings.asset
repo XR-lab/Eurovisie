@@ -9,9 +9,22 @@ EditorBuildSettings:
     path: Assets/Scenes/Richard_CameraGameplay.unity
     guid: 8ffe863df4c914bab96342d5cf1b41eb
   - enabled: 0
-    path: Assets/Scenes/Colin_SongSelection.unity
-    guid: 40372f42714c4a645acd02fc39becaa2
-  - enabled: 1
+    path: 
+    guid: 00000000000000000000000000000000
+  - enabled: 0
     path: Assets/Scenes/Main_Scene.unity
     guid: 65f4442a2447ea544bff3b2bab7c1904
-  m_configObjects: {}
+  - enabled: 0
+    path: Assets/Scenes/Ruben_QuestIntergration_Scene.unity
+    guid: cacc93f287c5fa84ebf9562b4d8b21dc
+  - enabled: 0
+    path: Assets/Scenes/MainBackup.unity
+    guid: 55c012495a9453f4c94107ce4b21e4f8
+  - enabled: 1
+    path: Assets/Scenes/MainBuildTestOculus.unity
+    guid: c8cf382218bc9204da4221ed59d479ed
+  m_configObjects:
+    Unity.XR.Oculus.Settings: {fileID: 11400000, guid: f9045087c245d604f8ffec34b9257939,
+      type: 2}
+    com.unity.xr.management.loader_settings: {fileID: 11400000, guid: 6dec35982abebc84494f54e683602975,
+      type: 2}
