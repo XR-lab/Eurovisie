@@ -1,12 +1,7 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using Eurovision.Karaoke;
-using UnityEditor;
+﻿using Eurovision.Karaoke;
 using UnityEngine;
 using UnityEngine.Rendering;
 using UnityEngine.Rendering.Universal;
-using Valve.VR;
 
 public class EndScreenDepthOfField : MonoBehaviour {
     [SerializeField] private Volume m_Volume;
