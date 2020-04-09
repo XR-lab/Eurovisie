@@ -226,6 +226,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Podium
       objectReference: {fileID: 0}
+    - target: {fileID: -927199367670048503, guid: bc5762a048121b54a84c40edef620f64,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bc5762a048121b54a84c40edef620f64, type: 3}
 --- !u!1 &282320888
@@ -557,6 +562,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Stage
+      objectReference: {fileID: 0}
+    - target: {fileID: -927199367670048503, guid: df089495f27243840b9b83fd317ff290,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: df089495f27243840b9b83fd317ff290, type: 3}
@@ -1606,6 +1616,75 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!1001 &143971505246782610
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 3607813449970782849, guid: 53d8e594e3fc1bb42b35fe131afabf1f,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3607813449970782849, guid: 53d8e594e3fc1bb42b35fe131afabf1f,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3607813449970782849, guid: 53d8e594e3fc1bb42b35fe131afabf1f,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3607813449970782849, guid: 53d8e594e3fc1bb42b35fe131afabf1f,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3607813449970782849, guid: 53d8e594e3fc1bb42b35fe131afabf1f,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3607813449970782849, guid: 53d8e594e3fc1bb42b35fe131afabf1f,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3607813449970782849, guid: 53d8e594e3fc1bb42b35fe131afabf1f,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3607813449970782849, guid: 53d8e594e3fc1bb42b35fe131afabf1f,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 3607813449970782849, guid: 53d8e594e3fc1bb42b35fe131afabf1f,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3607813449970782849, guid: 53d8e594e3fc1bb42b35fe131afabf1f,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3607813449970782849, guid: 53d8e594e3fc1bb42b35fe131afabf1f,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4594521443540070315, guid: 53d8e594e3fc1bb42b35fe131afabf1f,
+        type: 3}
+      propertyPath: m_Name
+      value: Podium+Stage
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 53d8e594e3fc1bb42b35fe131afabf1f, type: 3}
 --- !u!1 &193350041371116718
 GameObject:
   m_ObjectHideFlags: 0

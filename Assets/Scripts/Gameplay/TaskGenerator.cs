@@ -1,4 +1,6 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
+using Random = UnityEngine.Random;
 
 namespace Eurovision.Gameplay
 {
@@ -12,13 +14,16 @@ namespace Eurovision.Gameplay
         [SerializeField] private float _maxDuration;
         [SerializeField] private float _selectionDuration;
 
+        // Event.
+        public Action<GameObject> NewTarget;
         public Task GenerateTask()
         {
             int randomIndex = Random.Range(0, _targets.Length);
             float randomDuration = Random.Range(_minDuration, _maxDuration);
             LookObject[] randomTarget = new LookObject[1];
             randomTarget[0] = _targets[randomIndex];
-            return new Task(randomTarget, randomDuration, false,1);
+            NewTarget.Invoke(randomTarget[0].gameObject);
+            return new Task(randomTarget, randomDuration, false);
         }
         
         public Task GenerateSongSelectionTask()
