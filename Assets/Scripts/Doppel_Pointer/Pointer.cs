@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using Eurovision.Gameplay;
+﻿using Eurovision.Gameplay;
 using UnityEngine;
 using UnityEngine.UI;
-using Valve.VR;
 
 // This script requires the pointer image to have it's X-axis pivot at 0.
 // This script requires the pointer to point to the right.
