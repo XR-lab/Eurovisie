@@ -16,8 +16,8 @@ namespace Eurovision.Gameplay
 
         // Event.
         public Action<GameObject> NewTarget;
-        public Task GenerateTask()
-        {
+        
+        public Task GenerateTask() {
             int randomIndex = Random.Range(0, _targets.Length);
             float randomDuration = Random.Range(_minDuration, _maxDuration);
             LookObject[] randomTarget = new LookObject[1];
@@ -29,8 +29,7 @@ namespace Eurovision.Gameplay
             return new Task(randomTarget, randomDuration, false,1);
         }
         
-        public Task GenerateSongSelectionTask()
-        {
+        public Task GenerateSongSelectionTask() {
             return new Task(_songTargets, _selectionDuration,true, 0);
         }
     }
