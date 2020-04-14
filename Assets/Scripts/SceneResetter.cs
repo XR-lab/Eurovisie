@@ -24,6 +24,7 @@ public class SceneResetter : MonoBehaviour
     {
         if (isRunningTimer) {
             _currentTime += Time.deltaTime;
+            Debug.Log(_currentTime);
             if (_currentTime >= _restartTime) {
                 ResetScene();
                 isRunningTimer = false;
