@@ -24,15 +24,12 @@ namespace Eurovision.Input
         private bool _running = false;
         
         // TODO: Refactor into dictionary?
-        public void UpdateButtonState(bool superOn, int data, ScoreBar[] scoreBars)
+        public void UpdateButtonState(bool superOn, int data, ScoreBar scoreBars)
         {
             if (superOn && data == 1 && !_running)
             {
                 UpdateEffect(_superEffect, data);
-                for (int i = 0; i < scoreBars.Length; i++)
-                {
-                    scoreBars[i].ActivateUltimate();
-                }
+                scoreBars.ActivateUltimate();
             } else if (superOn && _running)
             {
                 UpdateEffect(_superEffect, data);

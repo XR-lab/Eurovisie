@@ -173,7 +173,7 @@ namespace Eurovision.Gameplay
                 _currentTask.Targets[0].PlayEffect();
             }
 
-
+            _scoreBar.CanvasOnn();
             //_operformanceTracker.AddPoints(scre);
             if (!_scoreBar.Isactive())
             {
@@ -189,7 +189,7 @@ namespace Eurovision.Gameplay
 
             GenerateNewTask();
             
-            _scoreBar.CanvasOnn();
+           
             _timer = 0;
             UpdateProgressImage();
             var cameraDTO = new CameraBaviorDTO(Random.Range(1,4), _currentTask.Targets[0].transform, _currentTask.Targets[0].GetComponent<Renderer>().material.GetColor("_BaseColor"));
