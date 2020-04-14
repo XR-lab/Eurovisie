@@ -10,17 +10,11 @@ namespace Eurovision.Input
     {
         [SerializeField] private Button[] _buttons;
         [SerializeField] private bool _superOn = false; // We may want to move this somewhere else
-        private ScoreBar[] _scoreBars;
+        private ScoreBar _scoreBars;
 
         private void Awake()
         {
-            GameObject[] objects = new GameObject[2];
-            _scoreBars = new ScoreBar[2];
-            objects = GameObject.FindGameObjectsWithTag("ScoreUI");
-            for (int i = 0; i < objects.Length; i++)
-            {
-                _scoreBars[i] = objects[i].GetComponent<ScoreBar>();
-            }
+            _scoreBars = GameObject.FindGameObjectWithTag("ScoreUI").GetComponent<ScoreBar>();
         }
 
         public void UpdateInput(int inputData)
@@ -28,7 +22,7 @@ namespace Eurovision.Input
             int buttonID = (inputData / 10) - 1;
             int dataState = inputData % 2;
 
-            if (_scoreBars[0].ultimate)
+            if (_scoreBars.ultimate)
             {
                 _superOn = true;
             }
@@ -36,8 +30,7 @@ namespace Eurovision.Input
             {
                 _superOn = false;
             }
-
-           _buttons[buttonID].UpdateButtonState(_superOn, dataState, _scoreBars);
+            _buttons[buttonID].UpdateButtonState(_superOn, dataState, _scoreBars);
         }
 
     }
