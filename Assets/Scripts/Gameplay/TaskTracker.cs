@@ -19,6 +19,7 @@ namespace Eurovision.Gameplay
         [SerializeField] private float _minusScore;
         [SerializeField] private float _cameraMaxTimer;
         [SerializeField] private CommandSetCamera _setCamera;
+        [SerializeField] private ScoreBar _scoreBar;
 
         private Task _currentTask;
 
@@ -27,7 +28,6 @@ namespace Eurovision.Gameplay
         private bool _les;
         private Eyetracker _eyetracker;
         private TaskGenerator _taskGenerator;
-        private ScoreBar[] _scoreBars;
         private PerformanceTracker _performanceTracker;
         private KaraokeController _karaokeController;
         private LookObject _endTarget;
@@ -36,13 +36,6 @@ namespace Eurovision.Gameplay
         {
             _eyetracker = GetComponent<Eyetracker>();
             _taskGenerator = GetComponent<TaskGenerator>();
-            GameObject[] objects = new GameObject[1];
-            _scoreBars = new ScoreBar[1];
-            objects = GameObject.FindGameObjectsWithTag("ScoreUI");
-            for (int i = 0; i < objects.Length; i++)
-            {
-                _scoreBars[i] = objects[i].GetComponent<ScoreBar>();
-            }
             _performanceTracker = GetComponent<PerformanceTracker>();
             _karaokeController = FindObjectOfType<KaraokeController>();
         }
@@ -144,10 +137,7 @@ namespace Eurovision.Gameplay
             UpdateProgressImage();
             if (!_les)
             {
-                for (int i = 0; i < _scoreBars.Length; i++)
-                {
-                    _scoreBars[i].AddScore(_minusScore);
-                }
+                _scoreBar.AddScore(_minusScore);
                 _les = true;
             }
             print("TaskCancel");
@@ -183,14 +173,11 @@ namespace Eurovision.Gameplay
                 _currentTask.Targets[0].PlayEffect();
             }
 
-
+            _scoreBar.CanvasOnn();
             //_operformanceTracker.AddPoints(scre);
-            if (!_scoreBars[0].Isactive())
+            if (!_scoreBar.Isactive())
             {
-                for (int i = 0; i < _scoreBars.Length; i++)
-                {
-                    _scoreBars[i].AddScore(score);
-                }
+                _scoreBar.AddScore(score);
             }
 
             //ToDo: refactor so that the action isn't linked to the specific task
@@ -201,7 +188,8 @@ namespace Eurovision.Gameplay
             }
 
             GenerateNewTask();
-
+            
+           
             _timer = 0;
             UpdateProgressImage();
             var cameraDTO = new CameraBaviorDTO(Random.Range(1,4), _currentTask.Targets[0].transform, _currentTask.Targets[0].GetComponent<Renderer>().material.GetColor("_BaseColor"));

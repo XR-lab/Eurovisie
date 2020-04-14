@@ -1,5 +1,4 @@
-﻿using Boo.Lang;
-using Eurovision.Gameplay;
+﻿using Eurovision.Gameplay;
 using UnityEngine;
 
 public struct CameraBaviorDTO

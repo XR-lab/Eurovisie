@@ -1,7 +1,6 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 using System;
-using Boo.Lang;
 
 namespace Eurovision.Gameplay
 {
@@ -37,7 +36,7 @@ namespace Eurovision.Gameplay
             UpdateUI();
         }
 
-        private void ResetPerformancePoints()
+        public void ResetPerformancePoints()
         {
             _performancePoints = 0;
         }
