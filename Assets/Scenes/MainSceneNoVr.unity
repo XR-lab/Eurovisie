@@ -1476,6 +1476,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9674f88caf6499545bfc9fcb3d4b4799, type: 3}
+--- !u!1 &521218305 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3607908710306023264, guid: f225e6639e2091945855b1b6dd5c128d,
+    type: 3}
+  m_PrefabInstance: {fileID: 2122033223}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &544321957
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2762,6 +2768,12 @@ PrefabInstance:
         type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 73722aac46522c148b3ee37fed240ef9, type: 3}
+--- !u!1 &953257559 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4383026790401118607, guid: f225e6639e2091945855b1b6dd5c128d,
+    type: 3}
+  m_PrefabInstance: {fileID: 2122033223}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &954579394 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: -927199367670048503, guid: 9674f88caf6499545bfc9fcb3d4b4799,
@@ -3898,6 +3910,31 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1c9279ce61539de439ee28ae9818d851, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1205915382
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1205915375}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b53bb3b3aab0d3a49a3a0174d8f2534c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _allCameraRigs:
+  - {fileID: 1214770747}
+  - {fileID: 2051542253}
+  - {fileID: 953257559}
+  - {fileID: 521218305}
+  _defaultCameraMaterial: {fileID: 2100000, guid: 854bdff8b26ac0c48965765dc6931e37,
+    type: 2}
+  _activeCameraMaterial: {fileID: 2100000, guid: 0b36ff2eaaee5bd42ad57788aaf57670,
+    type: 2}
+  _particlePrefab: {fileID: 6076107924742098273, guid: 42a8682b9e7f7a0419376dbec96d284f,
+    type: 3}
+  _objectName: Cam_Rig
+  _taskGenerator: {fileID: 1433449495}
 --- !u!1001 &1207344250
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3972,6 +4009,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9674f88caf6499545bfc9fcb3d4b4799, type: 3}
+--- !u!1 &1214770747 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 751275477164378511, guid: f225e6639e2091945855b1b6dd5c128d,
+    type: 3}
+  m_PrefabInstance: {fileID: 2122033223}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1222346024 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: -927199367670048503, guid: 9674f88caf6499545bfc9fcb3d4b4799,
@@ -6172,6 +6215,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sceneIndexToLoad: 0
+  _karaokeController: {fileID: 1260930035}
+  _restartTime: 5
 --- !u!1 &1580267872 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: -927199367670048503, guid: 9674f88caf6499545bfc9fcb3d4b4799,
@@ -8642,6 +8687,12 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!1 &2051542253 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5938833925739993398, guid: f225e6639e2091945855b1b6dd5c128d,
+    type: 3}
+  m_PrefabInstance: {fileID: 2122033223}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &2053920802
 GameObject:
   m_ObjectHideFlags: 0
@@ -8705,6 +8756,11 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 854bdff8b26ac0c48965765dc6931e37, type: 2}
+    - target: {fileID: 1833985111408863796, guid: f225e6639e2091945855b1b6dd5c128d,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1924675303275677006, guid: f225e6639e2091945855b1b6dd5c128d,
         type: 3}
       propertyPath: m_Name
@@ -8910,6 +8966,16 @@ PrefabInstance:
       propertyPath: m_LocalPosition.z
       value: -0
       objectReference: {fileID: 0}
+    - target: {fileID: 5884034395306437425, guid: f225e6639e2091945855b1b6dd5c128d,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5890922026179871297, guid: f225e6639e2091945855b1b6dd5c128d,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7045061418997990384, guid: f225e6639e2091945855b1b6dd5c128d,
         type: 3}
       propertyPath: m_PlayOnAwake
@@ -9069,6 +9135,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_PlayOnAwake
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8296172668441208553, guid: f225e6639e2091945855b1b6dd5c128d,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8750583048843698436, guid: f225e6639e2091945855b1b6dd5c128d,
         type: 3}
@@ -9274,6 +9345,18 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 333312167}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &2126158665 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3239115938109851694, guid: a89e4144766dbb64bbb53fe5988780b0,
+    type: 3}
+  m_PrefabInstance: {fileID: 333312167}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2126158664}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2fb263f1ff19f3e439b46eed4630fc39, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2128942877 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: -927199367670048503, guid: 9674f88caf6499545bfc9fcb3d4b4799,
@@ -15501,6 +15584,11 @@ PrefabInstance:
       propertyPath: _setCamera
       value: 
       objectReference: {fileID: 1205915377}
+    - target: {fileID: 8733186758576314298, guid: 97436fe7a630e4f4c85ad78eb963bbff,
+        type: 3}
+      propertyPath: _scoreBar
+      value: 
+      objectReference: {fileID: 2126158665}
     - target: {fileID: 8733186758576314299, guid: 97436fe7a630e4f4c85ad78eb963bbff,
         type: 3}
       propertyPath: _targets.Array.size
