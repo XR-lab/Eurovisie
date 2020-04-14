@@ -5,6 +5,9 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
+  - enabled: 1
+    path: Assets/Scenes/MainSceneNoVr.unity
+    guid: 6236c955c2028e147bd7c7df19243aad
   - enabled: 0
     path: Assets/Scenes/Richard_CameraGameplay.unity
     guid: 8ffe863df4c914bab96342d5cf1b41eb
@@ -20,7 +23,7 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Scenes/MainBackup.unity
     guid: 55c012495a9453f4c94107ce4b21e4f8
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/MainBuildTestOculus.unity
     guid: c8cf382218bc9204da4221ed59d479ed
   m_configObjects:

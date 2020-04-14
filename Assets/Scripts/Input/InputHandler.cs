@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using UnityEngine.Events;
+﻿using UnityEngine;
 
 namespace Eurovision.Input
 {
@@ -10,11 +6,12 @@ namespace Eurovision.Input
     {
         [SerializeField] private Button[] _buttons;
         [SerializeField] private bool _superOn = false; // We may want to move this somewhere else
-        private ScoreBar _scoreBars;
+        [SerializeField] private ScoreBar _scoreBars;
+        public int ButtonAmount { get { return _buttons.Length; } }
 
         private void Awake()
         {
-            _scoreBars = GameObject.FindGameObjectWithTag("ScoreUI").GetComponent<ScoreBar>();
+            //_scoreBars = GameObject.FindGameObjectWithTag("ScoreUI").GetComponent<ScoreBar>();
         }
 
         public void UpdateInput(int inputData)

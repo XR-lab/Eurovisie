@@ -1,11 +1,12 @@
 ﻿using System.Collections.Generic;
 using Eurovision;
+using Eurovision.Input;
 using UnityEngine;
 
 public class TimelineEffectsManager : MonoBehaviour
 {
     // ============================================================================================= 'Private' Variables
-    [SerializeField] private GameObject randomAiScript;
+    [SerializeField] private RandomButtonPresser randomAiScript;
     [SerializeField] private Effect danceCircle;
     [SerializeField] private Effect fire;
     [SerializeField] private Effect laser;
@@ -26,7 +27,8 @@ public class TimelineEffectsManager : MonoBehaviour
     // ========================================================================================= Random Ai (dis/en)abler
     public void RandomAiController(bool enable)
     {
-        
+        if(enable) randomAiScript.StartAI();
+        else if(!enable) randomAiScript.StopEffects();
     }
     
     // ==================================================================================================== Start Effect
