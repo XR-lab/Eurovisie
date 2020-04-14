@@ -19,7 +19,7 @@ public class SongSelectionButtonsCreator : MonoBehaviour
     
     void Awake()
     {
-       // MakeSongButtons();
+       MakeSongButtons();
     }
 
     private void MakeSongButtons() // currently only looks good with exactly 10 buttons
