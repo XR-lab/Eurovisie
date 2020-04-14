@@ -8,8 +8,9 @@ public class LookTargetCamera : LookObject
     private Renderer _renderer;
     private AudioSource _sound;
     private VisualEffect vs;
-    
     public Material _coneMat;
+    
+    // public Material _coneMat;
     public bool staticCam;
 
     private void Awake()
@@ -32,7 +33,7 @@ public class LookTargetCamera : LookObject
     {
         _coneMat.color = Color.green;
     }
-
+    
     public override void SetAsInActiveObject()
     {
         _coneMat.color = Color.red;
