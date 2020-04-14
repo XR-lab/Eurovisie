@@ -25,7 +25,7 @@ public class ScoreBar : MonoBehaviour
     void Start()
     {
         _score = 0;
-        _ultimate = false;
+        _ultimate = false; 
         SetParamaters(0f);
     }
 
@@ -60,6 +60,16 @@ public class ScoreBar : MonoBehaviour
         }
     }
 
+    public void CanvasOff()
+    {
+        this.gameObject.SetActive(false);
+    }
+    
+    public void CanvasOnn()
+    {
+        this.gameObject.SetActive(true);
+    }
+    
     public bool Isactive()
     {
         return _ultimate;
@@ -84,13 +94,13 @@ public class ScoreBar : MonoBehaviour
         {
             _score += add;
         }
-        var crowdDTO = new CrowdBehaviorDTO(_score);
+        //var crowdDTO = new CrowdBehaviorDTO(_score);
      /*   for (int i = 0; i < _crowd.Length; i++)
         {
             _crowd[i].Execute(crowdDTO);
         }
         */
-        _crowd.Execute(crowdDTO);
+       // _crowd.Execute(crowdDTO);
         StartCoroutine(ScoreSettler());
     }
     public void ActivateUltimate()
@@ -111,7 +121,6 @@ public class ScoreBar : MonoBehaviour
             ScoreCalculation(true);
             yield return new WaitForEndOfFrame();
         }
-        StopCoroutine(ScoreSettler());
     }
 
     IEnumerator ScoreDialBack()
@@ -122,7 +131,6 @@ public class ScoreBar : MonoBehaviour
             ScoreCalculation(false);
             yield return new WaitForEndOfFrame();
         }
-        StopCoroutine(ScoreDialBack());
         _score = 0;
     }
 

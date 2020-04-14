@@ -55,14 +55,8 @@ public class ButtonSystem : MonoBehaviour
     {
         for (int i = 0; i < GetButtonLength(); i++)
         {
-            if (buttonCanComboMap[buttons[i]])
-            {
-                buttons[i].GetComponent<ButtonRenderer>().SetMaterial(materials[1]);
-            }
-            else
-            {
-                buttons[i].GetComponent<ButtonRenderer>().SetMaterial(materials[0]);
-            }
+            var targetMaterial = buttonCanComboMap[buttons[i]] ? materials[1] : materials[0];
+            buttons[i].GetComponent<ButtonRenderer>().SetMaterial(targetMaterial);
         }
     }
 
@@ -80,7 +74,8 @@ public class ButtonSystem : MonoBehaviour
 
     private void ActivateButtonAnimation()
     {
-        for (int i = 0; i < GetButtonLength(); i++)
+        var l = GetButtonLength();
+        for (int i = 0; i < l; i++)
         {
             if (i < _minigame.GetActiveButtons())
             {
