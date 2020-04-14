@@ -1,10 +1,7 @@
 fileFormatVersion: 2
-<<<<<<< HEAD:Assets/Scenes/Doppel_MainScene.unity.meta
 guid: 0986fa57755c6f34da65beb1064c9cb1
-=======
-guid: ed749d2fdfe6bae4eb74baac72ee267d
 folderAsset: yes
->>>>>>> development:Assets/Scenes/MainSceneNoVr.meta
+development:Assets/Scenes/MainSceneNoVr.meta
 DefaultImporter:
   externalObjects: {}
   userData: 
