@@ -22,11 +22,11 @@ namespace Eurovision.Gameplay
             float randomDuration = Random.Range(_minDuration, _maxDuration);
             LookObject[] randomTarget = new LookObject[1];
             randomTarget[0] = _targets[randomIndex];
-            if (NewTarget != null)
-            {
-                NewTarget.Invoke(randomTarget[0].gameObject);
+            //NewTarget.Invoke(randomTarget[0].gameObject);
+            if (NewTarget != null){
+                NewTarget(randomTarget[0].gameObject);
             }
-            return new Task(randomTarget, randomDuration, false,1);
+            return new Task(randomTarget, randomDuration, false, 1);
         }
         
         public Task GenerateSongSelectionTask() {
