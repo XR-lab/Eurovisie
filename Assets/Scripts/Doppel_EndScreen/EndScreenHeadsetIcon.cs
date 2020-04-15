@@ -12,8 +12,8 @@ public class EndScreenHeadsetIcon : MonoBehaviour {
    [Tooltip("Fill this array with all the individual frames.")]
    [SerializeField] private Sprite[] _sprites;
    
-   private int _spriteIndex;
-   private int _maxCount = 100;
+   private int _spriteIndex = 0;
+   private int _maxCount = 98;
    private float _waitTimer = 0f;
    [Tooltip("Wait this amount of time before restarting loop.")]
    [SerializeField] private float _waitForSeconds = 2f;
@@ -89,17 +89,22 @@ public class EndScreenHeadsetIcon : MonoBehaviour {
    }
 
    private void LoopSprites() {
-      if (_spriteIndex >= _maxCount) {
+      if (_spriteIndex >= _maxCount - 1) {
          _waitTimer += Time.deltaTime;
 
          if (_waitTimer > _waitForSeconds) {
             _spriteIndex = 0;
             _waitTimer = 0f;
+            _currentSprite.sprite = _sprites[_spriteIndex];
          }
       }
-         
-      _spriteIndex += 1;
-      _currentSprite.sprite = _sprites[_spriteIndex];
+
+      if (_spriteIndex < _sprites.Length - 1)
+      {
+         _spriteIndex++;
+         _currentSprite.sprite = _sprites[_spriteIndex];
+      }
+      
    }
 
    private void FadeSprite() {
@@ -108,8 +113,6 @@ public class EndScreenHeadsetIcon : MonoBehaviour {
          _isFadingSprite = false;
          return;
       }
-      
-      
       
       _spriteAlpha += _fadeSpeed * Time.deltaTime;
       spriteColor = new Color(spriteColor.r, spriteColor.g, spriteColor.b, _spriteAlpha);

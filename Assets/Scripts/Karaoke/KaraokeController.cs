@@ -18,6 +18,7 @@ namespace Eurovision.Karaoke
                 [SerializeField] private UnityEngine.UI.Text _uiTextPlayerOne;
                 [SerializeField] private UnityEngine.UI.Text _uiTextPlayerTwo;
                 [SerializeField] private CommandSetCrowd _crowdCommander;
+                [SerializeField] private AudioSource _crowdSound;
 
                 private int _index = 0;
                 private PlayableDirector _playableDirector;
@@ -132,6 +133,7 @@ namespace Eurovision.Karaoke
                         if (SongEnded != null) {
                                 SongEnded();
                         }
+                        _crowdSound.Play();
                         // _crowdCommander.Victory();
                         // _screenActivator.screenInactive(_endscreen);
                 }
