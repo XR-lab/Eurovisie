@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!114 &-5537566995972404365
+--- !u!114 &-5147487205988895698
 MonoBehaviour:
   m_ObjectHideFlags: 11
   m_CorrespondingSourceObject: {fileID: 0}
@@ -20,8 +20,8 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Glowign_fish_mat
-  m_Shader: {fileID: -6465566751694194690, guid: 20dad7915c06e5b41ac37da1587121af,
+  m_Name: Superfish_mat
+  m_Shader: {fileID: -6465566751694194690, guid: e9fb701c869356443be5f3d182eaa46e,
     type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 4
@@ -34,7 +34,7 @@ Material:
     serializedVersion: 3
     m_TexEnvs:
     - Cubemap_90BA5D93:
-        m_Texture: {fileID: 8900000, guid: a232306c7058f2c4aa19fa9fb3e44712, type: 3}
+        m_Texture: {fileID: 8900000, guid: bbd68119b0fa1a24d832fc10adc4344d, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - Cubemap_CAD262A6:
@@ -70,15 +70,15 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Floats:
-    - Vector1_2A20299D: 0.5
+    - Vector1_2A20299D: 4.165582
     - Vector1_2F123455: 1.09
     - Vector1_32A09EEA: 10
     - Vector1_9FD87FEC: 1
     - Vector1_A424DF5E: 1
-    - Vector1_A6F453B3: 0.11
-    - Vector1_C2ED70E5: 5.57
-    - Vector1_CAB68178: 1
-    - Vector1_CE297146: 0.17
+    - Vector1_A6F453B3: 0.5
+    - Vector1_C2ED70E5: 2.1
+    - Vector1_CAB68178: 2
+    - Vector1_CE297146: 0.09043847
     - _AlphaClip: 0
     - _Blend: 0
     - _BumpScale: 1
@@ -101,9 +101,9 @@ Material:
     - _WorkflowMode: 1
     - _ZWrite: 1
     m_Colors:
-    - Color_8DB2BF25: {r: 0, g: 16.641325, b: 17.80042, a: 0}
-    - Color_F120E2C6: {r: 8.654444, g: 9.082411, b: 7.1327834, a: 0}
-    - Vector3_99D701F4: {r: 0, g: 0, b: 0, a: 0}
+    - Color_8DB2BF25: {r: 1, g: 1, b: 1, a: 0}
+    - Color_F120E2C6: {r: 1, g: 1, b: 1, a: 0}
+    - Vector3_99D701F4: {r: 1, g: 0, b: 0, a: 0}
     - _BaseColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
     - _Color: {r: 0.5, g: 0.5, b: 0.5, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
